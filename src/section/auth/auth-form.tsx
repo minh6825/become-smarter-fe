@@ -1,6 +1,7 @@
 'use client'
 import { FormEvent, useState } from "react";
-import PopupWrap from "../common/popup-wrap";
+import PopupWrap from "../../components/common/popup-wrap";
+import { loginGoogleApi } from "@/api/user/auth.rest";
 
 export default function AuthForm() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -14,6 +15,14 @@ export default function AuthForm() {
     // Xử lý logic đăng nhập/đăng ký ở đây
     alert(isLogin ? "Đăng nhập thành công!" : "Đăng ký thành công!");
   };
+
+  const handleLoginGoogle = async () => {
+    try {
+      window.location.href = 'http://localhost:8000/api/v1/auth/google-login'; 
+    } catch (error) {
+      
+    }
+  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen ">
@@ -71,6 +80,7 @@ export default function AuthForm() {
             {isLogin ? "Đăng Nhập" : "Đăng Ký"}
           </button>
         </form>
+        <button className="text-center text-primary-background w-full mt-4" onClick={handleLoginGoogle}>Login with google</button>
         <div className="text-center mt-4">
           <button
             type="button"
