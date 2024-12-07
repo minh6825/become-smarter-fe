@@ -7,22 +7,25 @@ import UserInfo from '../../section/auth/user-info'
 
 const HeaderHome = () => {
   const [userInfo, setUserInfo] = useState()
+  const [isClient, setIsClient] = useState(false)
+ 
   useEffect(() => {
     const handleGetUserInfo = async () => {
       const res = await getUserInfoApi()
       if(res.success) {
         setUserInfo(res.data)
       }
+      setIsClient(true)
     }
 
     handleGetUserInfo()
   }, [])
-  console.log(userInfo)
 
+  if(!isClient) return null
   return (
     <div className='h-[64px] justify-between border-b border-primary/100 flex items-center px-[2%]'>
         <Drawer />
-        {userInfo ? <UserInfo /> : <AuthForm />}
+        {userInfo ? <UserInfo userInfo={userInfo} /> : <AuthForm />}
     </div>
   )
 }

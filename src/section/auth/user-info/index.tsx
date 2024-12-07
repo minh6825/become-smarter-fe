@@ -1,10 +1,14 @@
 import React from 'react'
 
-type Props = {}
+type Props = {
+  userInfo: any
+}
 
-const UserInfo = (props: Props) => {
+const UserInfo = ({userInfo}: Props) => {
   return (
-    <div>UserInfo</div>
+    <div>{
+      userInfo.name
+    }</div>
   )
 }
 
