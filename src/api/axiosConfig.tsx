@@ -1,5 +1,6 @@
 import { NEXT_PUBLIC_SERVER } from '@/assets/constant'
-import { getCookieFc } from '@/assets/function'
+import { getCookie } from "cookies-next";
+
 import axios from 'axios'
 const axiosConfig = axios.create({
   baseURL: NEXT_PUBLIC_SERVER,
@@ -16,8 +17,10 @@ const axiosConfig = axios.create({
  axiosConfig.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-
-    const accessToken = getCookieFc('accessToken')
+    const accessToken = getCookie('accessToken')
+    const a = getCookie('ko_id')
+    const b = getCookie('rw.authenticated')
+    const c = getCookie('vercel-feature-flags')
     console.log(accessToken)
     if(accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`
