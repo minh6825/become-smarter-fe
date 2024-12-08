@@ -1,5 +1,5 @@
 import { NEXT_PUBLIC_SERVER } from '@/assets/constant'
-import { getCookie } from '@/assets/function'
+import { getCookieFc } from '@/assets/function'
 import axios from 'axios'
 const axiosConfig = axios.create({
   baseURL: NEXT_PUBLIC_SERVER,
@@ -11,7 +11,7 @@ const axiosConfig = axios.create({
 axiosConfig.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-    const accessToken = getCookie('accessToken')
+    const accessToken = getCookieFc('accessToken')
     if(accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`
       const refreshToken = accessToken;   

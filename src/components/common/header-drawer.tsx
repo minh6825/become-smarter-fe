@@ -3,6 +3,7 @@ import { useState } from "react";
 import ThemeToggles from "./ThemeToggles";
 import { MdMenuOpen } from "react-icons/md";
 import Link from "next/link";
+import { deleteCookie } from "cookies-next";
 
 export default function Drawer() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,6 +15,10 @@ export default function Drawer() {
   const closeDrawer = () => {
     setIsOpen(false);
   };
+
+  const handleLogout = () => {
+    deleteCookie('accessToken');
+  }
 
   return (
     <div>
@@ -43,9 +48,9 @@ export default function Drawer() {
                 </a>
               </li>
               <li className="py-2">
-                <a href="#" className="hover:underline">
+                <button onClick={handleLogout} className="hover:underline">
                   Logout
-                </a>
+                </button>
               </li>
             </ul>
             <div>
