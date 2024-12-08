@@ -13,6 +13,7 @@ axiosConfig.interceptors.request.use(
   function (config) {
     // Do something before request is sent
     const accessToken = getCookieFc('accessToken')
+    console.log(accessToken)
     if(accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`
       const refreshToken = accessToken;   
