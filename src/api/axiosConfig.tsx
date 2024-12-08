@@ -4,7 +4,8 @@ import axios from 'axios'
 const axiosConfig = axios.create({
   baseURL: NEXT_PUBLIC_SERVER,
   timeout: 10000,
-  headers: { 'X-Custom-Header': 'foobar' }
+  headers: { 'X-Custom-Header': 'foobar' },
+  withCredentials: true  
 })
 
 // Add a request interceptor
