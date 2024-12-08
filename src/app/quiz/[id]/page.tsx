@@ -8,7 +8,6 @@ type PageProps = {
 
 const page = async ({
     params,
-    // searchParams,
   }: PageProps) => {
 
     const {id} = await params

@@ -11,13 +11,16 @@ const HeaderHome = () => {
  
   useEffect(() => {
     const handleGetUserInfo = async () => {
-      const res = await getUserInfoApi()
-      if(res.success) {
-        setUserInfo(res.data)
+      try {
+        const res = await getUserInfoApi()
+        if(res.success) {
+          setUserInfo(res.data)
+        }
+      } catch (error) {
+        
       }
-      setIsClient(true)
     }
-
+    setIsClient(true)
     handleGetUserInfo()
   }, [])
 

@@ -1,7 +1,7 @@
 'use client'
 import { FormEvent, useState } from "react";
 import PopupWrap from "../../components/common/popup-wrap";
-import { loginGoogleApi } from "@/api/user/auth.rest";
+import '@/style/css/google-btn.css'
 
 export default function AuthForm() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -34,12 +34,12 @@ export default function AuthForm() {
       </button>
 
       <PopupWrap isOpen={isPopupOpen} onClose={togglePopup}>
-        <h2 className="text-xl font-semibold mb-4 text-primary-background  text-center">
-          {isLogin ? "Đăng Nhập" : "Đăng Ký"}
+        <h2 className="text-xl font-semibold mb-4 text-primary  text-center">
+          {isLogin ? "Đăng Nhập" : "Đăng Ký"} (Chỉ hỗ trợ sign in google)
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium">
               Email
             </label>
             <input
@@ -50,7 +50,7 @@ export default function AuthForm() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium">
               Mật khẩu
             </label>
             <input
@@ -62,7 +62,7 @@ export default function AuthForm() {
           </div>
           {!isLogin && (
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium">
                 Xác nhận mật khẩu
               </label>
               <input
@@ -77,15 +77,18 @@ export default function AuthForm() {
             type="submit"
             className="w-full px-4 py-2 bg-primary text-primary-background  rounded-md"
           >
-            {isLogin ? "Đăng Nhập" : "Đăng Ký"}
+            {isLogin ? "Đăng Nhập" : "Đăng Ký"} 
           </button>
         </form>
-        <button className="text-center text-primary-background w-full mt-4" onClick={handleLoginGoogle}>Login with google</button>
+        <button type="button" className="login-with-google-btn my-4  w-full" onClick={handleLoginGoogle}>
+          Sign in with Google
+        </button>
+
         <div className="text-center mt-4">
           <button
             type="button"
             onClick={toggleFormType}
-            className="text-primary-background hover:underline"
+            className="text-primary hover:underline"
           >
             {isLogin
               ? "Chưa có tài khoản? Đăng ký ngay"
