@@ -9,7 +9,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const token = (await cookieStore).get("accessToken")?.value;
   let data = null
   const { id } = await params
-  console.log(token, id)
+
   if(token) {
     data = await getQuizTodoApi(id, token);
   }

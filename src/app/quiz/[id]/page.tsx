@@ -2,17 +2,17 @@ import { getDetailQuizApi } from '@/api/quiz/quiz.rest'
 import QuizDetailPage from '@/section/quiz-detail'
 import React from 'react'
 
-type Props = {}
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
 
 const page = async ({
     params,
-    searchParams,
-  }: {
-    params: { id: string }
-    searchParams: { [key: string]: string | string[] | undefined }
-  }) => {
+    // searchParams,
+  }: PageProps) => {
 
-    const data = await getDetailQuizApi(params.id)
+    const {id} = await params
+    const data = await getDetailQuizApi(id)
     return (
     <div>
         <QuizDetailPage quiz={data.quiz} />
