@@ -2,6 +2,7 @@
 import { useState } from "react";
 import ThemeToggles from "./ThemeToggles";
 import { MdMenuOpen } from "react-icons/md";
+import Link from "next/link";
 
 export default function Drawer() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,9 +28,9 @@ export default function Drawer() {
             <h2 className="text-xl font-semibold">Menu</h2>
             <ul className="mt-4 flex-1">
               <li className="py-2">
-                <a href="#" className="hover:underline">
+                <Link href="/" className="hover:underline">
                   Dashboard
-                </a>
+                </Link>
               </li>
               <li className="py-2">
                 <a href="#" className="hover:underline">

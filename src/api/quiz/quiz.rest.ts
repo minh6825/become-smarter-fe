@@ -1,2 +1,55 @@
+import { NEXT_PUBLIC_SERVER } from "@/assets/constant";
+import axios from "axios";
+import axiosConfig from "../axiosConfig";
 
+export interface ITagCount {
+    [tag: string]: number; 
+  }
+  
+  export interface ITagCountBySection {
+    [section: string]: ITagCount; 
+  }
 
+export interface IQuiz {
+  quizId: string;
+  title: string;
+  created_at: Date;
+  description: string;
+  total_time: number;
+  status: string;
+  updated_at: Date;
+  deleted_at: Date;
+}
+
+export interface IQuizDetail {
+    quizId: string,
+    title: string,
+    description: string,
+    isCompleted: boolean,
+    totalTime: number,
+    sectionNumber: number,
+    questionNumber: number,
+    tagCountBySection: ITagCountBySection
+}
+
+export interface IReturnBase {
+    success: boolean;
+    message: string;
+}
+
+export interface IReturnQuizListPublic extends IReturnBase {
+  quizzes: IQuiz[]
+}
+
+export interface IReturnQuizPublic extends IReturnBase {
+    quiz: IQuizDetail
+}
+
+export const getQuizListPublicApi = async (): Promise<IReturnQuizListPublic> =>
+  (await axios.get(`${NEXT_PUBLIC_SERVER}/quizzes/quiz-public-list`)).data;
+
+export const getDetailQuizApi = async (quizId: string): Promise<IReturnQuizPublic> => (await axios.get(`${NEXT_PUBLIC_SERVER}/quizzes/details/${quizId}`)).data
+
+export const getQuizTodoApi = async (quizId: string, token: string) => (await axios.get(`${NEXT_PUBLIC_SERVER}/quizzes/to-do/${quizId}`, {headers: {
+    Authorization: `Bearer ${token}`
+}})).data

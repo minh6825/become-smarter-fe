@@ -23,7 +23,7 @@ const HeaderHome = () => {
 
   if(!isClient) return null
   return (
-    <div className='h-[64px] justify-between border-b border-primary/100 flex items-center px-[2%]'>
+    <div className='h-[64px] top-0 fixed w-full bg-primary-background justify-between border-b border-primary/100 flex items-center px-[2%]'>
         <Drawer />
         {userInfo ? <UserInfo userInfo={userInfo} /> : <AuthForm />}
     </div>

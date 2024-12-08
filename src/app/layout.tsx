@@ -30,7 +30,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-primary-background text-primary`}
       >
         <HeaderHome />
+        <div className="mt-[64px]">
         {children}
+        </div>
       </body>
     </html>
   );
