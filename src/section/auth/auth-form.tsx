@@ -2,6 +2,7 @@
 import { FormEvent, useState } from "react";
 import PopupWrap from "../../components/common/popup-wrap";
 import '@/style/css/google-btn.css'
+import { NEXT_PUBLIC_SERVER } from "@/assets/constant";
 
 export default function AuthForm() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -18,7 +19,7 @@ export default function AuthForm() {
 
   const handleLoginGoogle = async () => {
     try {
-      window.location.href = 'http://localhost:8000/api/v1/auth/google-login'; 
+      window.location.href = `${NEXT_PUBLIC_SERVER}/api/v1/auth/google-login`; 
     } catch (error) {
       
     }
