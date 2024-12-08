@@ -19,7 +19,7 @@ export default function AuthForm() {
 
   const handleLoginGoogle = async () => {
     try {
-      window.location.href = `${NEXT_PUBLIC_SERVER}/api/v1/auth/google-login`; 
+      window.location.href = `${NEXT_PUBLIC_SERVER}/auth/google-login`; 
     } catch (error) {
       
     }
