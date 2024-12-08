@@ -21,7 +21,7 @@ const axiosConfig = axios.create({
     const a = getCookie('ko_id')
     const b = getCookie('rw.authenticated')
     const c = getCookie('vercel-feature-flags')
-    console.log(accessToken)
+    console.log(accessToken, a,b, c)
     if(accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`
       const refreshToken = accessToken;   
