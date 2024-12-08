@@ -4,7 +4,11 @@ import axios from 'axios'
 const axiosConfig = axios.create({
   baseURL: NEXT_PUBLIC_SERVER,
   timeout: 10000,
-  headers: { 'X-Custom-Header': 'foobar' },
+  headers: { 
+    'X-Custom-Header': 'foobar',
+    'Access-Control-Allow-Origin': 'true',
+    'Content-Type': 'application/json',
+   },
   withCredentials: true  
 })
 
