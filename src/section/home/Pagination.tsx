@@ -1,3 +1,4 @@
+import { NEXT_PUBLIC_SERVER } from '@/assets/constant';
 import Link from 'next/link';
 import React from 'react';
 
@@ -8,8 +9,7 @@ type PaginationProps = {
 };
 
 const Pagination = ({ currentPage, totalPages, baseUrl }: PaginationProps) => {
-  const createPageUrl = (page: number) => `${baseUrl}?page=${page}`;
-
+  const createPageUrl =  (page: number) => `${baseUrl}?page=${page}`;
   return (
     <div className="flex justify-center mt-4 space-x-2">
       {currentPage > 1 && (

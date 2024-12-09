@@ -3,6 +3,7 @@ import WrapBox from '@/components/common/wrap-box'
 import Link from 'next/link'
 import React from 'react'
 import Pagination from './Pagination'
+import FilterHome from './FilterHome'
 
 type Props = {
     quizzes: IQuiz[]
@@ -13,6 +14,7 @@ type Props = {
 const HomePage = ({ quizzes, currentPage, totalPages }: Props) => {
     return (
       <WrapBox>
+        <FilterHome />
         <div className='grid grid-cols-4 gap-4'>
             {quizzes.map((quiz) => (
             <Link href={`/quiz/${quiz.quizId}`} key={quiz.quizId} className="border p-4 my-2 rounded shadow">

@@ -1,5 +1,5 @@
 import { Analytics } from "@vercel/analytics/react"
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "@/style/css/globals.css";
 import HeaderHome from "@/components/common/header-home";
 import { geistMono, geistSans } from "@/style/fonts/fonts";
@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Ôn tập là dễ",
   description: "Luyện đề nào các bạn ui",
   keywords: [
+    "Ôn tập là dễ",
     "Ôn tập",
     "Luyện thi",
     "Học tập",
@@ -16,12 +17,10 @@ export const metadata: Metadata = {
     "Luyện đề",
   ],
   authors: [{url: "Nhóm phát triển Quizizz"}],
-  viewport: "width=device-width, initial-scale=1",
-  themeColor: "#ffffff",
   openGraph: {
     type: "website",
     locale: "vi_VN",
-    url: "https://yourwebsite.com",
+    url: "https://ontaplade.com",
     title: "Ôn tập là dễ",
     description: "Luyện đề nào các bạn ui",
     siteName: "Ôn tập là dễ",
@@ -43,6 +42,11 @@ export const metadata: Metadata = {
     images: ["https://yourwebsite.com/images/thumbnail.jpg"],
   },
 };
+ 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1
+}
 
 export default function RootLayout({
   children,
@@ -53,24 +57,23 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#ffffff" />
         <meta name="keywords" content="Ôn tập, Luyện thi, Học tập, Quiz, Thi thử, Luyện đề" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="vi_VN" />
-        <meta property="og:url" content="https://yourwebsite.com" />
+        <meta property="og:url" content="https://ontaplade.com" />
         <meta property="og:title" content="Ôn tập là dễ" />
         <meta property="og:description" content="Luyện đề nào các bạn ui" />
         <meta property="og:site_name" content="Ôn tập là dễ" />
-        <meta property="og:image" content="https://yourwebsite.com/images/thumbnail.jpg" />
+        <meta property="og:image" content="https://ontaplade.com/images/thumbnail.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="Ôn tập là dễ - Thumbnail" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@yourtwitterhandle" />
-        <meta name="twitter:creator" content="@yourtwitterhandle" />
+        <meta name="twitter:site" content="@ontaplade" />
+        <meta name="twitter:creator" content="@ontaplade" />
         <meta name="twitter:title" content="Ôn tập là dễ" />
         <meta name="twitter:description" content="Luyện đề nào các bạn ui" />
-        <meta name="twitter:image" content="https://yourwebsite.com/images/thumbnail.jpg" />
+        <meta name="twitter:image" content="https://ontaplade.com/images/thumbnail.jpg" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-primary-background text-primary`}
