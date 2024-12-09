@@ -39,14 +39,26 @@ export interface IReturnBase {
 
 export interface IReturnQuizListPublic extends IReturnBase {
   quizzes: IQuiz[]
+  quantityQuizTest: number
 }
 
 export interface IReturnQuizPublic extends IReturnBase {
     quiz: IQuizDetail
 }
 
-export const getQuizListPublicApi = async (): Promise<IReturnQuizListPublic> =>
-  (await axios.get(`${NEXT_PUBLIC_SERVER}/quizzes/quiz-public-list`)).data;
+export const getQuizListPublicApi = async (params: {
+  take: number;
+  page: number;
+  tags?: string;
+  search?: string;
+  sortBy?: string;
+  questionSet?: string;
+  quizSkill?: string;
+}): Promise<IReturnQuizListPublic> => {
+  const query = new URLSearchParams(params as any).toString();
+  console.log(query)
+  return (await axios.get(`${NEXT_PUBLIC_SERVER}/quizzes/quiz-public-list?${query}`)).data;
+}
 
 export const getDetailQuizApi = async (quizId: string): Promise<IReturnQuizPublic> => (await axios.get(`${NEXT_PUBLIC_SERVER}/quizzes/details/${quizId}`)).data
 

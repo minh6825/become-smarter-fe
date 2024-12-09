@@ -2,12 +2,15 @@ import { IQuiz } from '@/api/quiz/quiz.rest'
 import WrapBox from '@/components/common/wrap-box'
 import Link from 'next/link'
 import React from 'react'
+import Pagination from './Pagination'
 
 type Props = {
     quizzes: IQuiz[]
+    currentPage: number;
+    totalPages: number;
 }
 
-const HomePage = ({ quizzes }: Props) => {
+const HomePage = ({ quizzes, currentPage, totalPages }: Props) => {
     return (
       <WrapBox>
         <div className='grid grid-cols-4 gap-4'>
@@ -19,6 +22,7 @@ const HomePage = ({ quizzes }: Props) => {
             </Link>
             ))}
         </div>
+        <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl="/" />
       </WrapBox>
     );
   };

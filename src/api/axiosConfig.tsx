@@ -10,7 +10,7 @@ const axiosConfig = axios.create({
     'Access-Control-Allow-Origin': 'true',
     'Content-Type': 'application/json',
    },
-  withCredentials: true  
+  withCredentials: true,
 })
 
 // Add a request interceptor
@@ -18,10 +18,6 @@ const axiosConfig = axios.create({
   function (config) {
     // Do something before request is sent
     const accessToken = getCookie('accessToken')
-    const a = getCookie('ko_id')
-    const b = getCookie('rw.authenticated')
-    const c = getCookie('vercel-feature-flags')
-    console.log(accessToken, a,b, c)
     if(accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`
       const refreshToken = accessToken;   

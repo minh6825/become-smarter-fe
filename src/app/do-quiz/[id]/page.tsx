@@ -13,7 +13,10 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
     data = await getQuizTodoApi(id, token);
   }
   
-  return <WrapBox>page</WrapBox>;
+  return <WrapBox>{
+      // data
+      123
+    }</WrapBox>;
 };
 
 export default page;
