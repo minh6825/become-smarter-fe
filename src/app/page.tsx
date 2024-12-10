@@ -43,7 +43,6 @@ export default async function Home({
     quizSkill?: string;
   };
   const data = await getQuizListPublicApi(params);
-  console.log(data.quantityQuizTest)
   return (
     <div>
       <HomePage quizzes={data.quizzes}  currentPage={currentPage}
