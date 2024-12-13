@@ -1,6 +1,7 @@
 import { NEXT_PUBLIC_SERVER } from "@/assets/constant";
 import axios from "axios";
 import axiosConfig from "../axiosConfig";
+import { ISection } from "./section.rest";
 
 export interface ITagCount {
   [tag: string]: number;
@@ -46,6 +47,13 @@ export interface IReturnQuizPublic extends IReturnBase {
   quiz: IQuizDetail;
 }
 
+export interface IQuizQuestionAnswer {
+  quiz_test_title: string 
+  quiz_test_intro: string
+  quiz_test_id: string
+  sections: ISection[]
+}
+
 export const getQuizListPublicApi = async (params: {
   take: number;
   page: number;
@@ -80,3 +88,8 @@ export const getQuizTodoApi = async (quizId: string, token: string) =>
       timeout: 10000,
     })
   ).data;
+
+
+export const getQuizQuestionAnswer = async (quizId:string) => (await axios.get(`${NEXT_PUBLIC_SERVER}/quizzes/get-quiz-question-answer/${quizId}`, {
+  timeout: 10000,
+})).data

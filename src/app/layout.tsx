@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import "@/style/css/globals.css";
 import HeaderHome from "@/components/common/header-home";
 import { geistMono, geistSans } from "@/style/fonts/fonts";
+import '@/style/css/scroll.css'
 
 export const metadata: Metadata = {
   title: "Ôn tập là dễ",
@@ -82,7 +83,7 @@ export default function RootLayout({
       >
         <HeaderHome />
         <Analytics />
-        <div className="mt-[64px]">
+        <div className="mt-[64px] ">
           {children}
         </div>
       </body>

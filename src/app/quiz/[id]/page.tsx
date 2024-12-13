@@ -1,5 +1,6 @@
 import { getDetailQuizApi } from '@/api/quiz/quiz.rest'
 import QuizDetailPage from '@/section/quiz-detail'
+import QuizOverviewPage from '@/section/quiz-overview';
 import React from 'react'
 
 type PageProps = {
@@ -14,7 +15,7 @@ const page = async ({
     const data = await getDetailQuizApi(id)
     return (
     <div>
-        <QuizDetailPage quiz={data.quiz} />
+        <QuizOverviewPage quiz={data.quiz} />
     </div>
   )
 }

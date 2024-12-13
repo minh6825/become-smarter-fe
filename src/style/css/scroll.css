@@ -1,0 +1,49 @@
+/* Toàn bộ thanh cuộn */
+::-webkit-scrollbar {
+  width: 12px; /* Độ rộng của thanh cuộn */
+  height: 12px; /* Độ cao của thanh cuộn ngang */
+}
+
+/* Mặt thanh cuộn */
+::-webkit-scrollbar-track {
+  background: var(--primary-foreground); /* Màu nền của track */
+  border-radius: 6px; /* Bo góc */
+}
+
+/* Thanh trượt (thumb) */
+::-webkit-scrollbar-thumb {
+  background: var(--primary); /* Màu thanh trượt */
+  border-radius: 6px; /* Bo góc */
+  border: 3px solid var(--primary-foreground); /* Viền giúp thumb nổi bật hơn */
+}
+
+/* Thanh trượt khi di chuột */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Màu thanh trượt khi hover */
+}
+
+/* Thanh cuộn góc (corner scrollbar trên MacOS hoặc Windows touch) */
+::-webkit-scrollbar-corner {
+  background: #f0f0f0;
+}
+
+/* Cuj the */
+
+.scrollable-element {
+  overflow-y: auto; /* Hiển thị thanh cuộn theo chiều dọc */
+  height: 300px; /* Chiều cao để kích hoạt thanh cuộn */
+}
+
+.scrollable-element::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrollable-element::-webkit-scrollbar-thumb {
+  background-color: #999;
+  border-radius: 5px;
+}
+/* Firefox */
+.scrollable-element {
+  scrollbar-width: thin; /* Độ dày: auto, thin hoặc none */
+  scrollbar-color: #888 #f0f0f0; /* Màu thumb và track */
+}
