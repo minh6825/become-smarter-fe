@@ -7,7 +7,7 @@ import '@/style/css/scroll.css'
 
 export const metadata: Metadata = {
   title: "Ôn tập là dễ",
-  description: "Luyện đề nào các bạn ui",
+  description: "Luyện đề nhanh chóng, dễ dàng và hiệu quả. Web của chúng tôi cung cấp cho bạn những bộ đề ôn tập đa dạng, giúp bạn luyện tập và cải thiện kỹ năng một cách tiện lợi. Với các bài tập được thiết kế khoa học và phù hợp với nhiều cấp độ, bạn sẽ có cơ hội làm quen với các dạng đề thi, kiểm tra và củng cố kiến thức mọi lúc mọi nơi. Hãy bắt đầu ôn tập ngay hôm nay để nâng cao kết quả học tập của bạn!",
   keywords: [
     "On tap la de",
     "Ôn tập là dễ",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     locale: "vi_VN",
     url: "https://www.ontaplade.com",
     title: "Ôn tập là dễ",
-    description: "Luyện đề nào các bạn ui",
+    description: "Luyện đề nhanh chóng, dễ dàng và hiệu quả. Web của chúng tôi cung cấp cho bạn những bộ đề ôn tập đa dạng, giúp bạn luyện tập và cải thiện kỹ năng một cách tiện lợi. Với các bài tập được thiết kế khoa học và phù hợp với nhiều cấp độ, bạn sẽ có cơ hội làm quen với các dạng đề thi, kiểm tra và củng cố kiến thức mọi lúc mọi nơi. Hãy bắt đầu ôn tập ngay hôm nay để nâng cao kết quả học tập của bạn!",
     siteName: "Ôn tập là dễ",
     images: [
       {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     site: "@yourtwitterhandle",
     creator: "@yourtwitterhandle",
     title: "Ôn tập là dễ",
-    description: "Luyện đề nào các bạn ui",
+    description: "Luyện đề nhanh chóng, dễ dàng và hiệu quả. Web của chúng tôi cung cấp cho bạn những bộ đề ôn tập đa dạng, giúp bạn luyện tập và cải thiện kỹ năng một cách tiện lợi. Với các bài tập được thiết kế khoa học và phù hợp với nhiều cấp độ, bạn sẽ có cơ hội làm quen với các dạng đề thi, kiểm tra và củng cố kiến thức mọi lúc mọi nơi. Hãy bắt đầu ôn tập ngay hôm nay để nâng cao kết quả học tập của bạn!",
     images: ["https://www.ontaplade.com/logo.png"],
   },
 };
@@ -64,7 +64,7 @@ export default function RootLayout({
         <meta property="og:locale" content="vi_VN" />
         <meta property="og:url" content="https://www.ontaplade.com" />
         <meta property="og:title" content="Ôn tập là dễ" />
-        <meta property="og:description" content="Luyện đề nào các bạn ui" />
+        <meta property="og:description" content="Luyện đề nhanh chóng, dễ dàng và hiệu quả. Web của chúng tôi cung cấp cho bạn những bộ đề ôn tập đa dạng, giúp bạn luyện tập và cải thiện kỹ năng một cách tiện lợi. Với các bài tập được thiết kế khoa học và phù hợp với nhiều cấp độ, bạn sẽ có cơ hội làm quen với các dạng đề thi, kiểm tra và củng cố kiến thức mọi lúc mọi nơi. Hãy bắt đầu ôn tập ngay hôm nay để nâng cao kết quả học tập của bạn!" />
         <meta property="og:site_name" content="Ôn tập là dễ" />
         <meta property="og:image" content="https://www.ontaplade.com/logo.png" />
         <meta property="og:image:width" content="1200" />
@@ -74,7 +74,7 @@ export default function RootLayout({
         <meta name="twitter:site" content="@ontaplade" />
         <meta name="twitter:creator" content="@ontaplade" />
         <meta name="twitter:title" content="Ôn tập là dễ" />
-        <meta name="twitter:description" content="Luyện đề nào các bạn ui" />
+        <meta name="twitter:description" content="Luyện đề nhanh chóng, dễ dàng và hiệu quả. Web của chúng tôi cung cấp cho bạn những bộ đề ôn tập đa dạng, giúp bạn luyện tập và cải thiện kỹ năng một cách tiện lợi. Với các bài tập được thiết kế khoa học và phù hợp với nhiều cấp độ, bạn sẽ có cơ hội làm quen với các dạng đề thi, kiểm tra và củng cố kiến thức mọi lúc mọi nơi. Hãy bắt đầu ôn tập ngay hôm nay để nâng cao kết quả học tập của bạn!" />
         <meta name="twitter:image" content="https://www.ontaplade.com/logo.png" />
         <link rel="shortcut icon" type="image/x-icon" href="https://www.ontaplade.com/favicon.ico"></link>
         </head>
