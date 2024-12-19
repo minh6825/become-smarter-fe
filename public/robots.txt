@@ -1,0 +1,19 @@
+# *
+User-agent: *
+Allow: /
+
+# Googlebot
+User-agent: Googlebot
+Allow: /
+
+# *
+User-agent: *
+Disallow: /admin
+Disallow: /private
+
+# Host
+Host: https://www.ontaplade.com
+
+# Sitemaps
+Sitemap: https://www.ontaplade.com/sitemap.xml
+Sitemap: https://www.ontaplade.com/sitemap-0.xml

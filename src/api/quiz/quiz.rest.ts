@@ -2,6 +2,7 @@ import { NEXT_PUBLIC_SERVER } from "@/assets/constant";
 import axios from "axios";
 import axiosConfig from "../axiosConfig";
 import { ISection } from "./section.rest";
+import { IQuizDataRes } from "@/app/do-quiz/[id]/page";
 
 export interface ITagCount {
   [tag: string]: number;
@@ -79,7 +80,7 @@ export const getDetailQuizApi = async (
     })
   ).data;
 
-export const getQuizTodoApi = async (quizId: string, token: string) =>
+export const getQuizTodoApi = async (quizId: string, token: string): Promise<IQuizDataRes> =>
   (
     await axios.get(`${NEXT_PUBLIC_SERVER}/quizzes/to-do/${quizId}`, {
       headers: {
