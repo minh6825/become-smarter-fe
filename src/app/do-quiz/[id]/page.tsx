@@ -26,9 +26,11 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
       return null
     }
   }
-  console.log(data)
+  
   if (!data?.success) {
-    return null;
+    return <div>
+    {data?.message}
+    </div>
   }
 
   return <div>{<DoQuizProviderWrap quizData={data.data} />}</div>;

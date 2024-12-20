@@ -1,3 +1,4 @@
+"use client";
 import { ISection } from "@/api/quiz/section.rest";
 import React from "react";
 import GroupQuestion from "./GroupQuestion";
@@ -7,9 +8,10 @@ type Props = {
   section: ISection;
   currentGroupIndex: number;
   allGroups: IGroupQuestion[];
+  questionNumber: number;
 };
 
-const Section = ({ section, currentGroupIndex, allGroups, startIndex }: Props & { startIndex: number }) => {
+const Section = ({ section, currentGroupIndex, allGroups, startIndex, questionNumber }: Props & { startIndex: number }) => {
   const groupQuestionIdShow = allGroups[currentGroupIndex].group_question_id;
   let questionCounter = startIndex + 1; // Bắt đầu từ chỉ số được truyền từ parent
 
@@ -23,12 +25,12 @@ const Section = ({ section, currentGroupIndex, allGroups, startIndex }: Props & 
           <p className="text-gray-700 mb-4">{section.section_content}</p>
         </div>
       )}
-      {section.group_question.map((group) => (
+      {section.group_question.map((group, index) => (
         <GroupQuestion
           key={group.group_question_id}
           group={group}
           isVisible={groupQuestionIdShow === group.group_question_id}
-          questionCounterRef={{ current: questionCounter }} // Truyền tham chiếu số thứ tự
+          questionNumber={questionNumber + index}
         />
       ))}
     </div>

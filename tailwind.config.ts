@@ -13,7 +13,9 @@ export default {
         primary: {
           DEFAULT: 'var(--primary)',
           foreground: 'var(--primary-foreground)',
-          background: 'var(--primary-foreground)'
+          background: 'var(--primary-foreground)',
+          'blue': 'var(--root-blue)',
+          'text-button': 'var(--text-button)'
         }
       }
     },

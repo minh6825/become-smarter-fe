@@ -1,6 +1,6 @@
-import { NEXT_PUBLIC_SERVER } from '@/assets/constant';
 import Link from 'next/link';
 import React from 'react';
+import { FcNext, FcPrevious } from 'react-icons/fc';
 
 type PaginationProps = {
   currentPage: number;
@@ -11,13 +11,13 @@ type PaginationProps = {
 const Pagination = ({ currentPage, totalPages, baseUrl }: PaginationProps) => {
   const createPageUrl =  (page: number) => `${baseUrl}?page=${page}`;
   return (
-    <div className="flex justify-center mt-4 space-x-2">
+    <div className="flex justify-center  mt-3 space-x-2">
       {currentPage > 1 && (
         <Link
           href={createPageUrl(currentPage - 1)}
-          className="px-3 py-1 border rounded hover:bg-gray-100"
+          className="px-3 py-1 border flex items-center rounded hover:bg-primary-foreground"
         >
-          Previous
+          <FcPrevious className='size-5' />
         </Link>
       )}
       {Array.from({ length: totalPages }, (_, index) => {
@@ -27,7 +27,7 @@ const Pagination = ({ currentPage, totalPages, baseUrl }: PaginationProps) => {
             key={page}
             href={createPageUrl(page)}
             className={`px-3 py-1 border rounded ${
-              page === currentPage ? 'bg-blue-500 ' : 'hover:bg-gray-100'
+              page === currentPage ? 'bg-blue-500 ' : 'hover:bg-primary-foreground'
             }`}
           >
             {page}
@@ -37,9 +37,9 @@ const Pagination = ({ currentPage, totalPages, baseUrl }: PaginationProps) => {
       {currentPage < totalPages && (
         <Link
           href={createPageUrl(currentPage + 1)}
-          className="px-3 py-1 border rounded hover:bg-gray-100"
+          className="px-3 py-1 border rounded hover:bg-primary-foreground"
         >
-          Next
+          <FcNext className='size-5' />
         </Link>
       )}
     </div>

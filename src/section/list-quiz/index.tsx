@@ -1,9 +1,9 @@
 import { IQuiz } from '@/api/quiz/quiz.rest'
 import WrapBox from '@/components/common/wrap-box'
-import Link from 'next/link'
 import React from 'react'
 import Pagination from './Pagination'
 import FilterHome from './FilterHome'
+import {QuizItem} from './QuizItem'
 
 type Props = {
     quizzes: IQuiz[]
@@ -15,16 +15,12 @@ const HomePage = ({ quizzes, currentPage, totalPages }: Props) => {
     return (
       <WrapBox>
         <FilterHome />
-        <div className='grid grid-cols-4 gap-4'>
+        <div className='grid max-2xl:grid-cols-4 grid-cols-5 gap-4'>
             {quizzes.map((quiz) => (
-            <Link href={`/quiz/${quiz.quizId}`} key={quiz.quizId} className="border p-4 my-2 rounded shadow">
-                <h3 className="text-lg font-bold">{quiz.title}</h3>
-                <p>{quiz.description}</p>
-                <span className="text-sm text-gray-500">Total time: {quiz.total_time} mins</span>
-            </Link>
+            <QuizItem quiz={quiz} key={quiz.quizId} />
             ))}
         </div>
-        <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl="/" />
+        <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl="/list-quiz" />
       </WrapBox>
     );
   };

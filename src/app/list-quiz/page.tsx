@@ -1,5 +1,5 @@
 import { getQuizListPublicApi } from "@/api/quiz/quiz.rest";
-import HomePage from "@/section/home";
+import HomePage from "@/section/list-quiz";
 
 export const revalidate = 10;
 
@@ -19,7 +19,7 @@ export default async function page({
     questionSet?: string;
     quizSkill?: string;
   }> = {
-    take: searchParamsFinal.take ? Number(searchParamsFinal.take) : 10,
+    take: searchParamsFinal.take ? Number(searchParamsFinal.take) : 12,
     page: searchParamsFinal.page ? Number(searchParamsFinal.page) : 1,
     tags: searchParamsFinal.tags,
     search: searchParamsFinal.search,
@@ -29,7 +29,7 @@ export default async function page({
   };
 
   const currentPage = searchParamsFinal?.page ? Number(searchParamsFinal?.page) : 1;
-  const take = searchParamsFinal?.take ? Number(searchParamsFinal?.take) : 10;
+  const take = searchParamsFinal?.take ? Number(searchParamsFinal?.take) : 12;
 
   const params = Object.fromEntries(
     Object.entries(rawParams).filter(([_, value]) => value !== undefined && value !== null)

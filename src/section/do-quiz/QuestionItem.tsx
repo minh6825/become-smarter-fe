@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { IQuestion } from '@/api/quiz/question.rest';
-import { useQuizSubmissionContext } from './quiz-context';
+import React, { useState, useEffect } from "react";
+import { IQuestion } from "@/api/quiz/question.rest";
+import { useQuizSubmissionContext } from "./quiz-context";
 
 type Props = {
   question: IQuestion;
@@ -31,23 +31,27 @@ const QuestionItem = ({ question, index }: Props) => {
   };
 
   return (
-    <div id={`question-${question.question_id}`} className="mb-2 p-2 rounded border">
-      <p className="font-semibold">
+    <div
+      id={`question-${question.question_id}`}
+      className="mb-2 p-2 rounded border"
+    >
+      <p className="font-semibold text-lg mb-1">
         {index}. {question.question_text}
       </p>
-      <ul className="list-disc list-inside">
+      <ul className="list-none  list-inside flex flex-col gap-1">
         {question.options.map((option) => (
-          <li key={option.option_id}>
-            <label>
+          <li className="cursor-pointer" key={option.option_id}>
+            <label className="cursor-pointer flex items-center gap-1.5">
               <input
+                className="size-4 hidden"
                 type="radio" // Nên dùng radio nếu chỉ cho phép chọn một đáp án
                 name={`question-${question.question_id}`}
                 value={option.value}
                 checked={selectedAnswer === option.value} // Kiểm tra giá trị từ state
                 onChange={() => handleAnswerChange(option.value)}
               />
-              <span className="ml-2 font-medium">{option.label}: </span>
-              <span>{option.value}</span>
+              <span className={`font-medium rounded-full size-6 text-center ${selectedAnswer === option.value && 'bg-primary-blue'}`}>{option.value}</span>
+              <span className="font-medium translate-y-[0.5px]">{option.label} </span>
             </label>
           </li>
         ))}

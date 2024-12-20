@@ -4,16 +4,25 @@ type Props = {
   loading?: boolean;
   children: React.ReactNode;
   type: "button" | "submit";
-  onClick?: () => void
-  className?: string
+  onClick?: () => void;
+  className?: string;
 };
 
-const ButtonPrimary = ({ loading, children, type, onClick, className }: Props) => {
+const ButtonPrimary = ({
+  loading,
+  children,
+  type,
+  onClick,
+  className,
+}: Props) => {
   return (
     <button
-      type={type} onClick={onClick}
-      className={`w-full px-4 py-2 text-white font-medium rounded ${
-        loading ? "bg-gray-500" : "bg-primary-background border hover:opacity-90"
+      type={type}
+      onClick={onClick}
+      className={`w-full px-4 py-2 hover:bg-primary-blue transition-all duration-150 hover:text-primary-text-button ease-in-out font-bold rounded ${
+        loading
+          ? "bg-gray-500"
+          : "bg-primary-background border hover:opacity-90"
       } ${className}`}
       disabled={loading}
     >

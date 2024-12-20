@@ -1,5 +1,5 @@
 import { getQuizListPublicApi } from "@/api/quiz/quiz.rest";
-import HomePage from "@/section/home";
+import HomePage from "@/section/list-quiz";
 import LadingPage from "@/section/home-page";
 
 export const revalidate = 10;

@@ -8,6 +8,7 @@ export interface IQuestion {
     parent_question_id: number
     options: IAnswer[]
     answers: string[]
+    index?: number
 }
 
 export interface IAnswer {
