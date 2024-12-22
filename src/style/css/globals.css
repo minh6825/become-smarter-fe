@@ -8,6 +8,17 @@
     --primary-foreground: #f8fafc;
     --root-blue: #35509a;
     --text-button: #fff;
+    --root-violet: #9294f8;
+    --root-cyan: #0505a9;
+    --root-red: #ff0000;
+    
+    --root-dark: #0f172a;
+    --root-base: #f4f4f4;
+    --root-green: #6ee7b7;
+    --root-orange: #c9a83f;
+    --root-orange-dark: #f38e1b;
+    --root-mint: #047857;
+    --root-mint-dark: #6ee7b7;
   }
   html[data-theme='dark-classic'] {
     --primary: #cbd5e1;

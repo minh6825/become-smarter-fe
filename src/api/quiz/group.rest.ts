@@ -15,7 +15,8 @@ export interface IGroupQuestion {
   title: string;
   instruction: string;
   order: number;
-  question_list: IQuestion[]
+  question_list: IQuestion[];
+  index: number
 }
 
 export interface IReturnCreateGroupQuestion extends IReturnBase {

@@ -13,9 +13,9 @@ const LadingPage = (props: Props) => {
       {/* Hero Section */}
       <section className="text-center py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-6 text-primary">
+          <h1 className="text-4xl font-bold mb-6 text-primary">
             Nền Tảng Quản Lý Bộ Đề Tốt Nhất
-          </h2>
+          </h1>
           <p className="text-lg  mb-8">
             Ôn tập là dễ giúp bạn tạo, quản lý và chia sẻ bộ đề một cách nhanh chóng
             và dễ dàng.

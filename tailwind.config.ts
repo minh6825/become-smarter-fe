@@ -15,8 +15,27 @@ export default {
           foreground: 'var(--primary-foreground)',
           background: 'var(--primary-foreground)',
           'blue': 'var(--root-blue)',
-          'text-button': 'var(--text-button)'
-        }
+          'text-button': 'var(--text-button)',
+          'root-violet': 'var(--root-violet)',
+          'root-light': 'var(--root-base)',
+          'root-dark': 'var(--root-dark)',
+          'root-green': 'var(--root-green)',
+          'root-orange': 'var(--root-orange)',
+          'root-orange-dark': 'var(--root-orange-dark)',
+          'root-mint': 'var(--root-mint)',
+          'root-mint-dark': 'var(--root-mint-dark)',
+          'root-cyan': 'var(--root-cyan)',
+          'root-red': 'var(--root-red)',
+        },
+        keyframes: {
+          wave: {
+            '0%': { transform: 'translateY(150%) scale(1.7)' },
+            '100%': { transform: 'translateY(0) scale(1.4)' },
+          },
+        },
+        animation: {
+          wave: 'wave 0.45s ease-in-out',
+        },
       }
     },
   },

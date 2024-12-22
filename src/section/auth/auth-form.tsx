@@ -26,7 +26,7 @@ export default function AuthForm() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen ">
+    <div className="flex flex-col items-center justify-center">
       <button
         className="px-4 py-2 bg-primary text-primary-background font-bold rounded-md"
         onClick={togglePopup}

@@ -1,6 +1,7 @@
 import { IGroupQuestion } from "@/api/quiz/group.rest";
 import React from "react";
 import QuestionItem from "./QuestionItem";
+import { useSearchParams } from "next/navigation";
 
 type Props = {
   group: IGroupQuestion;
@@ -8,6 +9,8 @@ type Props = {
 };
 
 const GroupQuestion = ({ group, isVisible, questionCounterRef }: Props & { questionCounterRef: { current: number } }) => {
+
+
   return (
     isVisible && (
       <div id={`group-${group.group_question_id}`} className="mb-4">

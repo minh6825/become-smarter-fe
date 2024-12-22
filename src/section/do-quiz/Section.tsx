@@ -13,8 +13,6 @@ type Props = {
 
 const Section = ({ section, currentGroupIndex, allGroups, startIndex, questionNumber }: Props & { startIndex: number }) => {
   const groupQuestionIdShow = allGroups[currentGroupIndex].group_question_id;
-  let questionCounter = startIndex + 1; // Bắt đầu từ chỉ số được truyền từ parent
-
   return (
     <div id={`section-${section.section_id}`} className="mb-6">
       {section.group_question.some(

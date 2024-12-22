@@ -4,10 +4,9 @@ import { useQuizSubmissionContext } from "./quiz-context";
 
 type Props = {
   question: IQuestion;
-  index: number;
 };
 
-const QuestionItem = ({ question, index }: Props) => {
+const QuestionItem = ({ question }: Props) => {
   const { updateAnswer, quizSubmissionState } = useQuizSubmissionContext();
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
 
@@ -33,14 +32,14 @@ const QuestionItem = ({ question, index }: Props) => {
   return (
     <div
       id={`question-${question.question_id}`}
-      className="mb-2 p-2 rounded border"
+      className={`mb-2 p-2 border-b border-primary-root-violet`}
     >
       <p className="font-semibold text-lg mb-1">
-        {index}. {question.question_text}
+        {question.index}. {question.question_text}
       </p>
-      <ul className="list-none  list-inside flex flex-col gap-1">
-        {question.options.map((option) => (
-          <li className="cursor-pointer" key={option.option_id}>
+      <ul className="list-none list-inside flex flex-col gap-1">
+        {question.options.map((option, index) => (
+          <li className="cursor-pointer w-fit" key={option.answer_option_id || index}>
             <label className="cursor-pointer flex items-center gap-1.5">
               <input
                 className="size-4 hidden"
@@ -50,8 +49,8 @@ const QuestionItem = ({ question, index }: Props) => {
                 checked={selectedAnswer === option.value} // Kiểm tra giá trị từ state
                 onChange={() => handleAnswerChange(option.value)}
               />
-              <span className={`font-medium rounded-full size-6 text-center ${selectedAnswer === option.value && 'bg-primary-blue'}`}>{option.value}</span>
-              <span className="font-medium translate-y-[0.5px]">{option.label} </span>
+              <span className={`font-medium rounded-full size-6 text-center ${selectedAnswer === option.value && 'bg-primary-blue text-primary-text-button'}`}>{option.value}</span>
+              <span className="font-medium translate-y-[0.5px] w-fit">{option.label} </span>
             </label>
           </li>
         ))}

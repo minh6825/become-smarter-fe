@@ -22,6 +22,8 @@ type QuizSubmissionContextType = {
   markCompletion: (is_completed: boolean) => void;
   updateQuizTestId: (quizTestId: string) => void
   updateUserAnswerFirst: (userAnswer: UserAnswers[]) => void
+  currentQuestionId: number;
+  setCurrentQuestionId: (id: number) => void;
 };
 
 // Tạo context
@@ -34,6 +36,8 @@ export const QuizSubmissionProvider = ({ children }: { children: React.ReactNode
     is_completed: false,
     quiz_test_id: ''
   });
+  const [currentQuestionId, setCurrentQuestionId] = useState(0)
+
 
   // Hàm cập nhật câu trả lời
   const updateAnswer = (answer: UserAnswers) => {
@@ -67,7 +71,7 @@ export const QuizSubmissionProvider = ({ children }: { children: React.ReactNode
   };
 
   return (
-    <QuizSubmissionContext.Provider value={{ quizSubmissionState, updateAnswer, markCompletion, updateQuizTestId, updateUserAnswerFirst }}>
+    <QuizSubmissionContext.Provider value={{ quizSubmissionState, updateAnswer, markCompletion, updateQuizTestId, updateUserAnswerFirst, setCurrentQuestionId, currentQuestionId }}>
       {children}
     </QuizSubmissionContext.Provider>
   );

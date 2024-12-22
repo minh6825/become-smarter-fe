@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { FaCog, FaSignOutAlt, FaInfoCircle } from 'react-icons/fa';
-import ClickOutline from '@/components/common/click-outline';
+import React, { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { FaCog, FaSignOutAlt, FaInfoCircle } from "react-icons/fa";
+import ClickOutline from "@/components/common/click-outline";
 
 type Props = {
   userInfo: {
@@ -15,24 +15,64 @@ const UserInfo = ({ userInfo }: Props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsMenuOpen((prev) => !prev); 
+    setIsMenuOpen((prev) => !prev);
   };
 
   // Lấy chữ cái đầu nếu không có avatar
   const getDefaultAvatar = (name: string) =>
-    name ? name.charAt(0).toUpperCase() : '?';
+    name ? name.charAt(0).toUpperCase() : "?";
 
   // Cắt tên tối đa 12 ký tự
-  const displayName = userInfo.name.length > 12 ? `${userInfo.name.slice(0, 12)}...` : userInfo.name;
+  const displayName =
+    userInfo.name.length > 12
+      ? `${userInfo.name.slice(0, 12)}...`
+      : userInfo.name;
+
+  const [mounted, setMounted] = useState(false);
+  const [theme, setTheme] = useState<string>(() =>
+    typeof window !== "undefined"
+      ? document.documentElement.getAttribute("data-theme") || "light"
+      : "light"
+  );
+
+  // The active theme is not available on the server.
+  // If you have styling that is conditionally applied based on the active-theme,
+  // you have to await the mounted state before rendering the active theme.
+  useEffect(() => setMounted(true), []);
+  const themeColor = ['light', 'dark-classic', 'tangerine', 'dark-tangerine', 'mint', 'dark-mint'];
+  const themeMapping: Record<string, string> = {
+    light: "Default",
+    "dark-classic": "Dark",
+    tangerine: "Tangerine",
+    "dark-tangerine": "Tangerine (dark)",
+    mint: "Mint",
+    "dark-mint": "Mint (dark)",
+  };
+
+  useEffect(() => {
+    if (localStorage) {
+      const themeCurrent = localStorage.getItem("theme");
+      if (themeCurrent !== null) {
+        setTheme(themeCurrent);
+        document.documentElement.setAttribute("data-theme", themeCurrent);
+      }
+    }
+  }, []);
+
+  const handleThemeChange = (selectedTheme: string) => {
+    document.documentElement.setAttribute("data-theme", selectedTheme);
+    localStorage.setItem("theme", selectedTheme);
+    setTheme(selectedTheme);
+  };
 
   return (
     <div className="relative">
       {/* Avatar and Name */}
-      <motion.button 
+      <motion.button
         className="flex items-center space-x-2 border p-2 rounded-lg shadow-md hover:bg-primary-background transition"
         onClick={() => toggleMenu()}
-        whileHover={{ scale: 1.05 }} 
-        whileTap={{ scale: 0.95 }}  
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
       >
         {userInfo.avatar ? (
           <img
@@ -78,6 +118,29 @@ const UserInfo = ({ userInfo }: Props) => {
                   </button>
                 </li>
               </ul>
+              <div className="px-4 py-2 w-full justify-between flex gap-1">
+                {Object.entries(themeMapping).map(([key, value], index) => (
+                  <button
+                    key={key}
+                    className={`font-semibold h-4 w-4 rounded-full transition-colors duration-200 
+                      ${themeColor[index] == 'light' && 'bg-primary-root-light'}
+                      ${themeColor[index] == 'dark-classic' && 'bg-primary-root-dark'}
+                      ${themeColor[index] == 'dark-tangerine' && 'bg-primary-root-green'}
+                      ${themeColor[index] == 'tangerine' && 'bg-primary-root-orange'}
+                      ${themeColor[index] == 'dark-tangerine' && 'bg-primary-root-orange-dark'}
+                      ${themeColor[index] == 'mint' && 'bg-primary-root-mint'}
+                      ${themeColor[index] == 'dark-mint' && 'bg-primary-root-mint-dark'}
+                      ${                      
+                      mounted && theme === key
+                        ? "shadow-md border-2 border-primary text-primary"
+                        : "text-primary-foreground"
+                    }`}
+                    onClick={() => handleThemeChange(key)}
+                  >
+                    
+                  </button>
+                ))}
+              </div>
             </motion.div>
           </ClickOutline>
         )}

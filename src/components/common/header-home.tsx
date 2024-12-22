@@ -27,9 +27,9 @@ const HeaderHome = () => {
   return (
     <header className="h-[64px] top-0 fixed z-[100] w-full bg-primary-background  border-b border-primary/100 flex items-center px-[2%]">
       <Drawer />
-        <h1 className="text-2xl font-bold">
+        <h2 className="text-2xl font-bold">
           <Link href={'/'}>Ôn tập là dễ .com</Link>
-        </h1>
+        </h2>
       <div className="ml-auto flex justify-between items-center px-4">
         <nav>
           <ul className="flex space-x-4">

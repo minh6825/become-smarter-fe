@@ -32,6 +32,25 @@ const QuizDetailPage = ({ quiz }: Props) => {
 
   const allGroups = quiz.sections.flatMap((section) => section.group_question);
 
+    const sectionAndGroup = useMemo(() => {
+      let count = 0;
+      let countGroup = 0;
+      return {
+        ...quiz,
+        sections: quiz.sections.map((section) => ({
+          ...section,
+          group_question: section.group_question.map((group) => ({
+            ...group,
+            index: countGroup++,
+            question_list: group.question_list.map((question) => ({
+              ...question,
+              index: ++count,
+            })),
+          })),
+        })),
+      };
+    }, [quiz]);
+
   const questionListFlat = (quiz: IQuizQuestionAnswer) => {
     let globalIndex = 0;
     return quiz.sections.flatMap((section) =>
@@ -89,7 +108,7 @@ const QuizDetailPage = ({ quiz }: Props) => {
               </button>
             </div>
           </div>
-          <QuestionNavigation allQuestions={allQuestions} />
+          <QuestionNavigation setCurrentGroupIndex={setCurrentGroupIndex} sectionAndGroup={sectionAndGroup.sections} />
         </div>
       </WrapBox>
     </QuizProvider>
