@@ -19,10 +19,10 @@ const QuestionNavigation = ({ sectionAndGroup, setCurrentGroupIndex }: Props) =>
       <h2 className="text-xl font-semibold mb-2">Thứ tự câu hỏi</h2>
       <div className="gap-2 flex border w-full flex-col p-2 rounded-md border-primary-root-violet">
         {sectionAndGroup.map((section) => (
-          <div className="flex flex-col w-full gap-2">
+          <div key={section.section_id} className="flex flex-col w-full gap-2">
             <p>{section.section_name}</p>
             {section.group_question.map((group) => (
-              <div className="border rounded-md grid grid-cols-4 gap-2 flex-wrap p-2 border-primary-root-violet">
+              <div key={group.index} className="border rounded-md grid grid-cols-4 gap-2 flex-wrap p-2 border-primary-root-violet">
                 {group.question_list.map((question) => (
                   <Link onClick={() => {setCurrentGroupIndex(group.index); setCurrentQuestionId(question.question_id)}}
                     scroll={true}

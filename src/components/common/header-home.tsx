@@ -34,6 +34,9 @@ const HeaderHome = () => {
         <nav>
           <ul className="flex space-x-4">
             <li>
+              <Link className="hover:underline" href={"/list-quiz"}>Danh sách bài test</Link>
+            </li>
+            <li>
               <a href="#features" className="hover:underline">
                 Tính Năng
               </a>
@@ -44,13 +47,11 @@ const HeaderHome = () => {
               </a>
             </li>
             <li>
-              <a href="#contact" className="hover:underline">
-                Liên Hệ
-              </a>
+              <Link href="/history" className="hover:underline">
+                Lịch sử làm bài
+              </Link>
             </li>
-            <li>
-              <Link className="hover:underline" href={"/list-quiz"}>Danh sách bài test</Link>
-            </li>
+           
           </ul>
         </nav>
       </div>
