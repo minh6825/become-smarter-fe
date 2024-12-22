@@ -1,7 +1,7 @@
 import {
   getQuizListPublicApi,
 } from "@/api/quiz/quiz.rest";
-import { NEXT_PUBLIC_SERVER } from "@/assets/constant";
+import { NEXT_PUBLIC_CLIENT } from "@/assets/constant";
 import type { MetadataRoute } from "next";
 
 export async function generateSitemaps() {
@@ -20,26 +20,37 @@ export default async function sitemap({
   const { quizzes } = await getQuizListPublicApi({ take: 100, page: 1 });
     
   const quizItemList = quizzes.map((quiz) => ({
-    url: `${NEXT_PUBLIC_SERVER}/quiz/${quiz.quizId}`,
+    url: `${NEXT_PUBLIC_CLIENT}/quiz/${quiz.quizId}`,
     lastModified: quiz.updated_at,
   }));
 
   const detailQuizList = quizzes.map((quiz) => ({
-    url: `${NEXT_PUBLIC_SERVER}/quiz/${quiz.quizId}/quiz-detail`,
+    url: `${NEXT_PUBLIC_CLIENT}/quiz/${quiz.quizId}/quiz-detail`,
     lastModified: quiz.updated_at,
   }));
 
   const history = {
-    url: `${NEXT_PUBLIC_SERVER}/history`,
+    url: `${NEXT_PUBLIC_CLIENT}/history`,
     lastModified: new Date(),
     changeFrequency: "daily"
   }
 
   const auth = {
-    url: `${NEXT_PUBLIC_SERVER}/auth`,
+    url: `${NEXT_PUBLIC_CLIENT}/auth`,
     lastModified: new Date(),
     changeFrequency: "daily"
   }
 
-  return [history, ...detailQuizList, ...quizItemList];
+  const doQuiz = quizzes.map((quiz) => ({
+    url: `${NEXT_PUBLIC_CLIENT}/do-quiz/${quiz.quizId}`,
+    lastModified: quiz.updated_at,
+  }));
+
+  const quizList = {
+    url: `${NEXT_PUBLIC_CLIENT}/list-quiz`,
+    lastModified: new Date(),
+    changeFrequency: "daily"
+  }
+
+  return [auth, quizList, history,...doQuiz, ...detailQuizList, ...quizItemList];
 }
