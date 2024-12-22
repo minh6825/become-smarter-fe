@@ -1,6 +1,7 @@
 import {
   getQuizListPublicApi,
 } from "@/api/quiz/quiz.rest";
+import { NEXT_PUBLIC_SERVER } from "@/assets/constant";
 import type { MetadataRoute } from "next";
 
 export async function generateSitemaps() {
@@ -19,14 +20,26 @@ export default async function sitemap({
   const { quizzes } = await getQuizListPublicApi({ take: 100, page: 1 });
     
   const quizItemList = quizzes.map((quiz) => ({
-    url: `https://www.ontaplade.com/quiz/${quiz.quizId}`,
+    url: `${NEXT_PUBLIC_SERVER}/quiz/${quiz.quizId}`,
     lastModified: quiz.updated_at,
   }));
 
   const detailQuizList = quizzes.map((quiz) => ({
-    url: `https://www.ontaplade.com/quiz/${quiz.quizId}/quiz-detail`,
+    url: `${NEXT_PUBLIC_SERVER}/quiz/${quiz.quizId}/quiz-detail`,
     lastModified: quiz.updated_at,
   }));
 
-  return [...detailQuizList, ...quizItemList];
+  const history = {
+    url: `${NEXT_PUBLIC_SERVER}/history`,
+    lastModified: new Date(),
+    changeFrequency: "daily"
+  }
+
+  const auth = {
+    url: `${NEXT_PUBLIC_SERVER}/auth`,
+    lastModified: new Date(),
+    changeFrequency: "daily"
+  }
+
+  return [history, ...detailQuizList, ...quizItemList];
 }
