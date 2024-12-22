@@ -18,8 +18,15 @@ export default async function sitemap({
   const end = start + 50000;
   const { quizzes } = await getQuizListPublicApi({ take: 100, page: 1 });
     
-  return quizzes.map((quiz) => ({
+  const quizItemList = quizzes.map((quiz) => ({
     url: `https://www.ontaplade.com/quiz/${quiz.quizId}`,
     lastModified: quiz.updated_at,
   }));
+
+  const detailQuizList = quizzes.map((quiz) => ({
+    url: `https://www.ontaplade.com/quiz/${quiz.quizId}/quiz-detail`,
+    lastModified: quiz.updated_at,
+  }));
+
+  return [...detailQuizList, ...quizItemList];
 }
