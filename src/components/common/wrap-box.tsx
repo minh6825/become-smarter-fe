@@ -7,7 +7,7 @@ type Props = {
 
 const WrapBox = ({children, className}: Props) => {
   return (
-    <div className={`mx-[5%] pt-6 ${className}`}>{children}</div>
+    <div className={`container mx-auto pt-6 ${className}`}>{children}</div>
   )
 }
 

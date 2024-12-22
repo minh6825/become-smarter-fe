@@ -38,14 +38,14 @@ export default function Drawer() {
                 </Link>
               </li>
               <li className="py-2">
-                <a href="#" className="hover:underline">
-                  Settings
-                </a>
+                <Link href="/list-quiz" className="hover:underline">
+                  Danh sách bài test
+                </Link>
               </li>
               <li className="py-2">
-                <a href="#" className="hover:underline">
-                  Profile
-                </a>
+                <Link href="/history" className="hover:underline">
+                Lịch sử làm bài
+                </Link>
               </li>
               <li className="py-2">
                 <button onClick={handleLogout} className="hover:underline">

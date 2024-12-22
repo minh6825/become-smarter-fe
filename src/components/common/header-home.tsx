@@ -25,12 +25,12 @@ const HeaderHome = () => {
 
   if (!isClient) return null;
   return (
-    <header className="h-[64px] top-0 fixed z-[100] w-full bg-primary-background  border-b border-primary/100 flex items-center px-[2%]">
+    <header className="h-[64px] top-0 fixed z-[100] w-full bg-primary-background max-md:justify-between border-b border-primary/100 flex items-center px-[2%]">
       <Drawer />
         <h2 className="text-2xl font-bold">
-          <Link href={'/'}>Ôn tập là dễ .com</Link>
+          <Link href={'/'}>Ôn tập là dễ <span className="max-md:hidden">.com</span></Link>
         </h2>
-      <div className="ml-auto flex justify-between items-center px-4">
+      <div className="ml-auto flex justify-between items-center max-md:hidden px-4">
         <nav>
           <ul className="flex space-x-4">
             <li>

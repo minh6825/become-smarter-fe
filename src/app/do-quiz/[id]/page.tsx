@@ -11,6 +11,8 @@ export type IQuizDataRes = {
   success: boolean;
 };
 
+export const revalidate = 10;
+
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const cookieStore = cookies();
   const token = (await cookieStore).get("accessToken")?.value;

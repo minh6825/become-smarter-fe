@@ -11,7 +11,7 @@ type Props = {
 const ButtonSubmit = ({ onClick, children, bgWave, borderColor }: Props) => {
   return (
     <div className={`${styles.buttons} self-end`} onClick={onClick}>
-      <button className={`${styles['blob-btn']} before:border-[2px] text-black ${borderColor ?? 'before:border-primary-root-cyan'}`}>
+      <button className={`${styles['blob-btn']} before:border-[2px] ${borderColor ?? 'before:border-primary-root-cyan'}`}>
         {children}
         <span className={styles['blob-btn__inner']}>
           <span className={`${styles['blob-btn__blobs']}`}>

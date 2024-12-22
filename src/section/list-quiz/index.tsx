@@ -4,6 +4,7 @@ import React from 'react'
 import Pagination from './Pagination'
 import FilterHome from './FilterHome'
 import {QuizItem} from './QuizItem'
+import PaginationTable from '@/components/table/table-panigation'
 
 type Props = {
     quizzes: IQuiz[]
@@ -13,14 +14,14 @@ type Props = {
 
 const HomePage = ({ quizzes, currentPage, totalPages }: Props) => {
     return (
-      <WrapBox>
+      <WrapBox className='space-y-3 max-md:px-4 max-md:mb-4'>
         <FilterHome />
-        <div className='grid max-2xl:grid-cols-4 grid-cols-5 gap-4'>
+        <div className='grid grid-cols-4 max-md:grid-cols-2 gap-3'>
             {quizzes.map((quiz) => (
             <QuizItem quiz={quiz} key={quiz.quizId} />
             ))}
         </div>
-        <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl="/list-quiz" />
+        <PaginationTable currentPage={currentPage} baseUrl={"/list-quiz"} totalPages={totalPages}  />
       </WrapBox>
     );
   };

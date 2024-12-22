@@ -1,6 +1,8 @@
 import { QuizSubmissionState } from "@/section/do-quiz/quiz-context";
 import axiosConfig from "../axiosConfig";
 import { ISection } from "./section.rest";
+import axios from "axios";
+import { NEXT_PUBLIC_SERVER } from "@/assets/constant";
 
 export type Submission = {
   user_answers: UserAnswer[];
@@ -49,6 +51,47 @@ export type QuizData = {
 };
 
 
+export interface QuizSubmission {
+  submission_id: string;
+  start_time: string; // ISO date string
+  last_active_time: string; // ISO date string
+  is_completed: boolean;
+  total_score: number | null;
+  total_time: number;
+  taken_time: number;
+  total_question: number | null;
+  user_answers: UserAnswer[];
+  tag_list: string[] | null;
+  created_at: string; // ISO date string
+  updated_at: string; // ISO date string
+}
+
+export interface QuizSubmissionResponse {
+  quizSubmission: QuizSubmission[];
+  total: number;
+}
+
+
 export const submissionQuizTest = async (payload: QuizSubmissionState, submission_id: string) => {
   return await axiosConfig.put(`quiz-submissions/update-result/${submission_id}`, payload)
 }
+
+// Get list ssr
+export const getHistoryDoQuiz = async (token: string, params: { page: number; take: number }): Promise<{
+  data: QuizSubmissionResponse,
+  success: boolean
+}> => {
+  const queryParams = new URLSearchParams({
+    page: params.page.toString(),
+    take: params.take.toString(),
+  });
+
+  return (
+    await axios.get(`${NEXT_PUBLIC_SERVER}/quiz-submissions?${queryParams}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      timeout: 10000,
+    })
+  ).data;
+};

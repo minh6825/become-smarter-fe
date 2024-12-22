@@ -149,7 +149,7 @@ const DoQuizPage = ({ quizData }: { quizData: QuizData }) => {
           </div>
         </div>
         <div className="flex flex-col">
-          <ButtonSubmit onClick={() => setPopupSubmit(true)}>Submit</ButtonSubmit>
+          <ButtonPrimary type="button" className="!w-fit ml-auto bg-primary-root-green hover:bg-green-500" onClick={() => setPopupSubmit(true)}>Submit</ButtonPrimary>
           <QuestionNavigation
             setCurrentGroupIndex={setCurrentGroupIndex}
             sectionAndGroup={sectionAndGroup.sections}
