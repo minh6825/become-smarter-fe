@@ -18,6 +18,7 @@ const listHeader = [
   "Action",
 ];
 const HistoryPage = ({ history, page, take }: Props) => {
+  if(history.total === 0 ) return <div className="container mx-auto pt-10">No data</div>
   return (
     <section className="container px-4 space-y-6 mx-auto">
       <TablePrimary
