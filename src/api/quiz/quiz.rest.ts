@@ -1,8 +1,8 @@
 import { NEXT_PUBLIC_SERVER } from "@/assets/constant";
 import axios from "axios";
-import axiosConfig from "../axiosConfig";
 import { ISection } from "./section.rest";
 import { IQuizDataRes } from "@/app/do-quiz/[id]/page";
+import { QuizTestAPI } from "./submision";
 
 export interface ITagCount {
   [tag: string]: number;
@@ -49,10 +49,10 @@ export interface IReturnQuizPublic extends IReturnBase {
 }
 
 export interface IQuizQuestionAnswer {
-  quiz_test_title: string 
-  quiz_test_intro: string
-  quiz_test_id: string
-  sections: ISection[]
+  quiz_test_title: string;
+  quiz_test_intro: string;
+  quiz_test_id: string;
+  sections: ISection[];
 }
 
 export const getQuizListPublicApi = async (params: {
@@ -80,7 +80,10 @@ export const getDetailQuizApi = async (
     })
   ).data;
 
-export const getQuizTodoApi = async (quizId: string, token: string): Promise<IQuizDataRes> =>
+export const getQuizTodoApi = async (
+  quizId: string,
+  token: string
+): Promise<IQuizDataRes> =>
   (
     await axios.get(`${NEXT_PUBLIC_SERVER}/quizzes/to-do/${quizId}`, {
       headers: {
@@ -90,7 +93,14 @@ export const getQuizTodoApi = async (quizId: string, token: string): Promise<IQu
     })
   ).data;
 
-
-export const getQuizQuestionAnswer = async (quizId:string) => (await axios.get(`${NEXT_PUBLIC_SERVER}/quizzes/get-quiz-question-answer/${quizId}`, {
-  timeout: 10000,
-})).data
+export const getQuizQuestionAnswer = async (
+  quizId: string
+): Promise<{ quiz: QuizTestAPI }> =>
+  (
+    await axios.get(
+      `${NEXT_PUBLIC_SERVER}/quizzes/get-quiz-question-answer/${quizId}`,
+      {
+        timeout: 10000,
+      }
+    )
+  ).data;

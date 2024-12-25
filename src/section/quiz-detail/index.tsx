@@ -1,118 +1,150 @@
 "use client";
-import { IQuizDetail, IQuizQuestionAnswer } from "@/api/quiz/quiz.rest";
 import WrapBox from "@/components/common/wrap-box";
-import Link from "next/link";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import Section from "./Section";
-import { QuizProvider } from "./quiz-context";
-import QuestionNavigation from "./QuestionNavigation";
+import { QuizTestAPI } from "@/api/quiz/submision";
 import scrollSmooth from "@/style/css/scroll-smooth.module.css";
 
-type Props = {
-  quiz: IQuizQuestionAnswer;
-};
+import {
+  QuizSubmissionProvider,
+  useQuizSubmissionContext,
+} from "./quiz-context";
+import ButtonNext from "@/components/tags/button/button-next/button-next";
+import ButtonPrev from "@/components/tags/button/button-prev/button-prev";
 
-const QuizDetailPage = ({ quiz }: Props) => {
+import QuestionNavigation from "./common/QuestionNavigation";
+
+const QuizDetailPage = ({ quizData }: { quizData: QuizTestAPI }) => {
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0);
+  const [questionNumber, setQuestionNumber] = useState(1);
+
+  const {
+    setCurrentQuestionId,
+  } = useQuizSubmissionContext(); // Lấy hàm từ context
 
   const handleNextGroup = () => {
+    setCurrentQuestionId(0);
     setCurrentGroupIndex((prevIndex) =>
       prevIndex <
-      quiz.sections.flatMap((section) => section.group_question).length - 1
+      quizData.sections.flatMap((section) => section.group_question)
+        .length -
+        1
         ? prevIndex + 1
         : prevIndex
     );
+    setQuestionNumber((prevNumber) => prevNumber + 1);
   };
 
   const handlePreviousGroup = () => {
+    setCurrentQuestionId(0);
     setCurrentGroupIndex((prevIndex) =>
       prevIndex > 0 ? prevIndex - 1 : prevIndex
     );
+
+    setQuestionNumber((prevNumber) => prevNumber - 1);
   };
 
-  const allGroups = quiz.sections.flatMap((section) => section.group_question);
-
-    const sectionAndGroup = useMemo(() => {
-      let count = 0;
-      let countGroup = 0;
-      return {
-        ...quiz,
-        sections: quiz.sections.map((section) => ({
-          ...section,
-          group_question: section.group_question.map((group) => ({
-            ...group,
-            index: countGroup++,
-            question_list: group.question_list.map((question) => ({
-              ...question,
-              index: ++count,
-            })),
+  const sectionAndGroup = useMemo(() => {
+    let count = 0;
+    let countGroup = 0;
+    return {
+      ...quizData,
+      sections: quizData.sections.map((section) => ({
+        ...section,
+        group_question: section.group_question.map((group) => ({
+          ...group,
+          index: countGroup++,
+          question_list: group.question_list.map((question) => ({
+            ...question,
+            index: ++count,
           })),
         })),
-      };
-    }, [quiz]);
+      })),
+    };
+  }, [quizData]);
 
-  const questionListFlat = (quiz: IQuizQuestionAnswer) => {
-    let globalIndex = 0;
-    return quiz.sections.flatMap((section) =>
-      section.group_question.flatMap((group) =>
-        group.question_list.map((question) => ({
-          ...question,
-          index: globalIndex++, // Thứ tự câu hỏi tính theo toàn bộ bài quiz
-        }))
-      )
-    );
-  };
+  const allGroups = useMemo(
+    () =>
+      quizData.sections.flatMap(
+        (section) => section.group_question
+      ),
+    [quizData.sections]
+  );
 
-  const allQuestions = useMemo(() => questionListFlat(quiz), []);
+  // Tạo mảng toàn bộ câu hỏi với thứ tự tăng dần
+  const allQuestions = useMemo(
+    () =>
+      quizData.sections.flatMap((section) =>
+        section.group_question.flatMap((group) => group.question_list)
+      ),
+    [quizData.sections]
+  );
+
   return (
-    <QuizProvider>
-      <WrapBox className="!pb-0 relative">
-        <div className="flex">
-          <div className="flex-1">
-            <h1 className="text-2xl font-bold mb-2">{quiz.quiz_test_intro}</h1>
-            <p className="text-sm text-gray-600 mb-4">{quiz.quiz_test_title}</p>
-            <div
-              className={`${scrollSmooth["scroll-smooth"]} px-4 py-3 h-[calc(100vh-200px)] w-full overflow-y-scroll border-b`}
-            >
-              {quiz.sections.map((section) => (
-                <Section
-                  section={section}
-                  key={section.section_id}
-                  currentGroupIndex={currentGroupIndex}
-                  allGroups={allGroups}
-                  startIndex={allQuestions.findIndex((q) =>
-                    section.group_question.some((g) =>
-                      g.question_list.some(
-                        (qq) => qq.question_id === q.question_id
-                      )
-                    )
-                  )}
-                />
-              ))}
-            </div>
-
-            <div className="absolute top-10 left-1/2 transform -translate-x-1/2 flex space-x-4">
-              <button
+    <WrapBox className="!pb-0 relative">
+      <div className="flex">
+        <div className="w-full">
+          <div className="flex gap-4">
+            <h1 className="text-2xl font-bold text-nowrap">
+              {quizData.quiz_test_intro}
+            </h1>
+            <div className=" flex w-full justify-between space-x-4">
+              <ButtonPrev
                 onClick={handlePreviousGroup}
-                className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
                 disabled={currentGroupIndex === 0}
               >
                 Previous
-              </button>
-              <button
+              </ButtonPrev>
+              <ButtonNext
                 onClick={handleNextGroup}
-                className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
                 disabled={currentGroupIndex === allGroups.length - 1}
               >
                 Next
-              </button>
+              </ButtonNext>
             </div>
           </div>
-          <QuestionNavigation setCurrentGroupIndex={setCurrentGroupIndex} sectionAndGroup={sectionAndGroup.sections} />
+          <p className="text-sm text-gray-600 mb-4">
+            {quizData.quiz_test_title}
+          </p>
+
+          <div
+            className={`${scrollSmooth["scroll-smooth"]}  h-[calc(100vh-200px)] w-full overflow-y-scroll border-b`}
+          >
+            {sectionAndGroup.sections.map((section, sectionIndex) => (
+              <Section
+                section={section}
+                key={section.section_id}
+                currentGroupIndex={currentGroupIndex}
+                allGroups={allGroups}
+                startIndex={allQuestions.findIndex((q) =>
+                  section.group_question.some((g) =>
+                    g.question_list.some(
+                      (qq) => qq.question_id === q.question_id
+                    )
+                  )
+                )}
+                questionNumber={questionNumber}
+              />
+            ))}
+          </div>
         </div>
-      </WrapBox>
-    </QuizProvider>
+        <div className="flex flex-col">
+          <QuestionNavigation
+            setCurrentGroupIndex={setCurrentGroupIndex}
+            sectionAndGroup={sectionAndGroup.sections}
+          />
+        </div>
+      </div>
+    </WrapBox>
   );
 };
 
 export default QuizDetailPage;
+
+export const DoQuizProviderWrap = ({ quizData }: { quizData: QuizTestAPI }) => {
+  return (
+    <QuizSubmissionProvider>
+      <QuizDetailPage quizData={quizData} />
+    </QuizSubmissionProvider>
+  );
+};

@@ -1,27 +1,67 @@
 'use client';
 import React, { createContext, useContext, useState } from 'react';
 
-type QuizContextType = {
-  currentQuestionId: string;
-  setCurrentQuestionId: (id: string) => void;
+// Định nghĩa cấu trúc state
+export type QuizSubmissionState = {
+  user_answers: UserAnswers[];
+  time_spent: number[];
+  is_completed: boolean;
+  quiz_test_id: string
 };
 
-const QuizContext = createContext<QuizContextType | undefined>(undefined);
+export type UserAnswers = {
+  question_id: number;
+  answer_text: string;
+  marked: boolean;
+};
 
-export const QuizProvider = ({ children }: { children: React.ReactNode }) => {
-  const [currentQuestionId, setCurrentQuestionId] = useState<string>('');
+// Context type
+type QuizSubmissionContextType = {
+  quizSubmissionState: QuizSubmissionState;
+  markCompletion: (is_completed: boolean) => void;
+  updateQuizTestId: (quizTestId: string) => void
+  updateUserAnswerFirst: (userAnswer: UserAnswers[]) => void
+  currentQuestionId: number;
+  setCurrentQuestionId: (id: number) => void;
+};
+
+// Tạo context
+const QuizSubmissionContext = createContext<QuizSubmissionContextType | undefined>(undefined);
+
+export const QuizSubmissionProvider = ({ children }: { children: React.ReactNode }) => {
+  const [quizSubmissionState, setQuizSubmissionState] = useState<QuizSubmissionState>({
+    user_answers: [],
+    time_spent: [],
+    is_completed: false,
+    quiz_test_id: ''
+  });
+  const [currentQuestionId, setCurrentQuestionId] = useState(0)
+
+
+  const updateUserAnswerFirst = (userAnswer: UserAnswers[]) => {
+    setQuizSubmissionState(pre => ({...pre, user_answers: userAnswer}))
+  }
+
+  const updateQuizTestId = (quizTestId: string) => {
+    setQuizSubmissionState(pre => ({...pre, quiz_test_id: quizTestId}))
+  }
+
+  // Hàm đánh dấu hoàn thành
+  const markCompletion = (is_completed: boolean) => {
+    setQuizSubmissionState((prevState) => ({ ...prevState, is_completed }));
+  };
 
   return (
-    <QuizContext.Provider value={{ currentQuestionId, setCurrentQuestionId }}>
+    <QuizSubmissionContext.Provider value={{ quizSubmissionState, markCompletion, updateQuizTestId, updateUserAnswerFirst, setCurrentQuestionId, currentQuestionId }}>
       {children}
-    </QuizContext.Provider>
+    </QuizSubmissionContext.Provider>
   );
 };
 
-export const useQuizContext = () => {
-  const context = useContext(QuizContext);
+export const useQuizSubmissionContext = () => {
+  const context = useContext(QuizSubmissionContext);
   if (!context) {
-    throw new Error('useQuizContext must be used within a QuizProvider');
+    throw new Error('useQuizSubmissionContext must be used within a QuizSubmissionProvider');
   }
   return context;
 };

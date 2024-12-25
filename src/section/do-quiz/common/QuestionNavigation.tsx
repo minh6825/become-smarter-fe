@@ -4,7 +4,7 @@ import ButtonChooseQuestion from "@/components/tags/button/button-choose-questio
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { useQuizSubmissionContext } from "../do-quiz/quiz-context";
+import { useQuizSubmissionContext } from "../quiz-context";
 
 type Props = {
   sectionAndGroup: ISection[];
@@ -21,8 +21,8 @@ const QuestionNavigation = ({ sectionAndGroup, setCurrentGroupIndex }: Props) =>
         {sectionAndGroup.map((section) => (
           <div key={section.section_id} className="flex flex-col w-full gap-2">
             <p>{section.section_name}</p>
-            {section.group_question.map((group) => (
-              <div key={group.index} className="border rounded-md grid grid-cols-4 gap-2 flex-wrap p-2 border-primary-root-violet">
+            {section.group_question.map((group, index) => (
+              <div key={group.index || index} className="border rounded-md grid grid-cols-4 gap-2 flex-wrap p-2 border-primary-root-violet">
                 {group.question_list.map((question) => (
                   <Link onClick={() => {setCurrentGroupIndex(group.index); setCurrentQuestionId(question.question_id)}}
                     scroll={true}

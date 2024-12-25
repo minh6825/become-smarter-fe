@@ -11,8 +11,7 @@ import {
   QuizSubmissionProvider,
   useQuizSubmissionContext,
 } from "./quiz-context";
-import QuestionNavigation from "../quiz-detail/QuestionNavigation";
-import ButtonSubmit from "@/components/tags/button/buton-submit-quiz/button-submit-quiz";
+import QuestionNavigation from "./common/QuestionNavigation";
 import ButtonNext from "@/components/tags/button/button-next/button-next";
 import ButtonPrev from "@/components/tags/button/button-prev/button-prev";
 import PopupWrap from "@/components/common/popup-wrap";
@@ -103,7 +102,6 @@ const DoQuizPage = ({ quizData }: { quizData: QuizData }) => {
       
     }
     console.log("Submit quiz answers", quizSubmissionState);
-
   };
 
   useEffect(() => {

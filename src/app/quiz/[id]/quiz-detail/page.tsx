@@ -1,6 +1,5 @@
 import { getQuizQuestionAnswer } from '@/api/quiz/quiz.rest'
-import { NEXT_PUBLIC_SERVER } from '@/assets/constant';
-import QuizDetailPage from '@/section/quiz-detail'
+import { DoQuizProviderWrap } from '@/section/quiz-detail';
 import React from 'react'
 
 type PageProps = {
@@ -17,9 +16,8 @@ const page = async ({
   const data = await getQuizQuestionAnswer(id)
 
   return (
-    <div>
-      <QuizDetailPage quiz={data.quiz} />
-    </div>
+    <DoQuizProviderWrap quizData={data.quiz}>
+    </DoQuizProviderWrap>
   )
 }
 
