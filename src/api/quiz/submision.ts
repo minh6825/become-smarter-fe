@@ -72,8 +72,8 @@ export interface QuizSubmissionResponse {
 }
 
 
-export const submissionQuizTest = async (payload: QuizSubmissionState, submission_id: string) => {
-  return await axiosConfig.put(`quiz-submissions/update-result/${submission_id}`, payload)
+export const submissionQuizTest = async (payload: QuizSubmissionState, submission_id: string, is_completed: boolean) => {
+  return await axiosConfig.put(`quiz-submissions/update-result/${submission_id}`, {...payload, is_completed})
 }
 
 // Get list ssr

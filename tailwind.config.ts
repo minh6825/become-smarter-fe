@@ -26,6 +26,8 @@ export default {
           'root-mint-dark': 'var(--root-mint-dark)',
           'root-cyan': 'var(--root-cyan)',
           'root-red': 'var(--root-red)',
+          'root-green-bold': 'var(--root-green-bold)',
+          'root-background-table': 'var(--root-background-table)',
         },
         keyframes: {
           wave: {

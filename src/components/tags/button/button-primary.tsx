@@ -19,9 +19,9 @@ const ButtonPrimary = ({
     <button
       type={type}
       onClick={onClick}
-      className={`w-full px-4 py-2 hover:bg-primary-blue transition-all duration-150 hover:text-primary-text-button ease-in-out font-bold rounded ${
+      className={`w-full px-4 py-2 transition-all duration-150 hover:text-primary-text-button ease-in-out font-bold rounded ${
         loading
-          ? "bg-gray-500"
+          ? "bg-primary"
           : "bg-primary-background border hover:opacity-90"
       } ${className}`}
       disabled={loading}

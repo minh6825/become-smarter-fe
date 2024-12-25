@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaCog, FaSignOutAlt, FaInfoCircle } from "react-icons/fa";
 import ClickOutline from "@/components/common/click-outline";
+import { deleteCookie } from "cookies-next";
 
 type Props = {
   userInfo: {
@@ -65,6 +66,10 @@ const UserInfo = ({ userInfo }: Props) => {
     setTheme(selectedTheme);
   };
 
+  const handleLogout = () => {
+    deleteCookie('accessToken')
+  }
+
   return (
     <div className="relative">
       {/* Avatar and Name */}
@@ -113,7 +118,7 @@ const UserInfo = ({ userInfo }: Props) => {
                 </li>
                 <li className="hover:opacity-80 flex items-center space-x-2 px-4 py-2">
                   <FaSignOutAlt className="text-red-500" />
-                  <button className="w-full text-left text-sm text-red-600">
+                  <button onClick={handleLogout} className="w-full text-left text-sm text-red-600">
                     Đăng Xuất
                   </button>
                 </li>

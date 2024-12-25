@@ -17,17 +17,22 @@ import ButtonNext from "@/components/tags/button/button-next/button-next";
 import ButtonPrev from "@/components/tags/button/button-prev/button-prev";
 import PopupWrap from "@/components/common/popup-wrap";
 import ButtonPrimary from "@/components/tags/button/button-primary";
+import { useRouter } from "next/navigation";
 
 const DoQuizPage = ({ quizData }: { quizData: QuizData }) => {
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0);
   const [questionNumber, setQuestionNumber] = useState(1);
-  const [popupSubmit, setPopupSubmit] = useState(false)
-
-  const { quizSubmissionState, setCurrentQuestionId, updateQuizTestId, updateUserAnswerFirst } =
-    useQuizSubmissionContext(); // Lấy hàm từ context
+  const [popupSubmit, setPopupSubmit] = useState(false);
+  const router = useRouter()
+  const {
+    quizSubmissionState,
+    setCurrentQuestionId,
+    updateQuizTestId,
+    updateUserAnswerFirst,
+  } = useQuizSubmissionContext(); // Lấy hàm từ context
 
   const handleNextGroup = () => {
-    setCurrentQuestionId(0)
+    setCurrentQuestionId(0);
     setCurrentGroupIndex((prevIndex) =>
       prevIndex <
       quizData.quizTestAPI.sections.flatMap((section) => section.group_question)
@@ -40,11 +45,11 @@ const DoQuizPage = ({ quizData }: { quizData: QuizData }) => {
   };
 
   const handlePreviousGroup = () => {
-    setCurrentQuestionId(0)
+    setCurrentQuestionId(0);
     setCurrentGroupIndex((prevIndex) =>
       prevIndex > 0 ? prevIndex - 1 : prevIndex
     );
-    
+
     setQuestionNumber((prevNumber) => prevNumber - 1);
   };
 
@@ -88,9 +93,17 @@ const DoQuizPage = ({ quizData }: { quizData: QuizData }) => {
     // Xử lý việc thu thập và gửi bài làm
     await submissionQuizTest(
       quizSubmissionState,
-      quizData.submission.submissionId
+      quizData.submission.submissionId,
+      true
     );
+    try {
+      router.push(`/history`)
+    } catch (error) {
+      console.log("error", error);
+      
+    }
     console.log("Submit quiz answers", quizSubmissionState);
+
   };
 
   useEffect(() => {
@@ -149,7 +162,13 @@ const DoQuizPage = ({ quizData }: { quizData: QuizData }) => {
           </div>
         </div>
         <div className="flex flex-col">
-          <ButtonPrimary type="button" className="!w-fit ml-auto bg-primary-root-green hover:bg-green-500" onClick={() => setPopupSubmit(true)}>Submit</ButtonPrimary>
+          <ButtonPrimary
+            type="button"
+            className="!w-fit ml-auto  bg-primary-root-mint hover:opacity-90"
+            onClick={() => setPopupSubmit(true)}
+          >
+            Submit
+          </ButtonPrimary>
           <QuestionNavigation
             setCurrentGroupIndex={setCurrentGroupIndex}
             sectionAndGroup={sectionAndGroup.sections}
@@ -159,12 +178,22 @@ const DoQuizPage = ({ quizData }: { quizData: QuizData }) => {
       <PopupWrap isOpen={popupSubmit} onClose={() => setPopupSubmit(false)}>
         <div>
           <h2 className="text-xl font-semibold mb-4">Submit quiz</h2>
-          <p className="mb-4">
-            Are you sure you want to submit the quiz?
-          </p>
+          <p className="mb-4">Are you sure you want to submit the quiz?</p>
           <div className="flex gap-2 w-fit ml-auto justify-end">
-            <ButtonPrimary className="w-fit bg-primary-root-red !text-primary-text-button hover:bg-primary-root-red hover:opacity-70" type="button" onClick={() => setPopupSubmit(false)}>Cancel</ButtonPrimary>
-            <ButtonPrimary className="w-fit bg-primary-root-mint !text-primary-text-button hover:bg-primary-root-mint hover:opacity-70" type="button" onClick={handleSubmit}>Submit</ButtonPrimary>
+            <ButtonPrimary
+              className="w-fit bg-primary-root-red !text-primary-text-button hover:bg-primary-root-red hover:opacity-70"
+              type="button"
+              onClick={() => setPopupSubmit(false)}
+            >
+              Cancel
+            </ButtonPrimary>
+            <ButtonPrimary
+              className="w-fit bg-primary-root-mint !text-primary-text-button hover:bg-primary-root-mint hover:opacity-70"
+              type="button"
+              onClick={handleSubmit}
+            >
+              Submit
+            </ButtonPrimary>
           </div>
         </div>
       </PopupWrap>

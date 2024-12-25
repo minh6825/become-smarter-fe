@@ -10,47 +10,49 @@ type Props = {
 const TablePrimary = ({ data, listHeader }: Props) => {
   return (
     <div>
-      <div className="flex flex-col">
-        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div className="flex flex-col ">
+        <div className="-mx-4 -my-2 overflow-x-auto  sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
             <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
               <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                <thead className="bg-gray-50 dark:bg-gray-800">
+                <thead className="bg-root-background-table">
                   <tr>
                   {listHeader.map(headerItem => (
                     <th key={headerItem}
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-primary"
                     >
                       {headerItem}
                     </th>
                   ))}
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+                <tbody className="bg-primary-background divide-y">
                   {data.map((item) => (
                     <tr key={item.submission_id}> 
-                      <td className="px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200 whitespace-nowrap">
+                      <td className="px-4 py-4 text-sm font-medium text-primary whitespace-nowrap">
                         <div className="inline-flex items-center gap-x-3">
                           <span>{item.submission_id}</span>
                         </div>
                       </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                      <td className="px-4 py-4 text-sm text-primary whitespace-nowrap">
                         {item.last_active_time}
                       </td>
-                      <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                        <div className={`inline-flex items-center px-3 py-1 ${item.is_completed ? 'text-primary-root-green' : 'text-primary-root-red'} rounded-full gap-x-2 bg-red-100/60 dark:bg-gray-800`}>
+                      <td className="px-4 py-4 text-sm font-medium text-primary whitespace-nowrap">
+                        <div className={`inline-flex items-center px-3 py-1 
+                          ${item.is_completed ? 'text-primary-root-green-bold' : 'text-primary-root-red'} 
+                          rounded-full gap-x-2 bg-primary-background`}>
                         {item.is_completed ? <h2 className="text-sm font-normal">Đã nộp bài</h2> : 
                             <h2>Chưa nộp bài</h2>
                         }
                         </div>
                       </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                      <td className="px-4 py-4 text-sm text-primary whitespace-nowrap">
                         <div className="flex items-center gap-x-2">
                         {item.total_score || 0}
                         </div>
                       </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                      <td className="px-4 py-4 text-sm text-primary whitespace-nowrap">
                         {item.start_time}
                       </td>
                       <td className="px-4 py-4 text-sm whitespace-nowrap">
