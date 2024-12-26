@@ -13,7 +13,6 @@ const PaginationTable: React.FC<PaginationProps> = ({
   baseUrl,
 }) => {
   const createPageUrl = (page: number) => `${baseUrl}?page=${page}`;
-
   const getPageNumbers = () => {
     const pages = [];
     for (let i = 1; i <= totalPages; i++) {
@@ -21,7 +20,7 @@ const PaginationTable: React.FC<PaginationProps> = ({
     }
     return pages;
   };
-
+ 
   return (
     <div className="flex items-center justify-between ">
       <Link

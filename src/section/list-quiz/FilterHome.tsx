@@ -1,19 +1,28 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import InputPrimary from "@/components/tags/input/input-primary";
 import ButtonPrimary from "@/components/tags/button/button-primary";
+import { fetchCategories, ICategory } from "@/api/quiz/category.rest";
+import { fetchSubCategories, ISubCategory } from "@/api/quiz/subcategory.rest";
+import { fetchQuizSets, IQuizSet } from "@/api/quiz/quiz-set.rest";
+import SelectPrimary from "@/components/tags/select/select-primary";
 
 const FilterHome = () => {
   const router = useRouter();
   const [filters, setFilters] = useState({
     tags: "",
     questionSet: "",
-    quizSkill: "",
+    category: "",
     sortBy: "",
     search: "",
+    subCategory: "",
+    quizSet: ""
   });
+  const [categories, setCategories] = useState<ICategory[]>([]);
+  const [subcategories, setSubCategories] = useState<ISubCategory[]>([]);
+  const [quizSets, setQuizSets] = useState<IQuizSet[]>([]);
 
   const handleFilterChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -27,11 +36,35 @@ const FilterHome = () => {
       ...filters,
       page: "1", // Reset to page 1 on new search
     }).toString();
-    router.push(`/?${query}`);
+    router.push(`/list-quiz/?${query}`);
   };
 
+  useEffect(() => {
+    const getCategories = async () => {
+      const categoriesData = await fetchCategories();
+      setCategories(categoriesData);
+    };
+    getCategories();
+  }, []);
+
+  useEffect(() => {
+    const getSubCategories = async () => {
+      const subCategoriesData = await fetchSubCategories({ categoryId: filters.category });
+      setSubCategories(subCategoriesData);
+    };
+    getSubCategories();
+  }, [filters.category]);
+
+  useEffect(() => {
+    const getQuizSets = async () => {
+      const data = await fetchQuizSets({ subCategoryId: filters.subCategory });
+      setQuizSets(data);
+    };
+    getQuizSets();
+  }, [filters.subCategory]);
+
   return (
-    <div className="p-4 rounded-md shadow mb-4 ">
+    <div className="p-4 rounded-md shadow mb-4">
       <div className="grid grid-cols-6 items-center gap-4 max-md:grid-cols-2">
         <InputPrimary
           label="Search"
@@ -42,59 +75,48 @@ const FilterHome = () => {
           onChange={handleFilterChange}
           className="p-2 border rounded"
         />
-        <InputPrimary
-          label="Search tags"
-          type="text"
-          name="tags"
-          placeholder="Search by tags"
-          value={filters.tags}
+        <SelectPrimary
+          label="Các nhóm đề"
+          name="category"
+          value={filters.category}
           onChange={handleFilterChange}
-          className="p-2 border rounded"
+          options={categories.map((category) => ({
+            value: category.category_id,
+            label: category.category_name,
+          }))}
         />
-        <InputPrimary
-          label="Question set"
-          type="text"
-          name="questionSet"
-          placeholder="Search by question set"
-          value={filters.questionSet}
+        <SelectPrimary
+          label="Các nhóm đề phụ"
+          name="subCategory"
+          value={filters.subCategory}
           onChange={handleFilterChange}
-          className="p-2 border rounded"
+          options={subcategories.map((subCategory) => ({
+            value: subCategory.sub_category_id,
+            label: subCategory.sub_category_name,
+          }))}
         />
-        <div>
-          <label className="block text-sm font-medium ">Quiz skill</label>
-          <select
-            name="quizSkill"
-            value={filters.quizSkill}
-            onChange={handleFilterChange}
-            className="w-full px-4 py-2 border rounded h-[42px] bg-primary-background"
-          >
-            <option value="">All Skills</option>
-            <option value="READING">Reading</option>
-            <option value="LISTENING">Listening</option>
-            <option value="SPEAKING">Speaking</option>
-            <option value="WRITING">Writing</option>
-            <option value="DICTATION">Dictation</option>
-            <option value="THPT">THPT</option>
-          </select>
-        </div>
-        <div>
-          <label className="block text-sm font-medium ">Sort by</label>
-          <select
-            name="sortBy"
-            value={filters.sortBy}
-            onChange={handleFilterChange}
-            className="p-2 w-full border rounded h-[42px] bg-primary-background"
-          >
-            <option value="">Sort By</option>
-            <option value="latest">Latest</option>
-            <option value="popular">Popular</option>
-          </select>
-        </div>
-        <ButtonPrimary
-          type="button"
-          className="self-end"
-          onClick={handleSearch}
-        >
+        <SelectPrimary
+          label="Các bộ đề"
+          name="quizSet"
+          value={filters.quizSet}
+          onChange={handleFilterChange}
+          options={quizSets.map((quizSet) => ({
+            value: quizSet.quiz_set_id,
+            label: quizSet.quiz_set_name,
+          }))}
+        />
+        <SelectPrimary
+          label="Sort by"
+          name="sortBy"
+          value={filters.sortBy}
+          onChange={handleFilterChange}
+          options={[
+            { value: "", label: "Sort By" },
+            { value: "latest", label: "Latest" },
+            { value: "popular", label: "Popular" },
+          ]}
+        />
+        <ButtonPrimary type="button" className="self-end" onClick={handleSearch}>
           Search
         </ButtonPrimary>
       </div>

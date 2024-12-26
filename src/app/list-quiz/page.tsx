@@ -9,7 +9,7 @@ export default async function page({
   searchParams: Promise<{ [key: string]: string }>;
 }) {
   // Chuẩn bị params với giá trị mặc định và lọc bỏ giá trị undefined/null
-  const searchParamsFinal = await Promise.resolve(searchParams)
+  const searchParamsFinal = await Promise.resolve(searchParams);
   const rawParams: Partial<{
     take: number;
     page: number;
@@ -18,6 +18,9 @@ export default async function page({
     sortBy?: string;
     questionSet?: string;
     quizSkill?: string;
+    category?: string;
+    subCategory?: string;
+    quizSet?: string;
   }> = {
     take: searchParamsFinal.take ? Number(searchParamsFinal.take) : 12,
     page: searchParamsFinal.page ? Number(searchParamsFinal.page) : 1,
@@ -26,6 +29,9 @@ export default async function page({
     sortBy: searchParamsFinal.sortBy,
     questionSet: searchParamsFinal.questionSet,
     quizSkill: searchParamsFinal.quizSkill,
+    category: searchParamsFinal.category, // Thêm category
+    subCategory: searchParamsFinal.subCategory, // Thêm subCategory
+    quizSet: searchParamsFinal.quizSet, // Thêm quizSet
   };
 
   const currentPage = searchParamsFinal?.page ? Number(searchParamsFinal?.page) : 1;
@@ -41,12 +47,21 @@ export default async function page({
     sortBy?: string;
     questionSet?: string;
     quizSkill?: string;
+    category?: string;
+    subCategory?: string;
+    quizSet?: string;
   };
+
+  // Gọi API với các tham số được định nghĩa
   const data = await getQuizListPublicApi(params);
+
   return (
     <div>
-      <HomePage quizzes={data.quizzes}  currentPage={currentPage}
-        totalPages={Math.ceil(data.quantityQuizTest / take)} />
+      <HomePage
+        quizzes={data.quizzes}
+        currentPage={currentPage}
+        totalPages={Math.ceil(data.quantityQuizTest / take)}
+      />
     </div>
   );
 }
