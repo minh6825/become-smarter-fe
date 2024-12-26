@@ -51,7 +51,11 @@ const HeaderHome = () => {
                 Lịch sử làm bài
               </Link>
             </li>
-           
+            <li>
+              <Link href="/word-collection" className="hover:underline">
+                Bộ từ vựng
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>

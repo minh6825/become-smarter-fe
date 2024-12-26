@@ -48,6 +48,11 @@ export default function Drawer() {
                 </Link>
               </li>
               <li className="py-2">
+                <Link href="/word-collection" className="hover:underline">
+                  Bộ từ
+                </Link>
+              </li>
+              <li className="py-2">
                 <button onClick={handleLogout} className="hover:underline">
                   Logout
                 </button>
