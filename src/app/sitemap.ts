@@ -52,5 +52,11 @@ export default async function sitemap({
     changeFrequency: "daily"
   }
 
-  return [auth, quizList, history,...doQuiz, ...detailQuizList, ...quizItemList];
+  const wordCollection = {
+    url: `${NEXT_PUBLIC_CLIENT}/word-collection`,
+    lastModified: new Date(),
+    changeFrequency: "daily"
+  }
+
+  return [auth, quizList, wordCollection, history,...doQuiz, ...detailQuizList, ...quizItemList];
 }

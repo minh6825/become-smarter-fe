@@ -26,7 +26,7 @@ const TextareaPrimary: React.FC<TextareaPrimaryProps> = ({
 }) => {
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-medium ">
+      <label htmlFor={id} className="block mb-1 text-sm font-medium ">
         {label}
       </label>
       <textarea

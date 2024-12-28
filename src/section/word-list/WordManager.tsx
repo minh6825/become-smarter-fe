@@ -2,88 +2,108 @@ import axiosConfig from "@/api/axiosConfig";
 import { useEffect, useState } from "react";
 import { Word } from "./WordListManager";
 import InputPrimary from "@/components/tags/input/input-primary";
+import ButtonPrimary from "@/components/tags/button/button-primary";
+import TextareaPrimary from "@/components/tags/textarea/textarea-primary";
 
 const WordManager: React.FC<{ wordListId: number }> = ({ wordListId }) => {
-    const [words, setWords] = useState<Word[]>([]);
-    const [newWord, setNewWord] = useState({ word: "", language: "", description: "" });
-  
-    // Fetch Words in WordList
-    const fetchWords = async () => {
-      const response = await axiosConfig.get(`/word-lists/list/${wordListId}/word`);
-      setWords(response.data);
-    };
-  
-    // Add Word
-    const addWord = async () => {
-      if (!newWord.word || !newWord.language) {
-        alert("Word and language are required!");
-        return;
-      }
-  
-      await axiosConfig.post(`/word-lists/${wordListId}/words`, newWord);
-      setNewWord({ word: "", language: "", description: "" });
-      fetchWords();
-    };
-  
-    // Delete Word
-    const deleteWord = async (id: number) => {
-      await axiosConfig.delete(`/word-lists/words/${id}`);
-      fetchWords();
-    };
-  
-    useEffect(() => {
-      fetchWords();
-    }, [wordListId]);
-  
-    return (
-      <div>
-        <h2 className="text-lg font-bold mb-4">Manage Words</h2>
-        <div className="mb-4">
+  const [words, setWords] = useState<Word[]>([]);
+  const [newWord, setNewWord] = useState({
+    word: "",
+    language: "English",
+    description: "",
+  });
+
+  // Fetch Words in WordList
+  const fetchWords = async () => {
+    const response = await axiosConfig.get(
+      `/word-lists/list/${wordListId}/word`
+    );
+    setWords(response.data);
+  };
+
+  // Add Word
+  const addWord = async () => {
+    if (!newWord.word || !newWord.language) {
+      alert("Word and language are required!");
+      return;
+    }
+
+    await axiosConfig.post(`/word-lists/${wordListId}/words`, newWord);
+    setNewWord({ word: "", language: "English", description: "" });
+    fetchWords();
+  };
+
+  // Delete Word
+  const deleteWord = async (id: number) => {
+    await axiosConfig.delete(`/word-lists/words/${id}`);
+    fetchWords();
+  };
+
+  useEffect(() => {
+    fetchWords();
+  }, [wordListId]);
+
+  return (
+    <div className="w-full ">
+      <h2 className="text-lg font-bold mb-4">Manage Words</h2>
+      <div className="w-full gap-4 flex">
+        <div className="mb-4 flex flex-col gap-4 w-1/2">
           <InputPrimary
+            label="Từ mới"
             type="text"
             placeholder="Word"
             value={newWord.word}
-            onChange={(e) => setNewWord((prev) => ({ ...prev, word: e.target.value }))}
+            onChange={(e) =>
+              setNewWord((prev) => ({ ...prev, word: e.target.value }))
+            }
             className="border p-2 mr-2"
           />
           <InputPrimary
+            label="Ngôn ngữ"
             type="text"
             placeholder="Language"
             value={newWord.language}
-            onChange={(e) => setNewWord((prev) => ({ ...prev, language: e.target.value }))}
+            onChange={(e) =>
+              setNewWord((prev) => ({ ...prev, language: e.target.value }))
+            }
             className="border p-2 mr-2"
           />
-          <InputPrimary
-            type="text"
+          <TextareaPrimary
+            label="Mô tả"
             placeholder="Description"
             value={newWord.description}
-            onChange={(e) => setNewWord((prev) => ({ ...prev, description: e.target.value }))}
+            onChange={(e) =>
+              setNewWord((prev) => ({ ...prev, description: e.target.value }))
+            }
             className="border p-2 mr-2"
           />
-          <button onClick={addWord} className="p-2 bg-green-500 text-white">
+          <ButtonPrimary
+            type="button"
+            onClick={addWord}
+            className="p-2 !bg-green-500 text-white"
+          >
             Add Word
-          </button>
+          </ButtonPrimary>
         </div>
-  
-        <div className="space-y-2">
+        <div className="space-y-2 w-1/2 max-h-[calc(100vh-220px)] overflow-y-auto">
           {words.map((word) => (
             <div key={word.word_id} className="border p-2 rounded">
               <p>
                 <strong>{word.word}</strong> ({word.language})
               </p>
               <p>{word.description}</p>
-              <button
+              <ButtonPrimary type="button"
                 onClick={() => deleteWord(word.word_id)}
-                className="p-2 bg-red-500 text-white mt-2"
+                className="p-2 bg-primary-root-red !w-fit text-white mt-2"
               >
                 Delete
-              </button>
+              </ButtonPrimary>
             </div>
           ))}
         </div>
       </div>
-    );
-  };
-  
-  export default WordManager;
-  
+    </div>
+  );
+};
+
+export default WordManager;

@@ -27,7 +27,7 @@ const InputPrimary: React.FC<InputPrimaryProps> = ({
 }) => {
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-medium ">
+      <label htmlFor={id} className="block text-sm mb-1 font-medium ">
         {label}
       </label>
       <input
