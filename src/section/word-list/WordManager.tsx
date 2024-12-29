@@ -4,6 +4,8 @@ import { Word } from "./WordListManager";
 import InputPrimary from "@/components/tags/input/input-primary";
 import ButtonPrimary from "@/components/tags/button/button-primary";
 import TextareaPrimary from "@/components/tags/textarea/textarea-primary";
+import { addWordsToListWord, deleteWordApi, getWordsInListApi } from "@/api/quiz/word-list.rest";
+import { useRouter } from "next/navigation";
 
 const WordManager: React.FC<{ wordListId: number }> = ({ wordListId }) => {
   const [words, setWords] = useState<Word[]>([]);
@@ -15,9 +17,7 @@ const WordManager: React.FC<{ wordListId: number }> = ({ wordListId }) => {
 
   // Fetch Words in WordList
   const fetchWords = async () => {
-    const response = await axiosConfig.get(
-      `/word-lists/list/${wordListId}/word`
-    );
+    const response = await getWordsInListApi(wordListId)
     setWords(response.data);
   };
 
@@ -28,20 +28,24 @@ const WordManager: React.FC<{ wordListId: number }> = ({ wordListId }) => {
       return;
     }
 
-    await axiosConfig.post(`/word-lists/${wordListId}/words`, newWord);
+    await addWordsToListWord({newWord, wordListId})
     setNewWord({ word: "", language: "English", description: "" });
     fetchWords();
   };
 
   // Delete Word
   const deleteWord = async (id: number) => {
-    await axiosConfig.delete(`/word-lists/words/${id}`);
+    await deleteWordApi(id)
     fetchWords();
   };
 
   useEffect(() => {
     fetchWords();
   }, [wordListId]);
+  const router = useRouter()
+  const handlePractice = () => {
+    router.push(`/word-practice/${wordListId}`)
+  }
 
   return (
     <div className="w-full ">
@@ -83,6 +87,10 @@ const WordManager: React.FC<{ wordListId: number }> = ({ wordListId }) => {
             className="p-2 !bg-green-500 text-white"
           >
             Add Word
+          </ButtonPrimary>
+          <ButtonPrimary type="button" onClick={handlePractice}
+            className="p-2 !bg-primary-blue text-white">
+              Practice
           </ButtonPrimary>
         </div>
         <div className="space-y-2 w-1/2 max-h-[calc(100vh-220px)] overflow-y-auto">

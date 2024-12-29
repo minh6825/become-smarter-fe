@@ -2,7 +2,6 @@
 import { useState } from "react";
 import WordListManager from "./WordListManager";
 import WordManager from "./WordManager";
-import UserWordLists from "./UserWordLists";
 
 const WordPage: React.FC = () => {
     const [selectedWordListId, setSelectedWordListId] = useState<number | null>(null);

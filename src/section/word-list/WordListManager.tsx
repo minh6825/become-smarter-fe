@@ -1,9 +1,11 @@
+'use client'
 import React, { useState, useEffect } from "react";
 import InputPrimary from "@/components/tags/input/input-primary";
 import axiosConfig from "@/api/axiosConfig";
 import TextareaPrimary from "@/components/tags/textarea/textarea-primary";
 import ButtonPrimary from "@/components/tags/button/button-primary";
 import PopupWrap from "@/components/common/popup-wrap";
+import { createWordListApi, deleteWordListApi, getWordList } from "@/api/quiz/word-list.rest";
 
 interface WordList {
     word_list_id: number;
@@ -30,7 +32,7 @@ const WordListManager: React.FC<WordListManagerProps> = ({ onSelectWordList }) =
 
   // Fetch WordLists
   const fetchWordLists = async () => {
-    const response = await axiosConfig.get("/word-lists/user");
+    const response = await getWordList()
     setWordLists(response.data);
   };
 
@@ -41,7 +43,7 @@ const WordListManager: React.FC<WordListManagerProps> = ({ onSelectWordList }) =
       return;
     }
 
-    await axiosConfig.post("/word-lists", newWordList);
+    await createWordListApi(newWordList)
     setNewWordList({ name: "", description: "" });
     fetchWordLists();
   };
@@ -49,7 +51,7 @@ const WordListManager: React.FC<WordListManagerProps> = ({ onSelectWordList }) =
   // Delete WordList
   const deleteWordList = async (id: number | null) => {
     if (!id) return;
-    await axiosConfig.delete(`/word-lists/${id}`);
+    await deleteWordListApi(id)
     fetchWordLists();
   };
 
