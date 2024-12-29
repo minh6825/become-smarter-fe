@@ -9,17 +9,17 @@ type Props = {
   }>;
 };
 
-const Page = async ({ params }: Props) => {
+const page = async ({ params }: Props) => {
   const { id } = await params;
     const cookieStore = cookies();
     const token = (await cookieStore).get("accessToken")?.value || "";
   const words = await getWordsInListApi(Number(id), token);
 
   return (
-    <div>
+    <div className="bg-primary-background">
       <WordPracticePage words={words.data} />
     </div>
   );
 };
 
-export default Page;
+export default page;

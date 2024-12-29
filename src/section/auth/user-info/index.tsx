@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { FaCog, FaSignOutAlt, FaInfoCircle } from "react-icons/fa";
 import ClickOutline from "@/components/common/click-outline";
 import { deleteCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
 
 type Props = {
   userInfo: {
@@ -14,6 +15,7 @@ type Props = {
 
 const UserInfo = ({ userInfo }: Props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter()
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -68,6 +70,7 @@ const UserInfo = ({ userInfo }: Props) => {
 
   const handleLogout = () => {
     deleteCookie('accessToken')
+    window.location.reload();
   }
 
   return (

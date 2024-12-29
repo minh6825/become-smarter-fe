@@ -37,14 +37,9 @@ const HeaderHome = () => {
               <Link className="hover:underline" href={"/list-quiz"}>Danh sách bài test</Link>
             </li>
             <li>
-              <a href="#features" className="hover:underline">
-                Tính Năng
-              </a>
-            </li>
-            <li>
-              <a href="#about" className="hover:underline">
-                Về Chúng Tôi
-              </a>
+            <Link href="/word-practice" className="hover:underline">
+                Luyện từ vựng
+              </Link>
             </li>
             <li>
               <Link href="/history" className="hover:underline">
