@@ -4,6 +4,7 @@ import { FaCog, FaSignOutAlt, FaInfoCircle } from "react-icons/fa";
 import ClickOutline from "@/components/common/click-outline";
 import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type Props = {
   userInfo: {
@@ -109,9 +110,9 @@ const UserInfo = ({ userInfo }: Props) => {
               <ul className="py-1">
                 <li className="hover:opacity-80 flex items-center space-x-2 px-4 py-2">
                   <FaInfoCircle className="text-blue-500" />
-                  <button className="w-full text-left text-sm text-primary">
+                  <Link href={'/profile'}   className="w-full text-left text-sm text-primary">
                     Xem Thông Tin
-                  </button>
+                  </Link>
                 </li>
                 <li className="hover:opacity-80 flex items-center space-x-2 px-4 py-2">
                   <FaCog className="text-gray-500" />
