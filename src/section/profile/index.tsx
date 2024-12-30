@@ -8,8 +8,8 @@ type Props = {
 
 const ProfilePage = ({ userInfo }: Props) => {
     return (
-        <div className="flex flex-col items-center p-6  min-h-screen">
-            <div className="shadow-md rounded-lg p-6 w-full max-w-md">
+        <div className="flex flex-col items-center p-6  min-h-screen ">
+            <div className="shadow-md rounded-lg p-6 w-full max-w-md bg-primary-background">
                 <div className="flex flex-col items-center">
                     <Image width={200} height={200} src={userInfo.avatar_url} alt="Avatar" className="rounded-full" />
                     <h1 className="text-2xl font-bold mt-4">{userInfo.name}</h1>

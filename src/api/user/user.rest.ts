@@ -6,6 +6,11 @@ export interface IUserInfo {
     name: string
     avatar_url: string
     role: string
+    user_id: string;
+    google_id: string;
+    password: string | null;
+    created_at: string;
+    updated_at: string;
 }
 
 export const getUserInfoApi = async () => (await axiosConfig.get('auth/user-info')).data

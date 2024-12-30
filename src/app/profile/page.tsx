@@ -1,18 +1,17 @@
 import { getUserInfoApiSsr } from '@/api/user/user.rest';
 import ProfilePage from '@/section/profile';
 import { cookies } from 'next/headers';
-import { UserInfo } from 'os'
 import React from 'react'
 
 
-const revalidate = 60
+export const revalidate = 10;
 const Page = async () => {
       const cookieStore = cookies();
     const token = (await cookieStore).get("accessToken")?.value || "";
     const data = await getUserInfoApiSsr(token)
 
     return (
-        <div>
+        <div className='bg-primary-main-background h-[calc(100vh-64px)] overflow-auto'>
             <ProfilePage userInfo={data.data} />
         </div>
     )
