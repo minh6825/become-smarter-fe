@@ -37,22 +37,22 @@ const QuestionItem = ({ question }: Props) => {
       <p className="font-semibold text-lg mb-1">
         {question.index}. {question.question_text}
       </p>
-      <ul className="list-none list-inside flex flex-col gap-1">
-        {question.options.map((option, index) => (
-          <li className="cursor-pointer w-fit" key={option.answer_option_id || index}>
-            <label className="cursor-pointer flex items-center gap-1.5">
+      <ul className="list-none list-inside flex flex-col gap-2">
+      {question.options.map((option, index) => (
+            <li className="cursor-pointer w-fit" key={option.answer_option_id || index}>
+            <label className="cursor-pointer flex items-center gap-2">
               <input
-                className="size-4 hidden"
-                type="radio" // Nên dùng radio nếu chỉ cho phép chọn một đáp án
-                name={`question-${question.question_id}`}
-                value={option.value}
-                checked={selectedAnswer === option.value} // Kiểm tra giá trị từ state
-                onChange={() => handleAnswerChange(option.value)}
+              className="size-4 hidden"
+              type="radio" // Nên dùng radio nếu chỉ cho phép chọn một đáp án
+              name={`question-${question.question_id}`}
+              value={option.value}
+              checked={selectedAnswer === option.value} // Kiểm tra giá trị từ state
+              onChange={() => handleAnswerChange(option.value)}
               />
-              <span className={`font-medium rounded-full size-6 text-center ${selectedAnswer === option.value && 'bg-primary-blue text-primary-text-button'}`}>{option.value}</span>
+              <span className={`font-medium border border-primary rounded-full size-6 text-center transition-transform duration-300 ${selectedAnswer === option.value ? 'bg-primary-blue text-primary-text-button scale-110' : 'scale-100'}`}>{option.value}</span>
               <span className="font-medium translate-y-[0.5px] w-fit">{option.label} </span>
             </label>
-          </li>
+            </li>
         ))}
       </ul>
     </div>

@@ -15,12 +15,12 @@ const TablePrimary = ({ data, listHeader }: Props) => {
           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
             <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
               <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                <thead className="bg-root-background-table">
+                <thead className="bg-primary-root-background-table">
                   <tr>
                   {listHeader.map(headerItem => (
                     <th key={headerItem}
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-primary"
+                      className="font-bold px-4 py-3.5 text-sm text-left rtl:text-right text-primary"
                     >
                       {headerItem}
                     </th>

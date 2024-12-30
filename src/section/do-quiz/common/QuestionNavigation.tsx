@@ -12,8 +12,9 @@ type Props = {
 };
 
 const QuestionNavigation = ({ sectionAndGroup, setCurrentGroupIndex }: Props) => {
-  const { currentQuestionId, setCurrentQuestionId } = useQuizSubmissionContext(); 
-  
+  const { currentQuestionId, setCurrentQuestionId, quizSubmissionState } = useQuizSubmissionContext();
+
+
     return (
     <div className="mt-4 ml-4 shadow-lg rounded-lg w-64">
       <h2 className="text-xl font-semibold mb-2">Thứ tự câu hỏi</h2>
@@ -26,7 +27,8 @@ const QuestionNavigation = ({ sectionAndGroup, setCurrentGroupIndex }: Props) =>
                 {group.question_list.map((question) => (
                   <Link onClick={() => {setCurrentGroupIndex(group.index); setCurrentQuestionId(question.question_id)}}
                     scroll={true}
-                    key={question.question_id} className={`${currentQuestionId == question.question_id && 'bg-primary-root-violet'}`}
+                    key={question.question_id} className={`${currentQuestionId == question.question_id && 'bg-primary-root-violet'}
+                    ${quizSubmissionState.user_answers.find(item => item.question_id === question.question_id)?.answer_text && 'bg-primary-root-green'}`}
                     href={`#question-${question.question_id}`}
                   >
                     <ButtonChooseQuestion>Q{question.index}</ButtonChooseQuestion>

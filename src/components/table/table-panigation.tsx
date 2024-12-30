@@ -25,7 +25,7 @@ const PaginationTable: React.FC<PaginationProps> = ({
     <div className="flex items-center justify-between ">
       <Link
         href={currentPage > 1 ? createPageUrl(currentPage - 1) : "#"}
-        className={`flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200
+        className={`flex items-center px-5 py-2 text-sm text-gray-700 bg-primary-background capitalize transition-colors duration-200
             border rounded-md gap-x-2 text-primary ${
           currentPage === 1 ? "pointer-events-none opacity-50" : ""
         }`}
@@ -52,7 +52,7 @@ const PaginationTable: React.FC<PaginationProps> = ({
           <Link 
             key={page}
             href={createPageUrl(page)}
-            className={`px-2 py-1 text-sm rounded-md ${
+            className={`px-2 py-1 text-sm rounded-md bg-primary-background ${
               currentPage === page
                 ? "text-blue-500 border border-primary bg-primary-background pointer-events-none"
                 : "text-gray-500"
@@ -65,7 +65,7 @@ const PaginationTable: React.FC<PaginationProps> = ({
 
       <Link
         href={currentPage < totalPages ? createPageUrl(currentPage + 1) : "#"}
-        className={`flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200
+        className={`flex items-center px-5 py-2 text-sm text-gray-700 bg-primary-background capitalize transition-colors duration-200
             border rounded-md gap-x-2 text-primary ${
           currentPage === totalPages ? "pointer-events-none opacity-50" : ""
         }`}

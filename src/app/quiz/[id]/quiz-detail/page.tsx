@@ -12,7 +12,9 @@ const page = async ({ params }: PageProps) => {
   const { id } = await params;
   const data = await getQuizQuestionAnswer(id);
 
-  return <DoQuizProviderWrap quizData={data.quiz}></DoQuizProviderWrap>;
+  return <div className="bg-primary-main-background h-[calc(100vh-64px)] overflow-auto" >
+    <DoQuizProviderWrap quizData={data.quiz}></DoQuizProviderWrap>
+  </div>
 };
 
 export default page;

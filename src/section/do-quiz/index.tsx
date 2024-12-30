@@ -162,7 +162,7 @@ const DoQuizPage = ({ quizData }: { quizData: QuizData }) => {
         <div className="flex flex-col">
           <ButtonPrimary
             type="button"
-            className="!w-fit ml-auto  bg-primary-root-mint hover:opacity-90"
+            className="!w-fit ml-auto  bg-primary-root-mint !text-white hover:opacity-90"
             onClick={() => setPopupSubmit(true)}
           >
             Submit

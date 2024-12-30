@@ -90,7 +90,7 @@ const WordListManager: React.FC<WordListManagerProps> = ({ onSelectWordList }) =
         {wordLists.map((list) => (
           <div
             key={list.word_list_id}
-            className="border p-4 rounded shadow cursor-pointer h-full"
+            className="border p-4 bg-primary-background rounded shadow cursor-pointer h-full"
             onClick={() => onSelectWordList(list.word_list_id)} // Gọi hàm khi người dùng chọn WordList
           >
             <h2 className="font-bold">{list.name}</h2>

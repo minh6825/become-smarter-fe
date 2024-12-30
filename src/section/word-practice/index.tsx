@@ -65,7 +65,7 @@ const WordPracticePage = ({ words }: Props) => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center h-[calc(100vh-150px)] p-4">
+        <div className="flex flex-col items-center  justify-center h-[calc(100vh-150px)] p-4">
             <Slider ref={sliderRef} {...settings} className="w-[300px]" arrows={false} >
                 {shuffledWords.map((word) => (
                     <div

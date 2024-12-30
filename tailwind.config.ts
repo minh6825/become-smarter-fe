@@ -28,6 +28,8 @@ export default {
           'root-red': 'var(--root-red)',
           'root-green-bold': 'var(--root-green-bold)',
           'root-background-table': 'var(--root-background-table)',
+          'blue-light': 'var(--root-blue-light)',
+          'main-background': 'var(--root-background)',
         },
         keyframes: {
           wave: {

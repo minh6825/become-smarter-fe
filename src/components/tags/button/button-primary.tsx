@@ -19,7 +19,7 @@ const ButtonPrimary = ({
     <button
       type={type}
       onClick={onClick}
-      className={`w-full px-4 py-2 transition-all duration-150 hover:text-primary-text-button ease-in-out font-bold rounded ${
+      className={`w-full px-4 py-2 transition-all duration-150 border shadow-md ease-in-out font-bold rounded ${
         loading
           ? "bg-primary"
           : "bg-primary-background border hover:opacity-90"

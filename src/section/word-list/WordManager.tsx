@@ -95,7 +95,7 @@ const WordManager: React.FC<{ wordListId: number }> = ({ wordListId }) => {
         </div>
         <div className="space-y-2 w-1/2 max-h-[calc(100vh-220px)] overflow-y-auto">
           {words.map((word) => (
-            <div key={word.word_id} className="border p-2 rounded">
+            <div key={word.word_id} className="border bg-primary-background p-2 rounded">
               <p>
                 <strong>{word.word}</strong> ({word.language})
               </p>

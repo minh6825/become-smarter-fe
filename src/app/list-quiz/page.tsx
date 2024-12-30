@@ -56,7 +56,7 @@ export default async function page({
   const data = await getQuizListPublicApi(params);
 
   return (
-    <div>
+    <div className="bg-primary-main-background h-[calc(100vh-64px)] overflow-auto">
       <HomePage
         quizzes={data.quizzes}
         currentPage={currentPage}

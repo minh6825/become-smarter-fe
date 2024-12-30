@@ -6,7 +6,7 @@
 
 /* Mặt thanh cuộn */
 ::-webkit-scrollbar-track {
-  background: var(--primary-foreground); /* Màu nền của track */
+  background: var(--root-background); /* Màu nền của track */
   border-radius: 6px; /* Bo góc */
 }
 
@@ -14,7 +14,7 @@
 ::-webkit-scrollbar-thumb {
   background: var(--primary); /* Màu thanh trượt */
   border-radius: 6px; /* Bo góc */
-  border: 3px solid var(--primary-foreground); /* Viền giúp thumb nổi bật hơn */
+  border: 3px solid var(--root-background); /* Viền giúp thumb nổi bật hơn */
 }
 
 /* Thanh trượt khi di chuột */

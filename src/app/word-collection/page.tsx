@@ -6,7 +6,7 @@ type Props = {}
 
 const page = (props: Props) => {
   return (
-    <div>
+    <div className='bg-primary-main-background h-[calc(100vh-64px)]'>
         <WordPage />
     </div>
   )

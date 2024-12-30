@@ -64,7 +64,7 @@ const FilterHome = () => {
   }, [filters.subCategory]);
 
   return (
-    <div className="p-4 rounded-md shadow mb-4">
+    <div className="p-4 rounded-md shadow mb-4 bg-primary-background">
       <div className="grid grid-cols-6 items-center gap-4 max-md:grid-cols-2">
         <InputPrimary
           label="Search"

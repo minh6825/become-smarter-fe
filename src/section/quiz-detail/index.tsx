@@ -85,7 +85,7 @@ const QuizDetailPage = ({ quizData }: { quizData: QuizTestAPI }) => {
       <div className="flex">
         <div className="w-full">
           <div className="flex gap-4">
-            <h1 className="text-2xl font-bold text-nowrap">
+            <h1 className="text-2xl font-bold text-nowrap min-w-[200px]">
               {quizData.quiz_test_intro}
             </h1>
             <div className=" flex w-full justify-between space-x-4">

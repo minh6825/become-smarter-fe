@@ -24,8 +24,10 @@ export default async function Page({
     }
 
     return (
-      <div className="container mx-auto pt-10">
-        <HistoryPage history={data.data} page={page} take={take} />
+      <div className=" w-screen  pt-10 bg-primary-main-background h-[calc(100vh-64px)]">
+        <div className="container mx-auto">
+          <HistoryPage history={data.data} page={page} take={take} />
+        </div>
       </div>
     );
   } catch (error) {

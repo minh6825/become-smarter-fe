@@ -4,12 +4,9 @@ import LadingPage from "@/section/home-page";
 
 export const revalidate = 10;
 
-export default async function Home({
-}: {
-}) {
-  
+export default async function Home({}: {}) {
   return (
-    <div>
+    <div className="bg-primary-main-background">
       <LadingPage />
     </div>
   );

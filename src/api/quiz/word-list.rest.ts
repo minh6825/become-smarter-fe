@@ -13,6 +13,13 @@ export interface INewWord {
 
 export const getWordList = async () => await axiosConfig.get("/word-lists/user");
 
+export const getWordListSsr = async (token: string) => await axiosConfig.get("/word-lists/user", {
+    headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      timeout: 10000,
+});
+
 // await axiosConfig.post("/word-lists", newWordList);
 export const createWordListApi = async (newWordList: INewWordList) => await axiosConfig.post("/word-lists", newWordList);
 
