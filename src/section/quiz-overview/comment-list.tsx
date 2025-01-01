@@ -4,6 +4,7 @@ import React from "react";
 import ButtonSubmitComment from "./ButtonSubmitComment";
 import { IUserInfo } from "@/api/user/user.rest";
 import moment from "moment";
+import Image from "next/image";
 
 interface Comment {
   comment_id: string;
@@ -20,17 +21,15 @@ type Props = {
 };
 
 const CommentList = async ({ commentList, quizId }: Props) => {
-  console.log(commentList);
   return (
-    <div className="p-4 flex-1 overflow-scroll h-[calc(100vh-124px)]">
-      <h1 className="text-2xl font-bold mb-4">Comments</h1>
+    <div className=" flex-1 overflow-auto h-[calc(100vh-124px)] border shadow-xl p-4 bg-primary-background rounded-xl">
       <ButtonSubmitComment quizId={quizId} />
       <div>
         {commentList.map((comment: Comment) => {
           return (
             <div key={comment.comment_id} className="comment py-4 border-b border-gray-200">
               <div className="author flex items-center mb-2">
-                <img
+                <Image width={40} height={40}
                   src={comment.author.avatar_url}
                   alt={comment.author.name}
                   className="avatar w-10 h-10 rounded-full mr-3"

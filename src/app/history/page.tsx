@@ -20,7 +20,16 @@ export default async function Page({
   try {
     const data = await getHistoryDoQuiz(token, { page, take });
     if (data.success === false) {
-      return <div>error</div>;
+      return (
+        <div className="container mx-auto pt-10 flex flex-col items-center">
+          <img
+            src="/no-data.jpeg"
+            alt="No data"
+            className="w-1/2 mb-4 rounded-xl"
+          />
+          <p className="text-gray-500 text-lg">No data available</p>
+        </div>
+      );
     }
 
     return (
@@ -31,6 +40,15 @@ export default async function Page({
       </div>
     );
   } catch (error) {
-    return <div>error</div>;
+    return (
+      <div className="container mx-auto pt-10 flex flex-col items-center">
+        <img
+          src="/no-data.jpeg"
+          alt="No data"
+          className="w-1/2 mb-4 rounded-xl"
+        />
+        <p className="text-gray-500 text-lg">Chưa có bài nào cả</p>
+      </div>
+    );
   }
 }

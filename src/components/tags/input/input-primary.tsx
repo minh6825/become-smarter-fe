@@ -12,6 +12,7 @@ type InputPrimaryProps = {
   id?: string;
   required?: boolean;
   label?: string
+  classNameBox?: string
 };
 
 const InputPrimary: React.FC<InputPrimaryProps> = ({
@@ -23,10 +24,12 @@ const InputPrimary: React.FC<InputPrimaryProps> = ({
   disabled = false,
   name,
   id,
-  required,label
+  required,
+  label,
+  classNameBox
 }) => {
   return (
-    <div>
+    <div className={`${classNameBox}`}>
       <label htmlFor={id} className="block text-sm mb-1 font-medium ">
         {label}
       </label>

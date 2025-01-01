@@ -95,6 +95,10 @@ const WordListManager: React.FC<WordListManagerProps> = ({ onSelectWordList }) =
           >
             <h2 className="font-bold">{list.name}</h2>
             <p>{list.description}</p>
+            {/* Change status with switcher */}
+            <div className="flex justify-between items-center mt-2">
+              <p className="text-sm">Word List ID: {list.word_list_id}</p>
+            </div>
             <ButtonPrimary type="button" 
               onClick={() => {setShowDeletePopup(true); setSelectedWordListId(list.word_list_id);}}
               className="p-2 bg-red-500 !w-fit text-white mt-2"
@@ -121,7 +125,6 @@ const WordListManager: React.FC<WordListManagerProps> = ({ onSelectWordList }) =
           </div>
         </div>
       </PopupWrap>
-
     </div>
   );
 };
