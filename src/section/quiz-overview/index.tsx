@@ -4,20 +4,28 @@ import Link from "next/link";
 import React from "react";
 import { getCommentsForQuiz } from "@/api/user/comment.rest";
 import CommentList from "./comment-list";
+import ShowMoreButton from "./show-more-button";
 
 type Props = {
   quiz: IQuizDetail;
+  page: number;
+  limit: number;
 };
 
-const QuizOverviewPage = async ({ quiz }: Props) => {
-  let commentList = [];
+const QuizOverviewPage = async ({ quiz, page, limit }: Props) => {
+  let commentList:any = [];
   try {
-    commentList = await getCommentsForQuiz(quiz.quizId);
+    const comment = (await getCommentsForQuiz(quiz.quizId, page, limit)).data.comments
+    commentList = [...commentList, ...comment];
   } catch (error) {
     console.error("Error fetching comments for quiz:", error);
     return <div>No data</div>;
   }
 
+  if(commentList.length === 0) {
+    return <div>No data</div>
+  }
+  
   return (
     <WrapBox className="p-6 !flex !justify-between gap-4 !w-full">
       <div className="w-2/5 p-6 border  bg-primary-background rounded-xl shadow-xl">
@@ -69,7 +77,10 @@ const QuizOverviewPage = async ({ quiz }: Props) => {
           </Link>
         </div>
       </div>
-      <CommentList quizId={quiz.quizId} commentList={commentList} />
+        <div className="flex-1 overflow-auto h-[calc(100vh-124px)] border shadow-xl p-4 pb-0 bg-primary-background rounded-xl">
+          <CommentList quizId={quiz.quizId} commentList={commentList} />
+          <ShowMoreButton quizId={quiz.quizId} page={page} limit={limit} />
+        </div>
     </WrapBox>
   );
 };

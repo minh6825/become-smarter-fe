@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import ButtonSubmitComment from "./ButtonSubmitComment";
 import { IUserInfo } from "@/api/user/user.rest";
@@ -19,10 +20,9 @@ type Props = {
   quizId: string;
 };
 
-const CommentList = async ({ commentList, quizId }: Props) => {
+const CommentListClient = ({ commentList, quizId }: Props) => {
   return (
     <div>
-      <ButtonSubmitComment quizId={quizId} />
       <div>
         {commentList.map((comment: IComment) => {
           return (
@@ -50,4 +50,4 @@ const CommentList = async ({ commentList, quizId }: Props) => {
   );
 };
 
-export default CommentList;
+export default CommentListClient;

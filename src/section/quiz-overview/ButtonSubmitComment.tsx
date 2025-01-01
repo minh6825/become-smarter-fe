@@ -4,6 +4,8 @@ import ButtonPrimary from "@/components/tags/button/button-primary";
 import InputPrimary from "@/components/tags/input/input-primary";
 import moment from "moment";
 import React, { useState } from "react";
+import ReplyComment from "./reply-comment";
+import { IComment } from "./comment-list";
 
 type Props = {
   quizId: string;
@@ -23,11 +25,11 @@ const ButtonSubmitComment = ({ quizId }: Props) => {
         },
         ...pre,
       ]);
+      setCommentValue('')
     } catch (error) {
       console.error(error);
     }
   };
-
   return (
     <div className="flex flex-col gap-2">
       <div className="fixed top-[89px] w-[40%] z-[50] bg-primary-background ">
@@ -47,8 +49,8 @@ const ButtonSubmitComment = ({ quizId }: Props) => {
         </div>
       </div>
       <div className="mt-[100px]">
-        {!!listComment.length &&
-          listComment.map((comment: any) => {
+        {!!listComment?.length &&
+          listComment.map((comment: IComment) => {
             return (
               <div
                 key={comment.comment_id}
@@ -68,6 +70,7 @@ const ButtonSubmitComment = ({ quizId }: Props) => {
                   </div>
                 </div>
                 <p className="text-gray-700">{comment.content}</p>
+                <ReplyComment parentId={comment.comment_id} replyList={comment.replies} quizId={quizId} />
               </div>
             );
           })}
