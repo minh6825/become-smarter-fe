@@ -79,7 +79,7 @@ const QuizOverviewPage = async ({ quiz, page, limit }: Props) => {
       </div>
         <div className="flex-1 overflow-auto h-[calc(100vh-124px)] border shadow-xl p-4 pb-0 bg-primary-background rounded-xl">
           <CommentList quizId={quiz.quizId} commentList={commentList} />
-          <ShowMoreButton quizId={quiz.quizId} page={page} limit={limit} />
+          <ShowMoreButton quizId={quiz.quizId} />
         </div>
     </WrapBox>
   );

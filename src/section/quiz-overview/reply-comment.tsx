@@ -64,7 +64,7 @@ const ReplyComment = ({quizId, parentId, replyList}: Props) => {
           <ButtonPrimary
             onClick={handleSubmitComment}
             type="button"
-            className="!bg-blend-hue !w-fit !h-[34px] py-0"
+            className="!bg-blend-hue !w-fit !h-[34px] !py-0"
           >
             Submit
           </ButtonPrimary>
