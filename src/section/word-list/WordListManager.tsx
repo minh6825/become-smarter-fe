@@ -6,6 +6,8 @@ import TextareaPrimary from "@/components/tags/textarea/textarea-primary";
 import ButtonPrimary from "@/components/tags/button/button-primary";
 import PopupWrap from "@/components/common/popup-wrap";
 import { createWordListApi, deleteWordListApi, getWordList } from "@/api/quiz/word-list.rest";
+import TiptapPrimary from "@/components/tags/tiptap/titap-primary";
+import TiptapSecondary from "@/components/tags/tiptap/tiptap-secondary";
 
 interface WordList {
     word_list_id: number;
@@ -73,13 +75,13 @@ const WordListManager: React.FC<WordListManagerProps> = ({ onSelectWordList }) =
           }
           className="border p-2 mr-2"
         />
-        <TextareaPrimary
-          placeholder="Description"
-          value={newWordList.description}
-          onChange={(e) =>
-            setNewWordList((prev) => ({ ...prev, description: e.target.value }))
-          }
-          className="border p-2 mr-2"
+        <TiptapSecondary
+          // placeholder="Description"
+          // value={newWordList.description}
+          // onChange={(e) =>
+          //   setNewWordList((prev) => ({ ...prev, description: e.target.value }))
+          // }
+          // className="border p-2 mr-2"
         />
         <ButtonPrimary type="button" onClick={createWordList} className="p-2 !bg-blue-500 ">
           Add Word List

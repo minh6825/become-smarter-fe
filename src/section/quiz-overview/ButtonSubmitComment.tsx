@@ -14,7 +14,8 @@ type Props = {
 const ButtonSubmitComment = ({ quizId }: Props) => {
   const [commentValue, setCommentValue] = useState("");
   const [listComment, setListComment] = useState<any[]>([]);
-  const handleSubmitComment = async () => {
+  const handleSubmitComment = async (e:any) => {
+    e.preventDefault();
     try {
       const res = await createComment({ commentValue, quizId });
       setListComment((pre) => [
@@ -34,19 +35,18 @@ const ButtonSubmitComment = ({ quizId }: Props) => {
     <div className="flex flex-col gap-2">
       <div className="fixed top-[89px] w-[40%] z-[50] bg-primary-background ">
         <h1 className="text-2xl font-bold mb-4 mt-2">Comments</h1>
-        <div className="flex gap-2">
-          <InputPrimary classNameBox="!min-w-[40%] max-lg:!min-w-[200px]" placeholder="Comment here"
+        <form onSubmit={handleSubmitComment} className="flex gap-2">
+          <InputPrimary required  classNameBox="!min-w-[40%] max-lg:!min-w-[200px]" placeholder="Comment here"
             onChange={(e) => setCommentValue(e.target.value)}
             value={commentValue}
           />
-          <ButtonPrimary
-            onClick={handleSubmitComment}
-            type="button"
+          <ButtonPrimary 
+            type="submit"
             className="!bg-blend-hue !w-fit"
           >
             Submit
           </ButtonPrimary>
-        </div>
+        </form>
       </div>
       <div className="mt-[100px]">
         {!!listComment?.length &&

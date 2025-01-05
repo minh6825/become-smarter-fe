@@ -21,10 +21,6 @@ const QuizOverviewPage = async ({ quiz, page, limit }: Props) => {
     console.error("Error fetching comments for quiz:", error);
     return <div>No data</div>;
   }
-
-  if(commentList.length === 0) {
-    return <div>No data</div>
-  }
   
   return (
     <WrapBox className="p-6 !flex !justify-between gap-4 !w-full">

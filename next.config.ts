@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
         port: '',
       },
     ]
+  },
+  sassOptions: {
+    api: 'modern-compiler' // or "modern"
   }
 };
 
