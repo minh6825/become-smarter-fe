@@ -63,17 +63,18 @@ const WordPracticePage = ({ words }: Props) => {
     if (shuffledWords.length === 0) {
         return <div className="flex items-center justify-center h-[calc(100vh-150px)] bg-primary-background">Loading...</div>;
     }
-
     return (
         <div className="flex flex-col items-center  justify-center h-[calc(100vh-150px)] p-4">
-            <Slider ref={sliderRef} {...settings} className="w-[300px]" arrows={false} >
+            <Slider ref={sliderRef} {...settings} className="w-[500px]" arrows={false} >
                 {shuffledWords.map((word) => (
                     <div
                         key={word.word_id}
-                        className="bg-primary-text-button shadow-lg rounded-lg h-[400px] p-6 flex flex-col justify-center items-center"
+                        className="bg-primary-text-button shadow-lg rounded-lg min-h-[400px] p-6 flex flex-col justify-center items-center"
                     >
                         <h3 className="text-2xl font-bold text-gray-800 mb-2">{word.word}</h3>
-                        <p className="text-gray-600 mb-2">{word.description}</p>
+                        <p className="text-gray-600 mb-2" dangerouslySetInnerHTML={{__html: word.description}}>
+                            
+                        </p>
                         <p className="text-gray-500 text-sm">Status: {word.status}</p>
                     </div>
                 ))}

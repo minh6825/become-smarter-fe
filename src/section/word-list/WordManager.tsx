@@ -4,8 +4,14 @@ import { Word } from "./WordListManager";
 import InputPrimary from "@/components/tags/input/input-primary";
 import ButtonPrimary from "@/components/tags/button/button-primary";
 import TextareaPrimary from "@/components/tags/textarea/textarea-primary";
-import { addWordsToListWord, deleteWordApi, getWordsInListApi } from "@/api/quiz/word-list.rest";
+import {
+  addWordsToListWord,
+  deleteWordApi,
+  getWordsInListApi,
+} from "@/api/quiz/word-list.rest";
 import { useRouter } from "next/navigation";
+import TiptapSecondary from "@/components/tags/tiptap/tiptap-secondary.tiptap";
+import { TiptapPrimary } from "@/components/tags/tiptap/titap-primary";
 
 const WordManager: React.FC<{ wordListId: number }> = ({ wordListId }) => {
   const [words, setWords] = useState<Word[]>([]);
@@ -17,7 +23,7 @@ const WordManager: React.FC<{ wordListId: number }> = ({ wordListId }) => {
 
   // Fetch Words in WordList
   const fetchWords = async () => {
-    const response = await getWordsInListApi(wordListId)
+    const response = await getWordsInListApi(wordListId);
     setWords(response.data);
   };
 
@@ -28,40 +34,41 @@ const WordManager: React.FC<{ wordListId: number }> = ({ wordListId }) => {
       return;
     }
 
-    await addWordsToListWord({newWord, wordListId})
+    await addWordsToListWord({ newWord, wordListId });
     setNewWord({ word: "", language: "English", description: "" });
     fetchWords();
   };
 
   // Delete Word
   const deleteWord = async (id: number) => {
-    await deleteWordApi(id)
+    await deleteWordApi(id);
     fetchWords();
   };
 
   useEffect(() => {
     fetchWords();
   }, [wordListId]);
-  const router = useRouter()
+  const router = useRouter();
   const handlePractice = () => {
-    router.push(`/word-practice/${wordListId}`)
-  }
+    router.push(`/word-practice/${wordListId}`);
+  };
 
   return (
     <div className="w-full ">
       <h2 className="text-lg font-bold mb-4">Manage Words</h2>
       <div className="w-full gap-4 flex">
         <div className="mb-4 flex flex-col gap-4 w-1/2">
-          <InputPrimary
-            label="Từ mới"
-            type="text"
-            placeholder="Word"
-            value={newWord.word}
-            onChange={(e) =>
-              setNewWord((prev) => ({ ...prev, word: e.target.value }))
-            }
-            className="border p-2 mr-2"
-          />
+          <div>
+            <label htmlFor={"Từ mới"} className="block text-sm font-medium ">
+              Từ mới
+            </label>
+            <TiptapSecondary
+              height={100}
+              value={newWord.word}
+              onchange={(e) => setNewWord((prev) => ({ ...prev, word: e }))}
+            />
+          </div>
+
           <InputPrimary
             label="Ngôn ngữ"
             type="text"
@@ -72,15 +79,19 @@ const WordManager: React.FC<{ wordListId: number }> = ({ wordListId }) => {
             }
             className="border p-2 mr-2"
           />
-          <TextareaPrimary
-            label="Mô tả"
-            placeholder="Description"
+          <div>
+          <label htmlFor={"Từ mới"} className="block text-sm font-medium ">
+              Mô tả
+            </label>
+            <TiptapSecondary
+            isShowMenuBar={true}
+            height={300}
             value={newWord.description}
-            onChange={(e) =>
-              setNewWord((prev) => ({ ...prev, description: e.target.value }))
-            }
-            className="border p-2 mr-2"
+            onchange={(e) => {
+              setNewWord((prev) => ({ ...prev, description: e }));
+            }}
           />
+          </div>
           <ButtonPrimary
             type="button"
             onClick={addWord}
@@ -88,19 +99,26 @@ const WordManager: React.FC<{ wordListId: number }> = ({ wordListId }) => {
           >
             Add Word
           </ButtonPrimary>
-          <ButtonPrimary type="button" onClick={handlePractice}
-            className="p-2 !bg-primary-blue text-white">
-              Practice
+          <ButtonPrimary
+            type="button"
+            onClick={handlePractice}
+            className="p-2 !bg-primary-blue text-white"
+          >
+            Practice
           </ButtonPrimary>
         </div>
         <div className="space-y-2 w-1/2 max-h-[calc(100vh-220px)] overflow-y-auto">
           {words.map((word) => (
-            <div key={word.word_id} className="border bg-primary-background p-2 rounded">
+            <div
+              key={word.word_id}
+              className="border bg-primary-background p-2 rounded"
+            >
               <p>
-                <strong>{word.word}</strong> ({word.language})
+                <strong dangerouslySetInnerHTML={{__html: word.word}}></strong> ({word.language})
               </p>
-              <p>{word.description}</p>
-              <ButtonPrimary type="button"
+              <p dangerouslySetInnerHTML={{__html: word.description}}></p>
+              <ButtonPrimary
+                type="button"
                 onClick={() => deleteWord(word.word_id)}
                 className="p-2 bg-primary-root-red !w-fit text-white mt-2"
               >
