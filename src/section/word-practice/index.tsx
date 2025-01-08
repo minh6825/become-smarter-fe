@@ -71,7 +71,7 @@ const WordPracticePage = ({ words }: Props) => {
                         key={word.word_id}
                         className="bg-primary-text-button shadow-lg rounded-lg min-h-[400px] p-6 flex flex-col justify-center items-center"
                     >
-                        <h3 className="text-2xl font-bold text-gray-800 mb-2">{word.word}</h3>
+                        <h3 className="text-2xl font-bold text-gray-800 mb-2" dangerouslySetInnerHTML={{__html: word.word}}></h3>
                         <p className="text-gray-600 mb-2" dangerouslySetInnerHTML={{__html: word.description}}>
                             
                         </p>

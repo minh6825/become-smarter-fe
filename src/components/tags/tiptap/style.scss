@@ -27,7 +27,7 @@
   }
   
   .tiptap {
-    caret-color: var(--purple);
+    caret-color: var(--primary);
     margin: 0.5rem;
     border-radius: 4px;
   
@@ -79,7 +79,7 @@
   input,
   select,
   textarea {
-    background: var(--gray-2);
+    background: var(--root-background);
     border-radius: 0.5rem;
     border: none;
     color: var(--black);

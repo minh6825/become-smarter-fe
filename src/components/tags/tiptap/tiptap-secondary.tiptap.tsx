@@ -44,18 +44,17 @@ const MenuBar = ({ editor }: { editor: any }) => {
   if (!editor) {
     return null
   }
-  
 
     return (
-      <div className="control-group p-2 bg-gray-100 !rounded-md">
+      <div className="text-primary p-2 bg-primary-background !rounded-md">
         <div className="button-group flex flex-wrap gap-2">
           {/* Bold */}
           <button
             onClick={() => editor.chain().focus().toggleBold().run()}
             disabled={!editor.can().chain().focus().toggleBold().run()}
-            className={`btn ${editor.isActive('bold') ? 'btn-active' : ''}`}
+            className={`text-primary  ${editor.isActive('bold') ? '' : ''}`}
           >
-            <FaBold className="icon" />
+            <FaBold className="text-primary" />
           </button>
   
           {/* Italic */}
@@ -64,7 +63,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
             disabled={!editor.can().chain().focus().toggleItalic().run()}
             className={`btn ${editor.isActive('italic') ? 'btn-active' : ''}`}
           >
-            <FaItalic className="icon" />
+            <FaItalic className="text-primary" />
           </button>
   
           {/* Strikethrough */}
@@ -73,7 +72,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
             disabled={!editor.can().chain().focus().toggleStrike().run()}
             className={`btn ${editor.isActive('strike') ? 'btn-active' : ''}`}
           >
-            <FaStrikethrough className="icon" />
+            <FaStrikethrough className="text-primary" />
           </button>
   
           {/* Code */}
@@ -82,7 +81,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
             disabled={!editor.can().chain().focus().toggleCode().run()}
             className={`btn ${editor.isActive('code') ? 'btn-active' : ''}`}
           >
-            <FaCode className="icon" />
+            <FaCode className="text-primary" />
           </button>
   
           {/* Clear Marks */}
@@ -90,7 +89,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
             onClick={() => editor.chain().focus().unsetAllMarks().run()}
             className="btn"
           >
-            <MdClear className="icon" />
+            <MdClear className="text-primary" />
           </button>
   
           {/* Undo */}
@@ -99,7 +98,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
             disabled={!editor.can().chain().focus().undo().run()}
             className="btn"
           >
-            <FaUndo className="icon" />
+            <FaUndo className="text-primary" />
           </button>
   
           {/* Redo */}
@@ -108,7 +107,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
             disabled={!editor.can().chain().focus().redo().run()}
             className="btn"
           >
-            <FaRedo className="icon" />
+            <FaRedo className="text-primary" />
           </button>
   
           {/* Bullet List */}
@@ -116,7 +115,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
             onClick={() => editor.chain().focus().toggleBulletList().run()}
             className={`btn ${editor.isActive('bulletList') ? 'btn-active' : ''}`}
           >
-            <FaListUl className="icon" />
+            <FaListUl className="text-primary" />
           </button>
   
           {/* Ordered List */}
@@ -124,7 +123,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
             onClick={() => editor.chain().focus().toggleOrderedList().run()}
             className={`btn ${editor.isActive('orderedList') ? 'btn-active' : ''}`}
           >
-            <FaListOl className="icon" />
+            <FaListOl className="text-primary" />
           </button>
   
           {/* Blockquote */}
@@ -132,7 +131,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
             onClick={() => editor.chain().focus().toggleBlockquote().run()}
             className={`btn ${editor.isActive('blockquote') ? 'btn-active' : ''}`}
           >
-            <FaQuoteRight className="icon" />
+            <FaQuoteRight className="text-primary" />
           </button>
   
           {/* Horizontal Rule */}
@@ -140,7 +139,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
             onClick={() => editor.chain().focus().setHorizontalRule().run()}
             className="btn"
           >
-            <MdHorizontalRule className="icon" />
+            <MdHorizontalRule className="text-primary" />
           </button>
   
           {/* Heading Levels */}
@@ -150,7 +149,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
               onClick={() => editor.chain().focus().toggleHeading({ level }).run()}
               className={`flex btn ${editor.isActive('heading', { level }) ? 'btn-active' : ''}`}
             >
-              <FaHeading className="icon" />
+              <FaHeading className="text-primary" />
               {level}
             </button>
           ))}
@@ -162,7 +161,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
             }
             className="btn"
           >
-            <FaTable className="icon" />
+            <FaTable className="text-primary" />
           </button>
         </div>
       </div>
@@ -207,14 +206,16 @@ const TiptapSecondary = ({ onchange, value, height, isShowMenuBar, placeholder }
   }, [editor]);
 
   useEffect(() => {
-    if (editor) {
-      editor.commands.setContent(value);
+    if(!value) {
+      editor?.commands.setContent('<p></p>')
     }
-  }, [editor, value]);
+    return () => {}
+  }, [value])
+  
 
   return (
-    <div className='tiptap-wrap rounded-md ' onClick={() => editor?.chain().focus().run()}>
-      <div className={`${styles.tiptap} h-[400px]`} style={{height: `${height}px`}}>
+    <div className='tiptap-wrap border rounded-md' onClick={() => editor?.chain().focus().run()}>
+      <div className={`${styles.tiptap} h-[400px] rounded-md`} style={{height: `${height}px`}}>
       {isShowMenuBar && <MenuBar editor={editor} />}
       <EditorContent editor={editor} />
       </div>
