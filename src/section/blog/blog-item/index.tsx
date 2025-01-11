@@ -2,7 +2,7 @@ import { IBlog } from "@/api/blog/blogs.rest";
 import WrapBox from "@/components/common/wrap-box";
 import React from "react";
 import '@/components/tags/tiptap/style.scss'
-import styles from './style.module.scss';
+import styles from '@/components/tags/tiptap/style.module.scss';
 
 type Props = {
   data: IBlog;
