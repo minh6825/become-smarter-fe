@@ -53,6 +53,11 @@ const HeaderHome = () => {
                 Bộ từ vựng
               </Link>
             </li>
+            <li>
+                <Link href="/blog" className="hover:underline hover:text-primary-blue">
+                  Bài viết
+                </Link>
+            </li>
           </ul>
         </nav>
       </div>

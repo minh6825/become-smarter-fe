@@ -53,6 +53,11 @@ export default function Drawer() {
                 </Link>
               </li>
               <li className="py-2">
+                <Link href="/blogs" className="hover:underline">
+                  Bài viết
+                </Link>
+              </li>
+              <li className="py-2">
                 <button onClick={handleLogout} className="hover:underline">
                   Logout
                 </button>
