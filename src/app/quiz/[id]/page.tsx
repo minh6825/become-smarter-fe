@@ -24,7 +24,7 @@ const page = async ({
     const {id} = await params
     const data = await getDetailQuizApi(id)
     return (
-    <div className='bg-primary-main-background h-[calc(100vh-64px)] overflow-auto'>
+    <div className='bg-primary-main-background h-[calc(100vh-72px)] overflow-auto'>
         <QuizOverviewPage quiz={data.quiz} page={rawParams.page} limit={rawParams.limit} />
     </div>
   )

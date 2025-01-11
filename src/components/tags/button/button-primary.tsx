@@ -19,14 +19,14 @@ const ButtonPrimary = ({
     <button
       type={type}
       onClick={onClick}
-      className={`w-full px-4 py-2 transition-all duration-150 border shadow-md ease-in-out font-bold rounded ${
-        loading
-          ? "bg-primary"
-          : "bg-primary-background border hover:opacity-90"
-      } ${className}`}
       disabled={loading}
+      className={`px-4 py-2 font-medium rounded-lg shadow-md transition-all duration-150 ease-in-out ${
+        loading
+          ? "bg-gray-400 text-gray-800 cursor-not-allowed"
+          : "bg-primary text-primary-foreground hover:opacity-90"
+      } ${className}`}
     >
-      {children}
+      {loading ? "Loading..." : children}
     </button>
   );
 };

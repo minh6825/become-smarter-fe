@@ -30,6 +30,8 @@ export default {
           'root-background-table': 'var(--root-background-table)',
           'blue-light': 'var(--root-blue-light)',
           'main-background': 'var(--root-background)',
+          'item': 'var(--root-item)',
+          'text': 'var(--root-text)',
         },
         keyframes: {
           wave: {
@@ -40,6 +42,12 @@ export default {
         animation: {
           wave: 'wave 0.45s ease-in-out',
         },
+      },
+      height: {
+        header: '72px'
+      },
+      margin: {
+        header: '72px'
       }
     },
   },

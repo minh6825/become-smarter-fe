@@ -10,14 +10,19 @@ type Props = {
 const BlogsPage = ({data}: Props) => {
 
     return (
-        <WrapBox className=" grid grid-cols-4 space-x-4 !pt-10">
-            {data.map((blog) => (
-                <Link href={`/blog/${blog.blog_id}`} key={blog.blog_id} className="mb-6 p-4 bg-white rounded-lg shadow-md">
-                    <h2 className="text-2xl font-bold mb-2">{blog.title}</h2>
-                    <p className="text-gray-700 mb-4" dangerouslySetInnerHTML={{__html: blog.content}}></p>
-                    <p className="text-sm text-gray-500">{new Date(blog.created_at).toLocaleDateString()}</p>
-                </Link>
-            ))}
+        <WrapBox>
+            <h1 className='text-3xl font-bold text-center mb-16'>Blog</h1>
+            <div className=" grid grid-cols-4 space-x-4">
+                {data.map((blog) => (
+                    <Link href={`/blog/${blog.blog_id}`} key={blog.blog_id} className="mb-6 border border-primary-foreground bg-primary-item p-4 rounded-lg shadow-md">
+                        <div className='flex items-center justify-between mb-2'>
+                            <h2 className="text-2xl font-bold mb-2 text-primary-text">{blog.title}</h2>
+                            <p className="text-sm text-primary-text">{new Date(blog.created_at).toLocaleDateString()}</p>
+                        </div>
+                        <p className="mb-4 overflow-hidden h-[140px] text-primary-text" dangerouslySetInnerHTML={{__html: blog.content}}></p>
+                    </Link>
+                ))}
+            </div>
         </WrapBox>
     );
 };

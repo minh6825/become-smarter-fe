@@ -16,7 +16,7 @@ const page = async ({ params }: Props) => {
   const words = await getWordsInListApi(Number(id), token);
 
   return (
-    <div className="bg-primary-main-background h-[calc(100vh-64px)] overflow-auto">
+    <div className="bg-primary-main-background h-[calc(100vh-72px)] overflow-auto">
       <WordPracticePage words={words.data} />
     </div>
   );

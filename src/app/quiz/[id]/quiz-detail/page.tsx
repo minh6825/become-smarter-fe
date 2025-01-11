@@ -12,7 +12,7 @@ const page = async ({ params }: PageProps) => {
   const { id } = await params;
   const data = await getQuizQuestionAnswer(id);
 
-  return <div className="bg-primary-main-background h-[calc(100vh-64px)] overflow-auto" >
+  return <div className="bg-primary-main-background h-[calc(100vh-72px)] overflow-auto" >
     <DoQuizProviderWrap quizData={data.quiz}></DoQuizProviderWrap>
   </div>
 };

@@ -85,7 +85,7 @@ export default function RootLayout({
         <HeaderHome />
         <Analytics />
         <SpeedInsights />
-        <div className="mt-[64px] ">
+        <div className="mt-header ">
           {children}
         </div>
       </body>

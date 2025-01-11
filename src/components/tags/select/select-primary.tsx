@@ -19,13 +19,21 @@ const SelectPrimary: React.FC<SelectPrimaryProps> = ({
   className = "",
 }) => {
   return (
-    <div>
-      <label className="block text-sm font-medium">{label}</label>
+    <div className={`space-y-2`}>
+      {label && (
+        <label
+          className="block text-sm font-medium text-primary"
+          htmlFor={name}
+        >
+          {label}
+        </label>
+      )}
       <select
+        id={name}
         name={name}
         value={value}
         onChange={onChange}
-        className={`w-full px-4 py-2 border rounded h-[42px] bg-primary-background ${className}`}
+        className={`w-full px-4 py-2 border rounded-lg h-[42px] bg-primary-background text-primary focus:ring focus:ring-primary focus:outline-none ${className}`}
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>

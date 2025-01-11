@@ -11,7 +11,7 @@ const Page = async () => {
     const data = await getUserInfoApiSsr(token)
 
     return (
-        <div className='bg-primary-main-background h-[calc(100vh-64px)] overflow-auto'>
+        <div className='bg-primary-main-background h-[calc(100vh-72px)] overflow-auto'>
             <ProfilePage userInfo={data.data} />
         </div>
     )

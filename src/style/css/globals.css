@@ -42,6 +42,7 @@
     --red: #FF5C33;
     --red-light: #FFEBE5;
     --shadow: 0px 12px 33px 0px rgba(0, 0, 0, 0.06), 0px 3.618px 9.949px 0px rgba(0, 0, 0, 0.04);    
+    --root-text: #1e293b;
   }
   html[data-theme='dark-classic'] {
     --primary: #cbd5e1;
@@ -49,6 +50,9 @@
     --text-button: #fff;
     --root-background-table: #2d3748;
     --root-background: #0f172a;
+    --root-item: #1C252E;
+    --root-text: #f8fafc;
+    --root-blue: #899ed8;
   }
   html[data-theme='tangerine'] {
     --primary: #fcd34d;
@@ -56,6 +60,7 @@
     --text-button: #1e293b;
     --root-background-table: #2d3748;
     --root-background: #0f172a;
+    --root-text: #f8fafc;
   }
   html[data-theme='dark-tangerine'] {
     --primary: #d97706;
@@ -66,10 +71,10 @@
   }
   html[data-theme='mint'] {
     --primary: #6ee7b7;
-    --primary-foreground: #0f172a;
+    --primary-foreground: #141A21;
     --text-button: #1e293b;
     --root-background-table: #2d3748;
-    --root-background: #0f172a;
+    --root-background: #1C252E;
   }
   html[data-theme='dark-mint'] {
     --primary: #047857;

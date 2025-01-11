@@ -1,4 +1,5 @@
 import { getQuizListPublicApi } from "@/api/quiz/quiz.rest";
+import Footer from "@/section/home-page/footer";
 import HomePage from "@/section/list-quiz";
 
 export const revalidate = 10;
@@ -56,12 +57,13 @@ export default async function page({
   const data = await getQuizListPublicApi(params);
 
   return (
-    <div className="bg-primary-main-background h-[calc(100vh-64px)] overflow-auto">
+    <div className="bg-primary-main-background min-h-[calc(100vh-72px)] overflow-auto">
       <HomePage
         quizzes={data.quizzes}
         currentPage={currentPage}
         totalPages={Math.ceil(data.quantityQuizTest / take)}
       />
+      <Footer /> 
     </div>
   );
 }

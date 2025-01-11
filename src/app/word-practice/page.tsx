@@ -15,7 +15,7 @@ const page = async (props: Props) => {
     const wordListPublic = (await getWordListPublic()).data;
 
     return (
-      <div className="h-[calc(100vh-64px)] bg-primary-main-background overflow-auto">
+      <div className="h-[calc(100vh-72px)] bg-primary-main-background overflow-auto">
         <WordPracticeListPage data={[...data, ...wordListPublic]} />
       </div>
     );
