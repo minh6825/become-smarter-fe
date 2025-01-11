@@ -1,6 +1,9 @@
 import { IBlog } from "@/api/blog/blogs.rest";
 import WrapBox from "@/components/common/wrap-box";
 import React from "react";
+import '@/components/tags/tiptap/style.module.scss'
+import '@/components/tags/tiptap/style.scss'
+import styles from './style.module.scss';
 
 type Props = {
   data: IBlog;
@@ -8,7 +11,7 @@ type Props = {
 
 const BlogDetailPage = ({ data }: Props) => {
   return (
-    <WrapBox>
+    <WrapBox className={`tiptap-wrap border rounded-md ${styles.tiptap}`}>
       {data && (
         <div className="mb-6 p-4 ">
           <h2 className="text-2xl font-bold text-center mb-10">{data.title}</h2>
