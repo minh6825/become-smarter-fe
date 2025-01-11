@@ -10,10 +10,10 @@ const WordPage: React.FC = () => {
       <div className="p-6">
         <h1 className="text-xl font-bold mb-6">Word List Manager</h1>
         <div className="flex gap-6">
-          <div className="w-1/3">
+          <div className="w-1/5">
             <WordListManager onSelectWordList={(id) => setSelectedWordListId(id)} />
           </div>
-          <div className="w-2/3">
+          <div className="w-4/5">
             {selectedWordListId && <WordManager wordListId={selectedWordListId} />}
           </div>
         </div>
