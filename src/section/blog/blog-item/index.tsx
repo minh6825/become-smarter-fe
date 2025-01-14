@@ -39,6 +39,17 @@ const BlogDetailPage = ({ data }: Props) => {
                 Published on {new Date(data.created_at).toLocaleDateString()}
               </p>
 
+              <p className="text-center">
+                {data.tags.map((tag) => (
+                  <span
+                    key={tag.tag_id}
+                    className="bg-primary-root-mint text-white px-2 py-1 rounded-md mr-2"
+                  >
+                    {tag.name}
+                  </span>
+                ))}
+              </p>
+
               {/* Nội dung bài viết */}
               <div
                 className="text-lg leading-relaxed"
@@ -47,19 +58,20 @@ const BlogDetailPage = ({ data }: Props) => {
               ></div>
             </div>
           )}
+          
         </WrapBox>
-
+          <WrapBox>
         {/* Bài viết liên quan */}
-        <div className="my-10 px-6">
+        <div className="my-10">
           <h2
-            className="text-2xl font-semibold mb-4"
+            className="text-2xl text-center font-semibold mb-4"
             style={{ color: "var(--primary)" }}
           >
             Related Articles
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 min-h-[250px] sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div
-              className="p-4 border rounded-md shadow-md hover:shadow-lg transition-shadow duration-300"
+              className="p-4 border rounded-md text-center shadow-md hover:shadow-lg transition-shadow duration-300"
               style={{
                 backgroundColor: "var(--primary-foreground)",
                 color: "var(--root-text)",
@@ -73,7 +85,7 @@ const BlogDetailPage = ({ data }: Props) => {
               </p>
             </div>
             <div
-              className="p-4 border rounded-md shadow-md hover:shadow-lg transition-shadow duration-300"
+              className="p-4 border text-center rounded-md shadow-md hover:shadow-lg transition-shadow duration-300"
               style={{
                 backgroundColor: "var(--primary-foreground)",
                 color: "var(--root-text)",
@@ -87,7 +99,7 @@ const BlogDetailPage = ({ data }: Props) => {
               </p>
             </div>
             <div
-              className="p-4 border rounded-md shadow-md hover:shadow-lg transition-shadow duration-300"
+              className="p-4 border text-center rounded-md shadow-md hover:shadow-lg transition-shadow duration-300"
               style={{
                 backgroundColor: "var(--primary-foreground)",
                 color: "var(--root-text)",
@@ -102,6 +114,8 @@ const BlogDetailPage = ({ data }: Props) => {
             </div>
           </div>
         </div>
+          </WrapBox>
+   
 
         {/* Footer */}
         <Footer />
