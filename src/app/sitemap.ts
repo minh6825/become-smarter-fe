@@ -1,3 +1,4 @@
+import { fetchBlog, fetchBlogList } from "@/api/blog/blogs.rest";
 import {
   getQuizListPublicApi,
 } from "@/api/quiz/quiz.rest";
@@ -18,7 +19,8 @@ export default async function sitemap({
   const start = id * 50000;
   const end = start + 50000;
   const { quizzes } = await getQuizListPublicApi({ take: 100, page: 1 });
-    
+  const data = await fetchBlogList();
+
   const quizItemList = quizzes.map((quiz) => ({
     url: `${NEXT_PUBLIC_CLIENT}/quiz/${quiz.quizId}`,
     lastModified: quiz.updated_at,
@@ -58,5 +60,19 @@ export default async function sitemap({
     changeFrequency: "daily"
   }
 
-  return [auth, quizList, wordCollection, history,...doQuiz, ...detailQuizList, ...quizItemList];
+  const blogLists = {
+    url: `${NEXT_PUBLIC_CLIENT}/blog`,
+    lastModified: new Date(),
+    changeFrequency: "daily"
+  }
+
+  const blogItems = data.map((blog: any) => ({
+    url: `${NEXT_PUBLIC_CLIENT}/blog/${blog.id}`,
+    lastModified: blog.updated_at,
+    changeFrequency: "daily"
+  }))
+
+  
+
+  return [auth, quizList, wordCollection, history, blogLists, ...doQuiz, ...detailQuizList, ...quizItemList, ...blogItems];
 }
