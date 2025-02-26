@@ -67,12 +67,10 @@ export default async function sitemap({
   }
 
   const blogItems = data.map((blog: any) => ({
-    url: `${NEXT_PUBLIC_CLIENT}/blog/${blog.id}`,
+    url: `${NEXT_PUBLIC_CLIENT}/blog/${blog.blog_id}`,
     lastModified: blog.updated_at,
     changeFrequency: "daily"
   }))
-
-  
 
   return [auth, quizList, wordCollection, history, blogLists, ...doQuiz, ...detailQuizList, ...quizItemList, ...blogItems];
 }
