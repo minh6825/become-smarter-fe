@@ -1,19 +1,36 @@
-import styles from './style.module.scss';
+import './styles.scss';
 import './style.scss';
 import { FaBold, FaItalic, FaStrikethrough, FaCode, FaUndo, FaRedo, FaListUl, FaListOl, FaQuoteRight, FaHeading, FaTable } from 'react-icons/fa';
 import { MdClear, MdHorizontalRule } from 'react-icons/md';
 
+import Document from '@tiptap/extension-document'
+import Paragraph from '@tiptap/extension-paragraph'
 import Table from '@tiptap/extension-table'
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
 import TableRow from '@tiptap/extension-table-row'
-import { EditorContent, useEditor } from '@tiptap/react'
+import { EditorContent, ReactNodeViewRenderer, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import React, { useEffect } from 'react'
 import { Color } from '@tiptap/extension-color'
 import ListItem from '@tiptap/extension-list-item'
 import TextStyle from '@tiptap/extension-text-style'
 import Placeholder from '@tiptap/extension-placeholder'
+import CodeBlockComponent from './CodeBlockComponent';
+import css from 'highlight.js/lib/languages/css'
+import js from 'highlight.js/lib/languages/javascript'
+import ts from 'highlight.js/lib/languages/typescript'
+import html from 'highlight.js/lib/languages/xml'
+import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
+import { all, createLowlight } from 'lowlight'
+
+const lowlight = createLowlight(all)
+
+// you can also register individual languages
+lowlight.register('html', html)
+lowlight.register('css', css)
+lowlight.register('js', js)
+lowlight.register('ts', ts)
 
 const CustomTableCell = TableCell.extend({
   addAttributes() {
@@ -191,7 +208,15 @@ const TiptapSecondary = ({ onchange, value, height, isShowMenuBar, placeholder }
       }),
       TableRow,
       CustomTableCell,
-      TableHeader,
+      TableHeader,     
+      Document,
+      Paragraph,
+      CodeBlockLowlight.extend({
+        addNodeView() {
+          return ReactNodeViewRenderer(CodeBlockComponent as any)
+        },
+      })
+      .configure({ lowlight }),
     ],
     content: '<p></p>',
     onUpdate: ({ editor }) => {
@@ -215,7 +240,7 @@ const TiptapSecondary = ({ onchange, value, height, isShowMenuBar, placeholder }
 
   return (
     <div className='tiptap-wrap border rounded-md' onClick={() => editor?.chain().focus().run()}>
-      <div className={`${styles.tiptap} h-[400px] rounded-md`} style={{height: `${height}px`}}>
+      <div className={`h-[400px] rounded-md`} style={{height: `${height}px`}}>
       {isShowMenuBar && <MenuBar editor={editor} />}
       <EditorContent editor={editor} />
       </div>

@@ -2,6 +2,7 @@ import { fetchBlogList } from "@/api/blog/blogs.rest";
 import BlogsPage from "@/section/blog";
 import React from "react";
 
+
 type Props = {};
 
 export const revalidate = 10;

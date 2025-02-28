@@ -1,10 +1,9 @@
 import { IBlog } from "@/api/blog/blogs.rest";
 import WrapBox from "@/components/common/wrap-box";
 import React from "react";
+import "@/components/tags/tiptap/styles.scss";
 import "@/components/tags/tiptap/style.scss";
-import styles from "@/components/tags/tiptap/style.module.scss";
 import Footer from "@/section/home-page/footer";
-
 type Props = {
   data: IBlog;
 };
@@ -17,9 +16,7 @@ const BlogDetailPage = ({ data }: Props) => {
         style={{ backgroundColor: "var(--root-background)", color: "var(--root-text)" }}
       >
         <WrapBox
-          className={`tiptap-wrap rounded-md shadow-md bg-white ${
-            styles.tiptap
-          }`}
+          className={`tiptap-wrap rounded-md shadow-md `}
         >
           {data && (
             <div className="mb-6 p-6">
@@ -52,7 +49,7 @@ const BlogDetailPage = ({ data }: Props) => {
 
               {/* Nội dung bài viết */}
               <div
-                className="text-lg leading-relaxed"
+                className="text-lg leading-relaxed tiptap tiptap-wrap"
                 style={{ color: "var(--root-text)" }}
                 dangerouslySetInnerHTML={{ __html: data.content }}
               ></div>

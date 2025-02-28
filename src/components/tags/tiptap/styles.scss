@@ -2,7 +2,6 @@
 .tiptap {
     :first-child {
       margin-top: 0;
-      
     }
 
     .ProseMirror-focused {
@@ -69,13 +68,13 @@
     }
   
     /* Code and preformatted text styles */
-    code {
-      background-color: var(--purple-light);
-      border-radius: 0.4rem;
-      color: var(--black);
-      font-size: 0.85rem;
-      padding: 0.25em 0.3em;
-    }
+    // code {
+    //   background-color: var(--purple-light);
+    //   border-radius: 0.4rem;
+    //   color: var(--black);
+    //   font-size: 0.85rem;
+    //   padding: 0.25em 0.3em;
+    // }
   
     pre {
       background: var(--black);
@@ -91,7 +90,6 @@
         font-size: 0.8rem;
         padding: 0;
       }
-
        /* Code styling */
     .hljs-comment,
     .hljs-quote {
