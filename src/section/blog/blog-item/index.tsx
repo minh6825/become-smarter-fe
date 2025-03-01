@@ -17,7 +17,7 @@ const BlogDetailPage = ({ data }: Props) => {
         style={{ backgroundColor: "var(--root-background)", color: "var(--root-text)" }}
       >
         <WrapBox
-          className={`tiptap-wrap rounded-md shadow-md `}
+          className={`tiptap-wrap rounded-md shadow-md bg-primary-background`}
         >
           {data && (
             <div className="mb-6 p-6">

@@ -43,6 +43,8 @@
     --red-light: #FFEBE5;
     --shadow: 0px 12px 33px 0px rgba(0, 0, 0, 0.06), 0px 3.618px 9.949px 0px rgba(0, 0, 0, 0.04);    
     --root-text: #1e293b;
+
+    --code-block: #ececec;
   }
   html[data-theme='dark-classic'] {
     --primary: #cbd5e1;
@@ -53,6 +55,9 @@
     --root-item: #1C252E;
     --root-text: #f8fafc;
     --root-blue: #899ed8;
+
+    --gray-3: #ffffff26;
+    --code-block: #424242;
   }
   html[data-theme='tangerine'] {
     --primary: #fcd34d;
