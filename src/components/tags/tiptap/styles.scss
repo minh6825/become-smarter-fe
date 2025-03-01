@@ -69,6 +69,7 @@
   
     /* Code and preformatted text styles */
     code {
+      background: var(--black);
       .hljs-comment,
       .hljs-quote {
         color: #616161;
