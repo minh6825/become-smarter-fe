@@ -4,6 +4,7 @@ import React from "react";
 import "@/components/tags/tiptap/styles.scss";
 import "@/components/tags/tiptap/style.scss";
 import Footer from "@/section/home-page/footer";
+import moment from "moment";
 type Props = {
   data: IBlog;
 };
@@ -33,7 +34,7 @@ const BlogDetailPage = ({ data }: Props) => {
                 className="!text-base text-center italic mb-4"
                 style={{ color: "var(--root-text)" }}
               >
-                Published on {new Date(data.created_at).toLocaleDateString()}
+                Published on {moment(data.created_at).format("MMMM DD, YYYY")}
               </p>
 
               <p className="text-center">

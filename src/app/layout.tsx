@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     "Quiz",
     "Thi thử",
     "Luyện đề",
+    "Ôn tập là dễ blog"
   ],
   authors: [{url: "Nhóm phát triển Quizizz"}],
   openGraph: {

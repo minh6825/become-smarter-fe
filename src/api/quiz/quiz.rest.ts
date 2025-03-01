@@ -65,7 +65,6 @@ export const getQuizListPublicApi = async (params: {
   quizSkill?: string;
 }): Promise<IReturnQuizListPublic> => {
   const query = new URLSearchParams(params as any).toString();
-  console.log(query);
   return (
     await axios.get(`${NEXT_PUBLIC_SERVER}/quizzes/quiz-public-list?${query}`)
   ).data;
