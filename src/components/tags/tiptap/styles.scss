@@ -69,7 +69,7 @@
   
     /* Code and preformatted text styles */
     code {
-      background: #212121;
+      background: var(--code-block);
     }
   
     pre {
