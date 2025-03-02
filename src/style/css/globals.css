@@ -60,19 +60,19 @@
     --code-block: #424242;
   }
   html[data-theme='tangerine'] {
-    --primary: #fcd34d;
-    --primary-foreground: #0f172a;
+    --primary: #fff;
+    --primary-foreground: #242526;
     --text-button: #1e293b;
     --root-background-table: #2d3748;
-    --root-background: #0f172a;
+    --root-background: #2B2B2B;
     --root-text: #f8fafc;
   }
   html[data-theme='dark-tangerine'] {
     --primary: #d97706;
-    --primary-foreground: #0f172a;
+    --primary-foreground: #242526;
     --text-button: #1e293b;
     --root-background-table: #2d3748;
-    --root-background: #0f172a;
+    --root-background: #2B2B2B;
   }
   html[data-theme='mint'] {
     --primary: #6ee7b7;
