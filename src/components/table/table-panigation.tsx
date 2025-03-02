@@ -22,7 +22,7 @@ const PaginationTable: React.FC<PaginationProps> = ({
   };
  
   return (
-    <div className="flex items-center justify-between ">
+    <div className="flex items-center justify-between mb-10">
       <Link
         href={currentPage > 1 ? createPageUrl(currentPage - 1) : "#"}
         className={`flex items-center px-5 py-2 text-sm text-gray-700 bg-primary-background capitalize transition-colors duration-200
