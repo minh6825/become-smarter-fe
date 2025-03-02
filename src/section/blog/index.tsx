@@ -24,7 +24,7 @@ const BlogsPage = ({ data, page, take, total }: Props) => {
           <>
           <Link href={`/blog/${blog.blog_id}`} key={blog.blog_id}  
           className="flex flex-col shadow-lg border border-collapse max-h-[220px] rounded-lg overflow-hidden bg-primary-item w-[24%]">
-          <div className="p-4 flex flex-col gap-2">
+          <div className="p-4 pb-0 flex flex-col gap-2">
             <span className={`px-3 py-1 text-white rounded-full text-sm`}>
               {blog.tags.map((tag) => (
                 <span key={tag.tag_id} className="bg-primary-root-mint text-white px-2 py-1 rounded-md mr-2">
@@ -32,8 +32,8 @@ const BlogsPage = ({ data, page, take, total }: Props) => {
                 </span>
               ))}
             </span>
-            <h4 className="text-xl font-semibold capitalize">{blog.title}</h4>
-            <p className="text-gray-600 max-h-[30px] text-sm truncate h-[30px] w-full" 
+            <h4 className="text-xl font-semibold capitalize truncate w-full text-nowrap">{blog.title} fdfdsafas fdsafa fdsa f asf saf af fdsaf asfd </h4>
+            <p className="text-gray-600 max-h-[42px] text-sm truncate h-[30px] w-full" 
             dangerouslySetInnerHTML={{ __html: blog.content }}
             ></p>
           </div>
