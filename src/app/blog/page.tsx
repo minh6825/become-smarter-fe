@@ -66,7 +66,8 @@ const BlogListPage = async ( {
     search?: string;
     sortBy?: string;
   };
-  const { blogs, total } = await fetchBlogList({ page: currentPage, limit: take });
+  
+  const { blogs, total } = await fetchBlogList({ page: currentPage, take: take });
 
   return (
     <main>

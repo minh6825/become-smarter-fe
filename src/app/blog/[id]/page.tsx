@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 const BlogPage = async ({ params }: PageProps) => {
   const { id } = await params;
   const data = await fetchBlog(id);
-  console.log(data)
+
   return (
     <main>
       <h1>{data.title}</h1>

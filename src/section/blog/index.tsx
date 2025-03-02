@@ -13,7 +13,7 @@ total:  number;
 };
 
 const BlogsPage = ({ data, page, take, total }: Props) => {
-    
+    console.log(page, total )
   return (
     <WrapBox className='!flex !flex-col'>
       <h1 className='text-3xl font-bold text-center mb-16'>Blog</h1>
@@ -38,7 +38,7 @@ const BlogsPage = ({ data, page, take, total }: Props) => {
           </Link>
         ))}
       </div>
-    <PaginationTable currentPage={page} totalPages={Math.ceil(total/page)} baseUrl='/blog/' />
+    <PaginationTable currentPage={page} totalPages={Math.ceil(total/take)} baseUrl='/blog/' />
     </WrapBox>
   );
 };
