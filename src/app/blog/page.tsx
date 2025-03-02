@@ -1,6 +1,7 @@
 import { fetchBlogList, IBlog } from "@/api/blog/blogs.rest";
 import { NEXT_PUBLIC_CLIENT } from "@/assets/constant";
 import BlogsPage from "@/section/blog";
+import BlogsPageSkeleton from "@/section/blog/blog-skeleton";
 import { GetServerSideProps, Metadata } from "next";
 import React from "react";
 
@@ -68,6 +69,10 @@ const BlogListPage = async ( {
   };
   
   const { blogs, total } = await fetchBlogList({ page: currentPage, take: take });
+
+  if(!blogs.length) {
+    return <BlogsPageSkeleton page={currentPage} take={take} total={total} />
+  }
 
   return (
     <main>
