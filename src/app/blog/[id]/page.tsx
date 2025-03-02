@@ -51,7 +51,6 @@ const BlogPage = async ({ params }: PageProps) => {
 
   return (
     <main>
-      <h1>{data.title}</h1>
       <BlogDetailPage data={data} />
       {/* Thêm structured data JSON-LD */}
       <script

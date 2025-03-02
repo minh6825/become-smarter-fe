@@ -20,10 +20,11 @@ const BlogsPage = ({ data, page, take, total }: Props) => {
       <h1 className='text-3xl font-bold text-center mb-10'>Blog</h1>
       {/* Bộ lọc */}
      <BlogFilter />
-      <div className="grid grid-cols-4 space-x-4 mb-10 ">
+      <div className="grid grid-cols-4 space-x-4 space-y-4 mb-10 ">
         {data.map((blog) => (
           <>
-          <Link href={`/blog/${blog.blog_id}`} key={blog.blog_id}  className="flex flex-col w-80 shadow-lg border border-collapse rounded-lg overflow-hidden bg-primary-item">
+          <Link href={`/blog/${blog.blog_id}`} key={blog.blog_id}  
+          className="flex flex-col shadow-lg border border-collapse rounded-lg overflow-hidden bg-primary-item">
           <div className="p-4 flex flex-col gap-2">
             <span className={`px-3 py-1 text-white rounded-full text-sm`}>
               {blog.tags.map((tag) => (
