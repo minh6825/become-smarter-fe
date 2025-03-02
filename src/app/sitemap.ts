@@ -20,12 +20,12 @@ export default async function sitemap({
   const end = start + 50000;
   const { quizzes } = await getQuizListPublicApi({ take: 100, page: 1 });
   
-  const { total, blogs: initialBlogs } = await fetchBlogList({ page: 1, limit: 100 });
+  const { total, blogs: initialBlogs } = await fetchBlogList({ page: 1, take: 100 });
   const totalPages = Math.ceil(total / 100);
   let allBlogs = [...initialBlogs];
 
   for (let page = 2; page <= totalPages; page++) {
-    const { blogs } = await fetchBlogList({ page, limit: 100 });
+    const { blogs } = await fetchBlogList({ page, take: 100 });
     allBlogs = [...allBlogs, ...blogs];
   }
 
