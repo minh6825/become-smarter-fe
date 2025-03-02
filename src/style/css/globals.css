@@ -66,6 +66,8 @@
     --root-background-table: #2d3748;
     --root-background: #2B2B2B;
     --root-text: #f8fafc;
+
+    --code-block: #424242;
   }
   html[data-theme='dark-tangerine'] {
     --primary: #d97706;

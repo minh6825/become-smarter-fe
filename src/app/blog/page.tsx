@@ -1,6 +1,7 @@
 import { fetchBlogList, IBlog } from "@/api/blog/blogs.rest";
 import { NEXT_PUBLIC_CLIENT } from "@/assets/constant";
 import BlogsPage from "@/section/blog";
+import BlogFilter from "@/section/blog/blog-filter";
 import BlogsPageSkeleton from "@/section/blog/blog-skeleton";
 import { GetServerSideProps, Metadata } from "next";
 import React from "react";
@@ -45,34 +46,25 @@ const BlogListPage = async ( {
   const rawParams: Partial<{
     take: number;
     page: number;
-    tags?: string;
+    tagIds?: string;
     search?: string;
     sortBy?: string;
   }> = {
     take: searchParamsFinal.take ? Number(searchParamsFinal.take) : 12,
     page: searchParamsFinal.page ? Number(searchParamsFinal.page) : 1,
-    tags: searchParamsFinal.tags,
+    tagIds: searchParamsFinal.tagIds,
     search: searchParamsFinal.search,
     sortBy: searchParamsFinal.sortBy,
   };
 
   const currentPage = searchParamsFinal?.page ? Number(searchParamsFinal?.page) : 1;
   const take = searchParamsFinal?.take ? Number(searchParamsFinal?.take) : 12;
-  const params = Object.fromEntries(
-    Object.entries(rawParams).filter(([_, value]) => value !== undefined && value !== null)
-  ) as {
-    take: number;
-    page: number;
-    tags?: string;
-    search?: string;
-    sortBy?: string;
-  };
-  
-  const { blogs, total } = await fetchBlogList({ page: currentPage, take: take });
+  const tagIds = searchParamsFinal?.tagIds ? searchParamsFinal?.tagIds : '';
+  console.log(tagIds)
 
-  if(!blogs.length) {
-    return <BlogsPageSkeleton page={currentPage} take={take} total={total} />
-  }
+  const { blogs, total } = await fetchBlogList({ page: currentPage, take: take, tagIds: tagIds });
+
+
 
   return (
     <main>

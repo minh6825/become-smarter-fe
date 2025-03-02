@@ -14,6 +14,7 @@ total:  number;
 };
 
 const BlogsPage = ({ data, page, take, total }: Props) => {
+
   return (
     <WrapBox className='!flex !flex-col '>
       <h1 className='text-3xl font-bold text-center mb-10'>Blog</h1>
@@ -57,8 +58,8 @@ export default BlogsPage;
 
 const BlogsPageSkeleton = () => {
   return (
-      <div className='flex mb-10 flex-wrap gap-y-4 gap-[calc(4%/3)]'>
-        {[...Array(4)].map((_, index) => (
+      <div className='flex mb-10 flex-wrap gap-y-4 gap-[calc(4%/3)] w-full'>
+        {[...Array(12)].map((_, index) => (
           <div
             key={index}
             className='flex flex-col shadow-lg border border-collapse rounded-lg overflow-hidden bg-primary-item w-[24%] animate-pulse'

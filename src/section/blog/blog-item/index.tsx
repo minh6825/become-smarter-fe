@@ -48,6 +48,10 @@ const BlogDetailPage = ({ data }: Props) => {
                 ))}
               </p>
 
+              <div className="pt-4 text-center italic">
+                View: {data.view_count}
+              </div>
+
               {/* Nội dung bài viết */}
               <div
                 className="text-lg leading-relaxed tiptap tiptap-wrap"

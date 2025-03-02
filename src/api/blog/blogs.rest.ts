@@ -6,6 +6,7 @@ export interface IBlog {
     content: string
     created_at: Date
     updated_at: Date
+    view_count: number
     tags: ITags[]
 }
 
@@ -14,8 +15,8 @@ export interface ITags {
     name: string
 }
 
-export const fetchBlogList = async ({ page = 1, take = 10, tag, sortBy }: { page?: number; take?: number; tag?: string; sortBy?: string }): Promise< { blogs: IBlog[], total: number } > => {
-    const response = await axiosConfig.get(`/blogs/list-blogs/?page=${page}&take=${take}&tag=${tag || ""}&sortBy=${sortBy || "newest"}`);
+export const fetchBlogList = async ({ page = 1, take = 10, tagIds, sortBy }: { page?: number; take?: number; tagIds?: string; sortBy?: string }): Promise< { blogs: IBlog[], total: number } > => {
+    const response = await axiosConfig.get(`/blogs/list-blogs/?page=${page}&take=${take}&tagIds=${tagIds || ""}&sortBy=${sortBy || "newest"}`);
     return response.data;
 }
 
