@@ -20,7 +20,7 @@ const BlogDetailPage = ({ data }: Props) => {
           className={`tiptap-wrap rounded-md shadow-md bg-primary-background`}
         >
           {data && (
-            <div className="mb-6 p-6">
+            <div className="mb-6 p-6 max-md:px-2">
               {/* Tiêu đề bài viết */}
               <h1
                 className="font-bold text-center !text-4xl leading-tight mb-6"

@@ -56,8 +56,8 @@ const WordManager: React.FC<{ wordListId: number }> = ({ wordListId }) => {
   return (
     <div className="w-full ">
       <h2 className="text-lg font-bold mb-4">Manage Words</h2>
-      <div className="w-full gap-4 flex">
-        <div className="mb-4 flex flex-col gap-4 w-2/3">
+      <div className="w-full gap-4 flex max-md:flex-col"> 
+        <div className="mb-4 flex flex-col gap-4 w-2/3 max-md:w-full">
           <div>
             <label htmlFor={"Từ mới"} className="block text-sm font-medium ">
               Từ mới
@@ -107,11 +107,12 @@ const WordManager: React.FC<{ wordListId: number }> = ({ wordListId }) => {
             Practice
           </ButtonPrimary>
         </div>
-        <div className="space-y-2 w-1/3 max-h-[calc(100vh-220px)] overflow-y-auto">
+        <div className="space-y-2 w-1/3 max-h-[calc(100vh-220px)] overflow-y-auto max-md:w-full max-md:flex max-md:flex-wrap
+        max-md:gap-2">
           {words.map((word) => (
             <div
               key={word.word_id}
-              className="border bg-primary-background p-2 rounded"
+              className="border bg-primary-background p-2 rounded max-md:w-[calc(50%-4px)] "
             >
               <p>
                 <strong dangerouslySetInnerHTML={{__html: word.word}}></strong> ({word.language})

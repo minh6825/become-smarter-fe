@@ -43,28 +43,11 @@ const BlogListPage = async ( {
 }) => {
 
   const searchParamsFinal = await Promise.resolve(searchParams);
-  const rawParams: Partial<{
-    take: number;
-    page: number;
-    tagIds?: string;
-    search?: string;
-    sortBy?: string;
-  }> = {
-    take: searchParamsFinal.take ? Number(searchParamsFinal.take) : 12,
-    page: searchParamsFinal.page ? Number(searchParamsFinal.page) : 1,
-    tagIds: searchParamsFinal.tagIds,
-    search: searchParamsFinal.search,
-    sortBy: searchParamsFinal.sortBy,
-  };
-
   const currentPage = searchParamsFinal?.page ? Number(searchParamsFinal?.page) : 1;
   const take = searchParamsFinal?.take ? Number(searchParamsFinal?.take) : 12;
   const tagIds = searchParamsFinal?.tagIds ? searchParamsFinal?.tagIds : '';
-  console.log(tagIds)
 
   const { blogs, total } = await fetchBlogList({ page: currentPage, take: take, tagIds: tagIds });
-
-
 
   return (
     <main>

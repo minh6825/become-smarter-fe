@@ -32,7 +32,7 @@ const HeaderHome = () => {
     border-primary/100 flex items-center px-[2%]">
       <Drawer />
         <h2 className="text-2xl font-bold flex  items-center gap-2">
-          <Image src={'/logo.png'} width={2000} height={2000} className="rounded-full cursor-pointer select-none w-[50px] h-[50px]" alt="logo"/>
+          <Image src={'/logo.png'} width={2000} height={2000} className="rounded-full cursor-pointer select-none w-[50px] h-[50px] max-md:h-[40px] max-md:w-[40px]" alt="logo"/>
           <Link href={'/'}>Ôn tập là dễ <span className="max-md:hidden">.com</span></Link>
         </h2>
       <div className="ml-auto mr-10 flex justify-between items-center max-md:hidden px-4">
@@ -66,7 +66,7 @@ const HeaderHome = () => {
       </div>
       <div className="flex items-center gap-4 mr-4">
         <button><MdNotifications size={24}/></button>
-        <button><FcSettings size={24}/></button>
+        <button className="max-md:hidden"><FcSettings size={24}/></button>
       </div>
       <div className="flex gap-4">
         {userInfo ? <UserInfo userInfo={userInfo} /> : <AuthForm />}

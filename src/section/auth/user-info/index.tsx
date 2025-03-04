@@ -101,7 +101,7 @@ const UserInfo = ({ userInfo }: Props) => {
             {getDefaultAvatar(userInfo.name)}
           </div>
         )}
-        <span className="text-sm font-medium">{displayName}</span>
+        <span className="text-sm font-medium max-md:hidden">{displayName}</span>
       </motion.button>
 
       {/* Dropdown Menu */}
