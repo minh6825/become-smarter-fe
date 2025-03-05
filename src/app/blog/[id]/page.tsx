@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 const BlogPage = async ({ params }: PageProps) => {
   const { id } = await params;
   const data = await fetchBlog(id);
-  const relateBlog = await fetchRelateBlog(id)
+  // const relateBlog = await fetchRelateBlog(id)
   
   return (
     <main>
