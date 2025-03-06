@@ -54,7 +54,7 @@ const BlogDetailPage = ({ data }: Props) => {
 
               {/* Nội dung bài viết */}
               <div
-                className="text-lg leading-relaxed tiptap tiptap-wrap"
+                className="text-lg leading-relaxed tiptap tiptap-wrap "
                 style={{ color: "var(--root-text)" }}
                 dangerouslySetInnerHTML={{ __html: data.content }}
               ></div>

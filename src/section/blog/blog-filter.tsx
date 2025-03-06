@@ -13,7 +13,7 @@ const BlogFilter = (props: Props) => {
 
   useEffect(() => {
     const handleGetBlogTags = async () => {
-      const { blogTag, total } = await fetchBlogTagsList({page: 1, limit: 20})
+      const { blogTag, total } = await fetchBlogTagsList({page: 1, limit: 2000})
       setBlogTags(blogTag)
     }
     handleGetBlogTags()

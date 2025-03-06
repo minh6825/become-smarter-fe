@@ -60,11 +60,8 @@ const BlogListPage = async ( {
   const currentPage = searchParamsFinal?.page ? Number(searchParamsFinal?.page) : 1;
   const take = searchParamsFinal?.take ? Number(searchParamsFinal?.take) : 12;
   const tagIds = searchParamsFinal?.tagIds ? searchParamsFinal?.tagIds : '';
-  console.log(tagIds)
 
   const { blogs, total } = await fetchBlogList({ page: currentPage, take: take, tagIds: tagIds });
-
-
 
   return (
     <main>
