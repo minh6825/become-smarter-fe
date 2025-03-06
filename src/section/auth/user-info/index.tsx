@@ -5,6 +5,7 @@ import ClickOutline from "@/components/common/click-outline";
 import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { logoutApi } from "@/api/user/auth.rest";
 
 type Props = {
   userInfo: {
@@ -69,9 +70,15 @@ const UserInfo = ({ userInfo }: Props) => {
     setTheme(selectedTheme);
   };
 
-  const handleLogout = () => {
-    deleteCookie('accessToken')
-    window.location.reload();
+  const handleLogout = async () => {
+    try {
+      deleteCookie('accessToken')
+      await logoutApi()
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+      
+    }
   }
 
   return (
@@ -94,7 +101,7 @@ const UserInfo = ({ userInfo }: Props) => {
             {getDefaultAvatar(userInfo.name)}
           </div>
         )}
-        <span className="text-sm font-medium">{displayName}</span>
+        <span className="text-sm font-medium max-md:hidden">{displayName}</span>
       </motion.button>
 
       {/* Dropdown Menu */}

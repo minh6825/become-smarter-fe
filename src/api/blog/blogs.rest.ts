@@ -24,3 +24,8 @@ export const fetchBlog = async (id: string) => {
     const response = await axiosConfig.get(`/blogs/get-one/${id}`);
     return response.data;
 }
+
+export const fetchRelateBlog = async (id: string) => {
+    const response = await axiosConfig.get(`/blogs/get-same-tag/${id}`);
+    return response.data;
+}

@@ -92,7 +92,7 @@ const FilterHome = () => {
       <div className="flex justify-between items-center mb-6">
         <div className="flex gap-4 items-center">
           <h2
-            className="text-xl font-semibold"
+            className="text-xl font-semibold max-md:hidden"
             style={{ color: "var(--primary)" }}
           >
             Filter Options
@@ -117,7 +117,7 @@ const FilterHome = () => {
         </div>
         <ButtonPrimary
           type="button"
-          className="!w-fit px-4 py-2"
+          className="!w-fit px-4 py-2 "
           onClick={() => setIsDetailedView(!isDetailedView)}
         >
           {isDetailedView ? "Show Compact View" : "Show Detailed View"}
@@ -125,7 +125,7 @@ const FilterHome = () => {
       </div>
 
       {isDetailedView ? (
-        <div className="grid grid-cols-5 gap-4 ">
+        <div className="grid grid-cols-5 gap-4 max-md:grid-cols-1">
           <SelectPrimary
             label="Các nhóm đề"
             name="category"

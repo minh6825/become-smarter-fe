@@ -53,7 +53,7 @@ export default function Drawer() {
                 </Link>
               </li>
               <li className="py-2">
-                <Link href="/blogs" className="hover:underline">
+                <Link href="/blog" className="hover:underline">
                   Bài viết
                 </Link>
               </li>
@@ -82,7 +82,7 @@ export default function Drawer() {
       <div className="flex">
         <button
           onClick={toggleDrawer}
-          className="px-4 py-2"
+          className="px-4 py-2 max-md:p-2"
         >
           <MdMenuOpen className="size-6" />
         </button>

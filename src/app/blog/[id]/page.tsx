@@ -1,4 +1,4 @@
-import { fetchBlog, IBlog } from "@/api/blog/blogs.rest";
+import { fetchBlog, fetchRelateBlog, IBlog } from "@/api/blog/blogs.rest";
 import { NEXT_PUBLIC_CLIENT } from "@/assets/constant";
 import BlogDetailPage from "@/section/blog/blog-item";
 import moment from "moment";
@@ -48,7 +48,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 const BlogPage = async ({ params }: PageProps) => {
   const { id } = await params;
   const data = await fetchBlog(id);
-
+  // const relateBlog = await fetchRelateBlog(id)
+  
   return (
     <main>
       <BlogDetailPage data={data} />

@@ -9,11 +9,11 @@ const WordPage: React.FC = () => {
     return (
       <div className="p-6">
         <h1 className="text-xl font-bold mb-6">Word List Manager</h1>
-        <div className="flex gap-6">
-          <div className="w-1/5">
+        <div className="flex gap-6 max-md:flex-col">
+          <div className="w-1/5 max-md:w-full">
             <WordListManager onSelectWordList={(id) => setSelectedWordListId(id)} />
           </div>
-          <div className="w-4/5">
+          <div className="w-4/5 max-md:w-full">
             {selectedWordListId && <WordManager wordListId={selectedWordListId} />}
           </div>
         </div>

@@ -41,7 +41,7 @@ const BlogFilter = (props: Props) => {
             blogTags.map((tag) => (
               <p 
                 key={tag.tag_id} 
-                className={`bg-primary-root-green-bold p-1 cursor-pointer hover:opacity-80 rounded-md font-bold 
+                className={`bg-primary-root-green-bold text-white p-1 cursor-pointer hover:opacity-80 rounded-md font-bold 
                   ${selectedTags.includes(tag.name) ? '!bg-primary-root-red' : ''}`} 
                 onClick={() => handleTagClick(tag.name)}
               >
