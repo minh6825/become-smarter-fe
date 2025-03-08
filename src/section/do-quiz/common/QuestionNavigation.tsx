@@ -18,7 +18,7 @@ const QuestionNavigation = ({ sectionAndGroup, setCurrentGroupIndex }: Props) =>
     return (
     <div className="mt-4 ml-4 shadow-lg rounded-lg w-64">
       <h2 className="text-xl font-semibold mb-2">Thứ tự câu hỏi</h2>
-      <div className="gap-2 flex border w-full flex-col p-2 rounded-md border-primary-root-violet">
+      <div className="gap-2 flex border w-full flex-col p-2 rounded-md border-primary-root-violet overflow-y-auto h-[calc(100vh-14rem)]">
         {sectionAndGroup.map((section) => (
           <div key={section.section_id} className="flex flex-col w-full gap-2">
             <p>{section.section_name}</p>
@@ -28,10 +28,10 @@ const QuestionNavigation = ({ sectionAndGroup, setCurrentGroupIndex }: Props) =>
                   <Link onClick={() => {setCurrentGroupIndex(group.index); setCurrentQuestionId(question.question_id)}}
                     scroll={true}
                     key={question.question_id} className={`${currentQuestionId == question.question_id && 'bg-primary-root-violet'}
-                    ${quizSubmissionState.user_answers.find(item => item.question_id === question.question_id)?.answer_text && 'bg-primary-root-green'}`}
+                    ${quizSubmissionState.user_answers.find(item => item.question_id === question.question_id)?.answer_text && 'bg-primary-root-green text-primary-background'}`}
                     href={`#question-${question.question_id}`}
                   >
-                    <ButtonChooseQuestion>Q{question.index}</ButtonChooseQuestion>
+                    <ButtonChooseQuestion>{question.index}</ButtonChooseQuestion>
                   </Link>
                 ))}
               </div>

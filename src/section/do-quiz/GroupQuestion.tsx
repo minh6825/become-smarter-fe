@@ -3,6 +3,7 @@ import { IGroupQuestion } from "@/api/quiz/group.rest";
 import React, { useEffect, useState } from "react";
 import QuestionItem from "./QuestionItem";
 import { useSearchParams } from "next/navigation";
+import AudioPlayer from "../quiz-detail/common/audio-custom";
 
 type Props = {
   group: IGroupQuestion;
@@ -18,6 +19,8 @@ const GroupQuestion = ({ group, isVisible, questionNumber }: Props) => {
       <div id={`group-${group.group_question_id}`} className="mb-4">
         <h3 className="text-lg font-medium mb-2">{group.title}</h3>
         <p className="text-gray-600 mb-2">{group.instruction}</p>
+        {group.paragraph && <p className="mb-4" dangerouslySetInnerHTML={{__html: group.paragraph}}></p>}
+        {group.audio && <AudioPlayer src={group.audio} />}
         <div>
           {group.question_list.map((question, index) => (
             <QuestionItem

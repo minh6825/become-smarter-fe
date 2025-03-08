@@ -15,6 +15,11 @@ const nextConfig: NextConfig = {
         hostname: 'www.ontaplade.com',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 's4-media1.study4.com',
+        port: '',
+      }
     ]
   },
   sassOptions: {

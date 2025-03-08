@@ -9,6 +9,7 @@ type Props = {
 };
 
 const QuizItem = ({ quiz }: Props) => {
+ 
   return (
     <div className={`${keyframe['quiz-item']} bg-primary-background quiz-item border gap-2 flex flex-col p-4 my-2 rounded-md shadow-xl cursor-pointer`}>
         <h3 className="text-lg font-bold">{quiz.title}</h3>

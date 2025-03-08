@@ -7,7 +7,7 @@ type Props = {
 const ButtonChooseQuestion = ({ children }: Props) => {
   return (
     <div className={`${style["container"]} cursor-pointer`}>
-      <div className={`${style["btn"]}`}>
+      <div className={`${style["btn"]} !text-sm`}>
         {children}
       </div>
     </div>

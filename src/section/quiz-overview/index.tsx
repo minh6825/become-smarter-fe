@@ -24,7 +24,7 @@ const QuizOverviewPage = async ({ quiz, page, limit }: Props) => {
   
   return (
     <WrapBox className="!flex !justify-between gap-4 !w-full">
-      <div className="w-2/5 p-6 border  bg-primary-background rounded-xl shadow-xl">
+      <div className="w-2/5 p-6 border bg-primary-background h-[calc(100vh-124px)] overflow-y-auto rounded-xl shadow-xl">
         <h1 className="text-3xl font-bold mb-4 ">{quiz.title}</h1>
         <p className="text-lg text-gray-700 mb-2">{quiz.description}</p>
         <div className="mb-4">

@@ -1,11 +1,8 @@
 import { IBlog } from '@/api/blog/blogs.rest';
 import WrapBox from '@/components/common/wrap-box';
-import Link from 'next/link';
 import React from 'react';
 import BlogFilter from './blog-filter';
 import PaginationTable from '@/components/table/table-panigation';
-import moment from 'moment';
-import Image from 'next/image';
 import BlogDetailItem from './blog-detail-item';
 
 type Props = {

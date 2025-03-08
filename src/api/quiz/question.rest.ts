@@ -5,6 +5,8 @@ export interface IQuestion {
     question_text: string
     order: number
     explain: string
+    image: string
+    audio: string
     parent_question_id: number
     options: IAnswer[]
     answers: string[]

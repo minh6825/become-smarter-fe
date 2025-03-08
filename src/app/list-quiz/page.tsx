@@ -1,6 +1,7 @@
-import { getQuizListPublicApi } from "@/api/quiz/quiz.rest";
+import { getQuizListPublicApi, IReturnQuizListPublic } from "@/api/quiz/quiz.rest";
 import Footer from "@/section/home-page/footer";
 import HomePage from "@/section/list-quiz";
+import NotFound from "../not-found";
 
 export const revalidate = 10;
 
@@ -54,7 +55,12 @@ export default async function page({
   };
 
   // Gọi API với các tham số được định nghĩa
-  const data = await getQuizListPublicApi(params);
+  let data: IReturnQuizListPublic = { quizzes: [], quantityQuizTest: 0, success: true, message: "" };
+  try {
+    data = await getQuizListPublicApi(params);
+  } catch (error) {
+    return <NotFound />;
+  }
 
   return (
     <div className="bg-primary-main-background min-h-[calc(100vh-72px)] overflow-auto">

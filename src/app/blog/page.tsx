@@ -5,6 +5,7 @@ import BlogFilter from "@/section/blog/blog-filter";
 import BlogsPageSkeleton from "@/section/blog/blog-skeleton";
 import { GetServerSideProps, Metadata } from "next";
 import React from "react";
+import NotFound from "../not-found";
 
 export const revalidate = 10;
 
@@ -47,7 +48,14 @@ const BlogListPage = async ( {
   const take = searchParamsFinal?.take ? Number(searchParamsFinal?.take) : 12;
   const tagIds = searchParamsFinal?.tagIds ? searchParamsFinal?.tagIds : '';
 
-  const { blogs, total } = await fetchBlogList({ page: currentPage, take: take, tagIds: tagIds });
+  let blogs: IBlog[] = [];
+  let total = 0
+  try {
+    blogs = (await fetchBlogList({ page: currentPage, take: take, tagIds: tagIds })).blogs;
+    total = (await fetchBlogList({ page: currentPage, take: take, tagIds: tagIds })).total;
+  } catch (error) {
+    return <NotFound />
+  }
 
   return (
     <main>

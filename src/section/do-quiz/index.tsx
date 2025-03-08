@@ -1,7 +1,4 @@
 "use client";
-import { IQuizDetail, IQuizQuestionAnswer } from "@/api/quiz/quiz.rest";
-import WrapBox from "@/components/common/wrap-box";
-import Link from "next/link";
 import React, { useEffect, useMemo, useState } from "react";
 import Section from "./Section";
 import { QuizData, submissionQuizTest } from "@/api/quiz/submision";
@@ -112,14 +109,17 @@ const DoQuizPage = ({ quizData }: { quizData: QuizData }) => {
   }, []);
 
   return (
-    <WrapBox className="!pb-0 relative">
+    <div className="!pb-0 relative p-6 max-w-[1800px]  mx-auto">
       <div className="flex">
-        <div className="w-full">
+        <div className="w-full h-[calc(100vh-100px)]">
           <div className="flex gap-4">
-            <h1 className="text-2xl font-bold text-nowrap">
-              {quizData.quizTestAPI.quiz_test_intro}
-            </h1>
-            <div className=" flex w-full justify-between space-x-4">
+            <div>
+              <h1 className="text-2xl font-bold text-nowrap truncate w-[70%]">{quizData.quizTestAPI.quiz_test_title}</h1>
+              <p className="text-nowrap">
+                {quizData.quizTestAPI.quiz_test_intro}
+              </p>
+            </div>
+            <div className=" flex w-full justify-between space-x-4 h-fit scale-[80%]">
               <ButtonPrev
                 onClick={handlePreviousGroup}
                 disabled={currentGroupIndex === 0}
@@ -134,12 +134,8 @@ const DoQuizPage = ({ quizData }: { quizData: QuizData }) => {
               </ButtonNext>
             </div>
           </div>
-          <p className="text-sm text-gray-600 mb-4">
-            {quizData.quizTestAPI.quiz_test_title}
-          </p>
-
           <div
-            className={`${scrollSmooth["scroll-smooth"]}  h-[calc(100vh-200px)] w-full overflow-y-scroll border-b`}
+            className={`${scrollSmooth["scroll-smooth"]}  h-[calc(100vh-150px)] w-full overflow-y-scroll`}
           >
             {sectionAndGroup.sections.map((section, sectionIndex) => (
               <Section
@@ -162,7 +158,7 @@ const DoQuizPage = ({ quizData }: { quizData: QuizData }) => {
         <div className="flex flex-col">
           <ButtonPrimary
             type="button"
-            className="!w-fit ml-auto  bg-primary-root-mint !text-white hover:opacity-90"
+            className="!w-fit ml-auto bg-primary-root-mint !text-white hover:opacity-90"
             onClick={() => setPopupSubmit(true)}
           >
             Submit
@@ -195,7 +191,7 @@ const DoQuizPage = ({ quizData }: { quizData: QuizData }) => {
           </div>
         </div>
       </PopupWrap>
-    </WrapBox>
+    </div>
   );
 };
 

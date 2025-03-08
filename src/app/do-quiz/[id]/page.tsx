@@ -76,7 +76,6 @@ const QuizPage = async ({ params }: { params: Promise<{ id: string }> }) => {
 
     return (
       <main>
-        <h1>{data.data.quizTestAPI.quiz_test_title}</h1>
         <DoQuizProviderWrap quizData={data.data} />
 
         {/* JSON-LD for SEO */}
