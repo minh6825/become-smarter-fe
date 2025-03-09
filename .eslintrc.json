@@ -2,11 +2,9 @@
   "extends": ["next/core-web-vitals", "next/typescript", "eslint:recommended"],
   "rule": {
     "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-unused-vars": "warn", // hoặc "off"
+    "@typescript-eslint/no-unused-vars": "warn", 
     "@typescript-eslint/no-empty-object-type": "off",
-    "no-console": "warn", // hoặc "off"
-    "eqeqeq": "error", // so sánh === hoặc !== thì mới đúng
-    "react/jsx-uses-react": "off", // không cần thiết với phiên bản React 17
-    "react/react-in-jsx-scope": "off" // không cần thiết với phiên bản React 17
+    "no-console": "warn", 
+    "eqeqeq": "error"
   }
 }
