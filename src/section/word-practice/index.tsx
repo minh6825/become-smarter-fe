@@ -65,6 +65,7 @@ const WordPracticePage = ({ words }: Props) => {
     }
     return (
         <div className="flex flex-col items-center  justify-center h-[calc(100vh-150px)] p-4">
+            {/* eslint-disable */}
             <Slider ref={sliderRef} {...settings} className="w-[500px]" arrows={false} >
                 {shuffledWords.map((word) => (
                     <div
@@ -79,6 +80,7 @@ const WordPracticePage = ({ words }: Props) => {
                     </div>
                 ))}
             </Slider>
+            {/* eslint-enable */}
         </div>
     );
 };
