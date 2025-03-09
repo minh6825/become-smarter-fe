@@ -23,50 +23,50 @@ const shuffleArray = (array: Word[]) => {
 };
 
 const WordPracticePage = ({ words }: Props) => {
-    const [shuffledWords, setShuffledWords] = useState<Word[]>([]);
-    const sliderRef = useRef<Slider | null>(null);
+    // const [shuffledWords, setShuffledWords] = useState<Word[]>([]);
+    // const sliderRef = useRef<Slider | null>(null);
 
-    useEffect(() => {
-        if (words.length > 0) {
-            // Shuffle words initially
-            setShuffledWords(shuffleArray([...words]));
-        }
-    }, [words]);
+    // useEffect(() => {
+    //     if (words.length > 0) {
+    //         // Shuffle words initially
+    //         setShuffledWords(shuffleArray([...words]));
+    //     }
+    // }, [words]);
 
-    const handleKeyDown = (event: KeyboardEvent) => {
-        if (event.key === 'ArrowRight') {
-            sliderRef.current?.slickNext(); // Move to the next slide
-        } else if (event.key === 'ArrowLeft') {
-            sliderRef.current?.slickPrev(); // Move to the previous slide
-        }
-    };
+    // const handleKeyDown = (event: KeyboardEvent) => {
+    //     if (event.key === 'ArrowRight') {
+    //         sliderRef.current?.slickNext(); // Move to the next slide
+    //     } else if (event.key === 'ArrowLeft') {
+    //         sliderRef.current?.slickPrev(); // Move to the previous slide
+    //     }
+    // };
 
-    useEffect(() => {
-        // Attach keydown event listener
-        window.addEventListener('keydown', handleKeyDown);
-        return () => {
-            // Cleanup keydown event listener
-            window.removeEventListener('keydown', handleKeyDown);
-        };
-    }, []);
+    // useEffect(() => {
+    //     // Attach keydown event listener
+    //     window.addEventListener('keydown', handleKeyDown);
+    //     return () => {
+    //         // Cleanup keydown event listener
+    //         window.removeEventListener('keydown', handleKeyDown);
+    //     };
+    // }, []);
 
-    const settings = {
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: true,
-        swipeToSlide: true,
-        dots: false
-    };
+    // const settings = {
+    //     infinite: true,
+    //     speed: 500,
+    //     slidesToShow: 1,
+    //     slidesToScroll: 1,
+    //     arrows: true,
+    //     swipeToSlide: true,
+    //     dots: false
+    // };
 
-    if (shuffledWords.length === 0) {
-        return <div className="flex items-center justify-center h-[calc(100vh-150px)] bg-primary-background">Loading...</div>;
-    }
+    // if (shuffledWords.length === 0) {
+    //     return <div className="flex items-center justify-center h-[calc(100vh-150px)] bg-primary-background">Loading...</div>;
+    // }
     return (
         <div className="flex flex-col items-center  justify-center h-[calc(100vh-150px)] p-4">
             {/* eslint-disable */}
-            <Slider ref={sliderRef} {...settings} className="w-[500px]" arrows={false} >
+            {/* <Slider ref={sliderRef} {...settings} className="w-[500px]" arrows={false} >
                 {shuffledWords.map((word) => (
                     <div
                         key={word.word_id}
@@ -79,7 +79,7 @@ const WordPracticePage = ({ words }: Props) => {
                         <p className="text-gray-500 text-sm">Status: {word.status}</p>
                     </div>
                 ))}
-            </Slider>
+            </Slider> */}
             {/* eslint-enable */}
         </div>
     );

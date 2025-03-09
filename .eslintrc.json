@@ -4,9 +4,9 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-unused-vars": "warn", // hoặc "off"
     "@typescript-eslint/no-empty-object-type": "off",
-    "no-console": "warn",
-    "eqeqeq": "error",
-    "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off"
+    "no-console": "warn", // hoặc "off"
+    "eqeqeq": "error", // so sánh === hoặc !== thì mới đúng
+    "react/jsx-uses-react": "off", // không cần thiết với phiên bản React 17
+    "react/react-in-jsx-scope": "off" // không cần thiết với phiên bản React 17
   }
 }
