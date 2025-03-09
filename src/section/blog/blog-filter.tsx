@@ -20,8 +20,6 @@ const BlogFilter = ({blogTagsList}: Props) => {
     });
   }
 
-  console.log(selectedTags)
-
   return (
     <div>
       <div className="mb-6 flex space-x-4">
