@@ -25,7 +25,7 @@ const FilterHome = () => {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [subcategories, setSubCategories] = useState<ISubCategory[]>([]);
   const [quizSets, setQuizSets] = useState<IQuizSet[]>([]);
-  const [isDetailedView, setIsDetailedView] = useState(true);
+  const [isDetailedView, setIsDetailedView] = useState(false);
 
   const handleFilterChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement> | any
@@ -82,11 +82,10 @@ const FilterHome = () => {
 
   return (
     <div
-      className="p-6 rounded-md shadow-lg mb-4"
+      className="p-6 rounded-md shadow-lg mb-4 border-border-color border"
       style={{
         backgroundColor: "var(--root-background)",
         color: "var(--root-text)",
-        border: "1px solid var(--primary)",
       }}
     >
       <div className="flex justify-between items-center mb-6">
@@ -188,7 +187,7 @@ const FilterHome = () => {
                     target: { name: "category", value: item.category_id },
                   })
                 }
-                className={`px-4 py-2 rounded-full border text-sm`}
+                className={`px-4 py-2 rounded-full border border-border-color text-sm`}
                 style={{
                   backgroundColor:
                     filters.category === item.category_id
@@ -198,7 +197,6 @@ const FilterHome = () => {
                     filters.category === item.category_id
                       ? "var(--primary-foreground)"
                       : "var(--root-text)",
-                  border: "1px solid var(--primary)",
                 }}
               >
                 {item.category_name}
@@ -217,7 +215,7 @@ const FilterHome = () => {
                     },
                   })
                 }
-                className={`px-4 py-2 rounded-full border text-sm`}
+                className={`px-4 py-2 rounded-full border border-border-color text-sm`}
                 style={{
                   backgroundColor:
                     filters.subCategory === item.sub_category_id
@@ -227,7 +225,6 @@ const FilterHome = () => {
                     filters.subCategory === item.sub_category_id
                       ? "var(--primary-foreground)"
                       : "var(--root-text)",
-                  border: "1px solid var(--primary)",
                 }}
               >
                 {item.sub_category_name}

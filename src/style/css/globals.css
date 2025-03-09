@@ -45,6 +45,9 @@
     --root-text: #1e293b;
 
     --code-block: #ececec;
+    --border-color: #e5e7eb;
+
+    --item-background: #f8fafc;
   }
   html[data-theme='dark-classic'] {
     --primary: #cbd5e1;
@@ -56,6 +59,7 @@
     --root-text: #f8fafc;
     --root-blue: #899ed8;
 
+    --item-background: #2d3748;
     --gray-3: #ffffff26;
     --code-block: #424242;
   }
@@ -66,6 +70,9 @@
     --root-background-table: #2d3748;
     --root-background: #2B2B2B;
     --root-text: #f8fafc;
+    
+    --text-button: #fff;
+    --item-background: #2d3748;
 
     --code-block: #424242;
   }
@@ -84,11 +91,19 @@
     --root-background: #1C252E;
   }
   html[data-theme='dark-mint'] {
-    --primary: #047857;
-    --primary-foreground: #f8fafc;
+    --primary: #FFFFFF;
+    --primary-foreground: #141A21;
     --text-button: #1e293b;
-    --root-background-table: #2d3748;
-    --root-background: #0f172a;
+    --root-background-table: #141A21;
+    --root-background: #141A21;
+
+    --item-background: #1C252E;
+    --border-color: #e5e7eb81;
+
+    --root-item: #1C252E;
+    --root-text: #f8fafc;
+    --code-block: #424242;
+    --text-button: #fff;
   }
 }
 

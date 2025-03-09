@@ -10,6 +10,8 @@ export default {
   theme: {
     extend: {
       colors: {
+        'item-background': `var(--item-background)`,
+        'border-color': `var(--border-color)`,
         primary: {
           DEFAULT: 'var(--primary)',
           foreground: 'var(--primary-foreground)',

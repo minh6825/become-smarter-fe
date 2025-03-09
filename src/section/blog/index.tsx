@@ -4,21 +4,23 @@ import React from 'react';
 import BlogFilter from './blog-filter';
 import PaginationTable from '@/components/table/table-panigation';
 import BlogDetailItem from './blog-detail-item';
+import { IBlogTag } from '@/api/blog-tags/blog-tags.rest';
 
 type Props = {
   data: IBlog[];
 page: number;
 take: number;
 total:  number;
+blogTagsList: IBlogTag[]
 };
 
-const BlogsPage = ({ data, page, take, total }: Props) => {
+const BlogsPage = ({ data, page, take, total, blogTagsList }: Props) => {
 
   return (
     <WrapBox className='!flex !flex-col max-md:px-4'>
       <h1 className='text-3xl font-bold text-center mb-10'>Blog</h1>
       {/* Bộ lọc */}
-     <BlogFilter />
+     <BlogFilter blogTagsList={blogTagsList} />
       <div className="flex mb-10 flex-wrap gap-y-4 gap-[calc(4%/3)] max-md::gap-y-6 max-sm::gap-y-8 w-full">
         {data.length ? data.map((blog) => (
             <BlogDetailItem key={blog.blog_id}  blog={blog}/>

@@ -28,8 +28,7 @@ const HeaderHome = () => {
 
   if (!isClient) return null;
   return (
-    <header className="h-header top-0 fixed shadow-lg z-[100] w-full bg-primary-background max-md:justify-between border-b 
-    border-primary/100 flex items-center px-[2%]">
+    <header className="h-header top-0 fixed shadow-lg z-[100] w-full bg-primary-background max-md:justify-between border-b border-border-color flex items-center px-[2%]">
       <Drawer />
         <h2 className="text-2xl font-bold flex  items-center gap-2">
           <Image src={'/logo.png'} width={2000} height={2000} className="rounded-full cursor-pointer select-none w-[50px] h-[50px] max-md:h-[40px] max-md:w-[40px]" alt="logo"/>

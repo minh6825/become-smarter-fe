@@ -1,13 +1,12 @@
 import { fetchBlogList, IBlog } from "@/api/blog/blogs.rest";
 import { NEXT_PUBLIC_CLIENT } from "@/assets/constant";
 import BlogsPage from "@/section/blog";
-import BlogFilter from "@/section/blog/blog-filter";
-import BlogsPageSkeleton from "@/section/blog/blog-skeleton";
-import { GetServerSideProps, Metadata } from "next";
+import { Metadata } from "next";
 import React from "react";
 import NotFound from "../not-found";
+import { fetchBlogTagsList, IBlogTag } from "@/api/blog-tags/blog-tags.rest";
 
-export const revalidate = 10;
+export const revalidate = 60;
 
 // SEO Metadata function
 export async function generateMetadata(): Promise<Metadata> {
@@ -49,17 +48,21 @@ const BlogListPage = async ( {
   const tagIds = searchParamsFinal?.tagIds ? searchParamsFinal?.tagIds : '';
 
   let blogs: IBlog[] = [];
+  let blogTagsList:IBlogTag[] = [] 
   let total = 0
   try {
-    blogs = (await fetchBlogList({ page: currentPage, take: take, tagIds: tagIds })).blogs;
-    total = (await fetchBlogList({ page: currentPage, take: take, tagIds: tagIds })).total;
+    const data = (await fetchBlogList({ page: currentPage, take: take, tagIds: tagIds }));
+    const dataTagList = await fetchBlogTagsList({page: 1, limit: 2000})
+    blogTagsList = dataTagList.blogTag
+    total = data.total;
+    blogs = data.blogs;
   } catch (error) {
     return <NotFound />
   }
 
   return (
     <main>
-      <BlogsPage data={blogs} page={currentPage} total={total} take={take} />
+      <BlogsPage data={blogs} page={currentPage} total={total} take={take} blogTagsList={blogTagsList} />
       {/* Thêm structured data JSON-LD */}
       <script
         type="application/ld+json"

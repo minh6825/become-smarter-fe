@@ -1,26 +1,15 @@
 "use client";
-import { fetchBlogTagsList, IBlogTag } from "@/api/blog-tags/blog-tags.rest";
-import SelectPrimary from "@/components/tags/select/select-primary";
+import { IBlogTag } from "@/api/blog-tags/blog-tags.rest";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-type Props = {};
+type Props = {
+  blogTagsList: IBlogTag[];
+};
 
-const BlogFilter = (props: Props) => {
-  const [blogTags, setBlogTags] = useState<IBlogTag[]>([])
+const BlogFilter = ({blogTagsList}: Props) => {
   const [selectedTags, setSelectedTags] = useState<string[]>([])
   const router = useRouter();
-
-  useEffect(() => {
-    const handleGetBlogTags = async () => {
-      const { blogTag, total } = await fetchBlogTagsList({page: 1, limit: 2000})
-      setBlogTags(blogTag)
-    }
-    handleGetBlogTags()
-    return () => {
-      
-    }
-  }, [])
 
   const handleTagClick = (tag: string) => {
     setSelectedTags((prevTags) => {
@@ -38,7 +27,7 @@ const BlogFilter = (props: Props) => {
       <div className="mb-6 flex space-x-4">
         <div className="flex gap-2 items-center">
           {
-            blogTags.map((tag) => (
+            blogTagsList.map((tag) => (
               <p 
                 key={tag.tag_id} 
                 className={`bg-primary-root-green-bold text-white p-1 cursor-pointer hover:opacity-80 rounded-md font-bold 

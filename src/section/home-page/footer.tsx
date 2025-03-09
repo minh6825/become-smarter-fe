@@ -18,7 +18,8 @@ const Footer = (props: Props) => {
           />
           <h3 className="text-xl font-bold">Ôn tập là dễ</h3>
           <p className="text-sm">
-            Nền tảng quản lý bộ đề tốt nhất cho học viên và giáo viên.
+            Nền tảng thi trắc nghiệm số 1 Việt Nam giúp bạn tạo, quản lý và chia
+            sẻ bộ đề một cách nhanh chóng và dễ dàng.
           </p>
         </div>
         <div className="flex justify-center space-x-4 mb-4">

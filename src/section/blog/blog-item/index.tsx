@@ -13,14 +13,14 @@ const BlogDetailPage = ({ data }: Props) => {
   return (
     <>
       <div
-        className="min-h-screen bg-primary-foreground text-root-text flex flex-col"
+        className="min-h-screen text-root-text flex flex-col"
         style={{ backgroundColor: "var(--root-background)", color: "var(--root-text)" }}
       >
         <WrapBox
-          className={`tiptap-wrap rounded-md shadow-md bg-primary-background`}
+          className={`tiptap-wrap`}
         >
           {data && (
-            <div className="mb-6 p-6 max-md:px-2">
+            <div className="rounded-xl p-6 max-md:px-2 bg-item-background">
               {/* Tiêu đề bài viết */}
               <h1
                 className="font-bold text-center !text-4xl leading-tight mb-6"
@@ -31,8 +31,7 @@ const BlogDetailPage = ({ data }: Props) => {
 
               {/* Ngày tạo bài viết */}
               <p
-                className="!text-base text-center italic mb-4"
-                style={{ color: "var(--root-text)" }}
+                className="text-center italic mb-4 "
               >
                 Published on {moment(data.created_at).format("MMMM DD, YYYY")}
               </p>
@@ -41,7 +40,7 @@ const BlogDetailPage = ({ data }: Props) => {
                 {data.tags.map((tag) => (
                   <span
                     key={tag.tag_id}
-                    className="bg-primary-root-mint text-white px-2 py-1 rounded-md mr-2"
+                    className="bg-primary-root-mint text-primary-text-button px-2 py-1 rounded-md mr-2"
                   >
                     {tag.name}
                   </span>
@@ -54,7 +53,7 @@ const BlogDetailPage = ({ data }: Props) => {
 
               {/* Nội dung bài viết */}
               <div
-                className="text-lg leading-relaxed tiptap tiptap-wrap "
+                className="text-lg leading-relaxed tiptap tiptap-wrap !bg-item-background"
                 style={{ color: "var(--root-text)" }}
                 dangerouslySetInnerHTML={{ __html: data.content }}
               ></div>

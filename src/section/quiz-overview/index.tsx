@@ -24,7 +24,7 @@ const QuizOverviewPage = async ({ quiz, page, limit }: Props) => {
   
   return (
     <WrapBox className="!flex !justify-between gap-4 !w-full">
-      <div className="w-2/5 p-6 border bg-primary-background h-[calc(100vh-124px)] overflow-y-auto rounded-xl shadow-xl">
+      <div className="w-2/5 border-border-color p-6 border h-[calc(100vh-124px)] overflow-y-auto rounded-xl shadow-xl bg-item-background">
         <h1 className="text-3xl font-bold mb-4 ">{quiz.title}</h1>
         <p className="text-lg text-gray-700 mb-2">{quiz.description}</p>
         <div className="mb-4">
@@ -73,7 +73,7 @@ const QuizOverviewPage = async ({ quiz, page, limit }: Props) => {
           </Link>
         </div>
       </div>
-        <div className="flex-1 overflow-auto h-[calc(100vh-124px)] border shadow-xl p-4 pb-0 bg-primary-background rounded-xl">
+        <div className="flex-1 overflow-auto h-[calc(100vh-124px)] border border-border-color shadow-xl p-4 pb-0 bg-item-background rounded-xl">
           <CommentList quizId={quiz.quizId} commentList={commentList} />
           <ShowMoreButton quizId={quiz.quizId} />
         </div>

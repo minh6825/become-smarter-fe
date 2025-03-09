@@ -26,7 +26,7 @@ const CommentList = async ({ commentList, quizId }: Props) => {
       <div>
         {commentList.map((comment: IComment) => {
           return (
-            <div key={comment.comment_id} className="comment py-4 border-b border-gray-200">
+            <div key={comment.comment_id} className="comment py-4 border-b border-border-color">
               <div className="author flex items-center mb-2">
                 <Image width={40} height={40}
                   src={comment.author.avatar_url}
@@ -40,7 +40,7 @@ const CommentList = async ({ commentList, quizId }: Props) => {
                   </span>
                 </div>
               </div>
-              <p className="text-gray-700 mb-2">{comment.content}</p>
+              <p className="text-primary mb-2">{comment.content}</p>
               <ReplyComment replyList={comment.replies} parentId={comment.comment_id} quizId={quizId} />
             </div>
           );

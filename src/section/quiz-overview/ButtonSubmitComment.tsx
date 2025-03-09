@@ -34,9 +34,9 @@ const ButtonSubmitComment = ({ quizId }: Props) => {
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 ">
       {/* Ô nhập luôn cố định ở đầu */}
-      <div className="sticky top-0 bg-primary-background z-50 p-4 shadow-md border-b border-gray-300">
+      <div className="sticky top-0 z-50 p-4 shadow-md border-b border-gray-300">
         <h1 className="text-2xl font-bold mb-4">Comments</h1>
         <form onSubmit={handleSubmitComment} className="flex gap-2 items-center">
           <InputPrimary
@@ -74,7 +74,7 @@ const ButtonSubmitComment = ({ quizId }: Props) => {
                     </span>
                   </div>
                 </div>
-                <p className="text-gray-700">{comment.content}</p>
+                <p className="text-primary">{comment.content}</p>
                 <ReplyComment
                   parentId={comment.comment_id}
                   replyList={comment.replies}

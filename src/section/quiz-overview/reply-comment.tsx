@@ -93,7 +93,7 @@ const ReplyComment = ({quizId, parentId, replyList}: Props) => {
                     </span>
                   </div>
                 </div>
-                <p className="text-gray-700 mb-2">{comment.content}</p>
+                <p className="text-primary mb-2">{comment.content}</p>
               </div>
             );
           })}

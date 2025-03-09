@@ -10,7 +10,7 @@ type Props = {
 
 const BlogDetailItem = ({ blog }: Props) => {
   return (
-    <Link href={`/blog/${blog.blog_id}`} className="flex flex-col shadow-lg border border-collapse  rounded-lg overflow-hidden bg-primary-item w-[24%] max-md:w-[48%] max-sm:w-[100%]">
+    <Link href={`/blog/${blog.blog_id}`} className="flex flex-col shadow-lg border border-collapse  border-border-color rounded-lg overflow-hidden bg-item-background w-[24%] max-md:w-[48%] max-sm:w-[100%]">
     <div >
       <Image src={'https://www.ontaplade.com/logo.png'} alt='Logo' width={1000} height={1000} className='w-full h-[150px] object-cover' />
     </div>
